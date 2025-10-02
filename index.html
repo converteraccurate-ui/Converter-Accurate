@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter Accurate - Your Daily Tools, All in One</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --olive-green: #556B2F;
+            --light-olive: #6B8E23;
+            --dark-olive: #3D4C21;
+            --cream: #F5F5DC;
+            --light-gray: #f8f8f8;
+            --white: #ffffff;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--olive-green);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--light-olive);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--olive-green);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--olive-green);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--cream);
+            color: var(--olive-green);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-olive);
+            font-size: 2.2rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-icon {
+            background-color: var(--olive-green);
+            color: var(--white);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .tool-content {
+            padding: 25px;
+        }
+
+        .tool-content h3 {
+            color: var(--dark-olive);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .tool-content p {
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .tool-link {
+            color: var(--olive-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .tool-link i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .tool-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            background-color: var(--olive-green);
+            color: var(--white);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+
+        .feature-item h3 {
+            color: var(--dark-olive);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .feature-item p {
+            color: var(--text-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-olive);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--cream);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--cream);
+        }
+
+        .contact-details {
+            color: var(--light-gray);
+        }
+
+        .contact-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-right: 10px;
+            color: var(--cream);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Tool Implementation Styles */
+        .tool-implementation {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .tool-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .tool-title {
+            color: var(--dark-olive);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: var(--olive-green);
+            outline: none;
+        }
+
+        .tool-button {
+            background-color: var(--olive-green);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .tool-button:hover {
+            background-color: var(--light-olive);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--cream);
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--dark-olive);
+            font-weight: 600;
+            display: none;
+        }
+
+        .bmi-category {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px 0;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .tools-section, .features-section, .tool-implementation {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .tool-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Converter <span>Accurate</span></a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Your Daily Tools, All in One Place</h1>
+            <p>Convert, calculate, and measure with precision using our comprehensive suite of online tools. Fast, accurate, and completely free.</p>
+            <a href="#tools" class="cta-button">Explore Tools <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section" id="tools">
+        <div class="container">
+            <h2 class="section-title">Our Conversion Tools</h2>
+            <div class="tools-grid">
+                <!-- Tool Card 1 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Length Converter</h3>
+                        <p>Convert between meters, feet, inches, centimeters, and more with precision.</p>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 2 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Weight Converter</h3>
+                        <p>Convert kilograms to pounds, grams to ounces, and other weight measurements.</p>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 3 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Temperature Converter</h3>
+                        <p>Convert between Celsius, Fahrenheit, and Kelvin temperature scales.</p>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 4 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Speed Converter</h3>
+                        <p>Convert miles per hour to kilometers per hour and other speed units.</p>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 5 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Time Converter</h3>
+                        <p>Convert between time zones, hours to minutes, and other time measurements.</p>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 6 -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Currency Converter</h3>
+                        <p>Convert between different currencies with up-to-date exchange rates.</p>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 7: Data Converter -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Data Converter</h3>
+                        <p>Convert between KB, MB, GB, TB, bits, and bytes with precision.</p>
+                        <a href="#data-converter" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 8: Age Calculator -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Age Calculator</h3>
+                        <p>Calculate your exact age in years, months, and days from your birth date.</p>
+                        <a href="#age-calculator" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 9: BMI Calculator -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>BMI Calculator</h3>
+                        <p>Calculate your Body Mass Index and understand your health category.</p>
+                        <a href="#bmi-calculator" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Converter Implementation -->
+    <section class="tool-implementation" id="data-converter">
+        <div class="container">
+            <div class="tool-container">
+                <h2 class="tool-title">Data Converter</h2>
+                <div class="input-group">
+                    <label for="data-value">Enter Value:</label>
+                    <input type="number" id="data-value" placeholder="Enter a number" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="data-from">From:</label>
+                    <select id="data-from">
+                        <option value="bit">Bit</option>
+                        <option value="byte">Byte</option>
+                        <option value="kilobyte">Kilobyte (KB)</option>
+                        <option value="megabyte" selected>Megabyte (MB)</option>
+                        <option value="gigabyte">Gigabyte (GB)</option>
+                        <option value="terabyte">Terabyte (TB)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="data-to">To:</label>
+                    <select id="data-to">
+                        <option value="bit">Bit</option>
+                        <option value="byte">Byte</option>
+                        <option value="kilobyte">Kilobyte (KB)</option>
+                        <option value="megabyte">Megabyte (MB)</option>
+                        <option value="gigabyte" selected>Gigabyte (GB)</option>
+                        <option value="terabyte">Terabyte (TB)</option>
+                    </select>
+                </div>
+                <button class="tool-button" id="convert-data">Convert</button>
+                <div class="result" id="data-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Age Calculator Implementation -->
+    <section class="tool-implementation" id="age-calculator">
+        <div class="container">
+            <div class="tool-container">
+                <h2 class="tool-title">Age Calculator</h2>
+                <div class="input-group">
+                    <label for="birth-date">Enter Your Birth Date:</label>
+                    <input type="date" id="birth-date">
+                </div>
+                <button class="tool-button" id="calculate-age">Calculate Age</button>
+                <div class="result" id="age-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BMI Calculator Implementation -->
+    <section class="tool-implementation" id="bmi-calculator">
+        <div class="container">
+            <div class="tool-container">
+                <h2 class="tool-title">BMI Calculator</h2>
+                <div class="input-group">
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" placeholder="Enter height in centimeters">
+                </div>
+                <div class="input-group">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" placeholder="Enter weight in kilograms">
+                </div>
+                <button class="tool-button" id="calculate-bmi">Calculate BMI</button>
+                <div class="result" id="bmi-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Converter Accurate?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Our tools deliver instant results without any delays, saving you valuable time.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access all our tools on any device with our responsive, mobile-optimized design.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>We don't store your data. All conversions happen securely in your browser.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Converter Accurate</h3>
+                    <p>Your comprehensive solution for all measurement conversion needs. Fast, accurate, and completely free.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#tools">All Tools</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="#data-converter">Data Converter</a></li>
+                        <li><a href="#age-calculator">Age Calculator</a></li>
+                        <li><a href="#bmi-calculator">BMI Calculator</a></li>
+                        <li><a href="#">Currency Converter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-envelope"></i> converteraccurate@gmail.com</p>
+                        <p><i class="fas fa-globe"></i> www.converteraccurate.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Converter Accurate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+
+        // Data Converter
+        document.getElementById('convert-data').addEventListener('click', function() {
+            const value = parseFloat(document.getElementById('data-value').value);
+            const fromUnit = document.getElementById('data-from').value;
+            const toUnit = document.getElementById('data-to').value;
+            
+            if (isNaN(value)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            
+            // Conversion factors relative to bytes
+            const units = {
+                bit: 0.125,
+                byte: 1,
+                kilobyte: 1024,
+                megabyte: 1048576,
+                gigabyte: 1073741824,
+                terabyte: 1099511627776
+            };
+            
+            // Convert to bytes first
+            const bytes = value * units[fromUnit];
+            
+            // Convert from bytes to target unit
+            const result = bytes / units[toUnit];
+            
+            document.getElementById('data-result').textContent = `${value} ${fromUnit} = ${result.toFixed(6)} ${toUnit}`;
+            document.getElementById('data-result').style.display = 'block';
+        });
+
+        // Age Calculator
+        document.getElementById('calculate-age').addEventListener('click', function() {
+            const birthDate = new Date(document.getElementById('birth-date').value);
+            const today = new Date();
+            
+            if (isNaN(birthDate.getTime())) {
+                alert('Please select a valid birth date');
+                return;
+            }
+            
+            let years = today.getFullYear() - birthDate.getFullYear();
+            let months = today.getMonth() - birthDate.getMonth();
+            let days = today.getDate() - birthDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                // Get days in previous month
+                const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            document.getElementById('age-result').innerHTML = `
+                Your age is: <br>
+                ${years} years, ${months} months, and ${days} days
+            `;
+            document.getElementById('age-result').style.display = 'block';
+        });
+
+        // BMI Calculator
+        document.getElementById('calculate-bmi').addEventListener('click', function() {
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to m
+            const weight = parseFloat(document.getElementById('weight').value);
+            
+            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+                alert('Please enter valid height and weight values');
+                return;
+            }
+            
+            const bmi = weight / (height * height);
+            let category = '';
+            
+            if (bmi < 18.5) {
+                category = 'Underweight';
+            } else if (bmi < 25) {
+                category = 'Normal weight';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+            } else {
+                category = 'Obese';
+            }
+            
+            document.getElementById('bmi-result').innerHTML = `
+                Your BMI is: ${bmi.toFixed(2)} <br>
+                <span class="bmi-category">Category: ${category}</span>
+            `;
+            document.getElementById('bmi-result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
