@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - Converter Accurate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --olive-green: #556B2F;
+            --light-olive: #6B8E23;
+            --dark-olive: #3D4C21;
+            --cream: #F5F5DC;
+            --light-gray: #f8f8f8;
+            --white: #ffffff;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .calculator-header {
+            background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .calculator-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .calculator-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .calculator-body {
+            padding: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-olive);
+            font-size: 1.1rem;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .input-field {
+            flex: 1;
+        }
+
+        .input-field input, .input-field select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .input-field input:focus, .input-field select:focus {
+            border-color: var(--olive-green);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(85, 107, 47, 0.2);
+        }
+
+        .calculate-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--olive-green);
+            color: var(--white);
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 25px;
+        }
+
+        .calculate-btn:hover {
+            background-color: var(--light-olive);
+        }
+
+        .result-container {
+            background-color: var(--cream);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            display: none;
+        }
+
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .age-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .age-unit {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 120px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .age-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-olive);
+            line-height: 1;
+        }
+
+        .age-label {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-top: 5px;
+        }
+
+        .detailed-age {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .milestones {
+            margin-top: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .milestones h3 {
+            color: var(--dark-olive);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .milestone-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .milestone-item:last-child {
+            border-bottom: none;
+        }
+
+        .milestone-text {
+            font-weight: 500;
+        }
+
+        .milestone-date {
+            color: var(--olive-green);
+            font-weight: 600;
+        }
+
+        .info-section {
+            margin-top: 30px;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .info-section h3 {
+            color: var(--dark-olive);
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            margin-bottom: 15px;
+        }
+
+        .info-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-list li:before {
+            content: "•";
+            color: var(--olive-green);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        @media (max-width: 768px) {
+            .input-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .age-display {
+                gap: 10px;
+            }
+            
+            .age-unit {
+                min-width: 100px;
+                padding: 15px;
+            }
+            
+            .age-value {
+                font-size: 2rem;
+            }
+            
+            .calculator-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calculator-body {
+                padding: 20px;
+            }
+            
+            .age-unit {
+                min-width: 80px;
+                padding: 10px;
+            }
+            
+            .age-value {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator-card">
+            <div class="calculator-header">
+                <h1><i class="fas fa-birthday-cake"></i> Age Calculator</h1>
+                <p>Calculate your exact age in years, months, weeks, and days</p>
+            </div>
+            
+            <div class="calculator-body">
+                <div class="input-group">
+                    <label for="birth-date">Your Birth Date</label>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <input type="date" id="birth-date">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="age-at-date">Calculate Age As Of (Optional)</label>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <input type="date" id="age-at-date">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="calculate-btn" id="calculate">
+                    Calculate Age <i class="fas fa-calculator"></i>
+                </button>
+                
+                <div class="result-container" id="result">
+                    <div class="age-display">
+                        <div class="age-unit">
+                            <div class="age-value" id="years">--</div>
+                            <div class="age-label">Years</div>
+                        </div>
+                        <div class="age-unit">
+                            <div class="age-value" id="months">--</div>
+                            <div class="age-label">Months</div>
+                        </div>
+                        <div class="age-unit">
+                            <div class="age-value" id="weeks">--</div>
+                            <div class="age-label">Weeks</div>
+                        </div>
+                        <div class="age-unit">
+                            <div class="age-value" id="days">--</div>
+                            <div class="age-label">Days</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detailed-age" id="detailed-age">
+                        Your exact age will be displayed here.
+                    </div>
+                    
+                    <div class="milestones">
+                        <h3>Age Milestones</h3>
+                        <div class="milestone-item">
+                            <span class="milestone-text">Next Birthday</span>
+                            <span class="milestone-date" id="next-birthday">--</span>
+                        </div>
+                        <div class="milestone-item">
+                            <span class="milestone-text">Half Birthday</span>
+                            <span class="milestone-date" id="half-birthday">--</span>
+                        </div>
+                        <div class="milestone-item">
+                            <span class="milestone-text">1/3 Birthday</span>
+                            <span class="milestone-date" id="third-birthday">--</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <h3>About Age Calculation</h3>
+                    <p>This calculator determines your exact age based on the dates provided. It accounts for leap years and varying month lengths to give you a precise calculation.</p>
+                    
+                    <h3>How Age is Calculated</h3>
+                    <ul class="info-list">
+                        <li><strong>Years:</strong> Full years since your birth date</li>
+                        <li><strong>Months:</strong> Complete months since your last birthday</li>
+                        <li><strong>Weeks:</strong> Complete weeks since your last birthday</li>
+                        <li><strong>Days:</strong> Days since your last birthday</li>
+                    </ul>
+                    
+                    <p><strong>Note:</strong> If no "Calculate Age As Of" date is provided, today's date is used.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const birthDateInput = document.getElementById('birth-date');
+            const ageAtDateInput = document.getElementById('age-at-date');
+            const calculateBtn = document.getElementById('calculate');
+            const resultContainer = document.getElementById('result');
+            const yearsElement = document.getElementById('years');
+            const monthsElement = document.getElementById('months');
+            const weeksElement = document.getElementById('weeks');
+            const daysElement = document.getElementById('days');
+            const detailedAgeElement = document.getElementById('detailed-age');
+            const nextBirthdayElement = document.getElementById('next-birthday');
+            const halfBirthdayElement = document.getElementById('half-birthday');
+            const thirdBirthdayElement = document.getElementById('third-birthday');
+            
+            // Set default values for date inputs
+            const today = new Date();
+            const formattedToday = formatDate(today);
+            
+            // Set max date to today for both inputs
+            birthDateInput.max = formattedToday;
+            ageAtDateInput.max = formattedToday;
+            
+            // Set age-at-date to today by default
+            ageAtDateInput.value = formattedToday;
+            
+            // Calculate age
+            calculateBtn.addEventListener('click', function() {
+                const birthDate = new Date(birthDateInput.value);
+                let ageAtDate = new Date(ageAtDateInput.value);
+                
+                // If no age-at-date provided, use today
+                if (!ageAtDateInput.value) {
+                    ageAtDate = new Date();
+                }
+                
+                // Validate inputs
+                if (!birthDateInput.value) {
+                    alert('Please enter your birth date.');
+                    return;
+                }
+                
+                if (birthDate > ageAtDate) {
+                    alert('Birth date cannot be in the future relative to the calculation date.');
+                    return;
+                }
+                
+                // Calculate age
+                const age = calculateAge(birthDate, ageAtDate);
+                
+                // Update the UI with results
+                yearsElement.textContent = age.years;
+                monthsElement.textContent = age.months;
+                weeksElement.textContent = age.weeks;
+                daysElement.textContent = age.days;
+                
+                // Update detailed age text
+                detailedAgeElement.textContent = `You are ${age.years} years, ${age.months} months, ${age.weeks} weeks, and ${age.days} days old.`;
+                
+                // Calculate milestones
+                const nextBirthday = calculateNextBirthday(birthDate, ageAtDate);
+                const halfBirthday = calculateHalfBirthday(birthDate, ageAtDate);
+                const thirdBirthday = calculateThirdBirthday(birthDate, ageAtDate);
+                
+                nextBirthdayElement.textContent = formatDateForDisplay(nextBirthday);
+                halfBirthdayElement.textContent = formatDateForDisplay(halfBirthday);
+                thirdBirthdayElement.textContent = formatDateForDisplay(thirdBirthday);
+                
+                // Show result container
+                resultContainer.classList.add('active');
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+            
+            // Helper function to calculate age
+            function calculateAge(birthDate, ageAtDate) {
+                let years = ageAtDate.getFullYear() - birthDate.getFullYear();
+                let months = ageAtDate.getMonth() - birthDate.getMonth();
+                let days = ageAtDate.getDate() - birthDate.getDate();
+                
+                // Adjust for negative days
+                if (days < 0) {
+                    months--;
+                    // Get days in previous month
+                    const prevMonth = new Date(ageAtDate.getFullYear(), ageAtDate.getMonth(), 0);
+                    days += prevMonth.getDate();
+                }
+                
+                // Adjust for negative months
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+                
+                // Calculate total days for weeks calculation
+                const birthThisYear = new Date(ageAtDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+                let daysSinceBirthday = Math.floor((ageAtDate - birthThisYear) / (1000 * 60 * 60 * 24));
+                
+                if (daysSinceBirthday < 0) {
+                    // Birthday hasn't occurred this year yet
+                    const birthLastYear = new Date(ageAtDate.getFullYear() - 1, birthDate.getMonth(), birthDate.getDate());
+                    daysSinceBirthday = Math.floor((ageAtDate - birthLastYear) / (1000 * 60 * 60 * 24));
+                }
+                
+                const weeks = Math.floor(daysSinceBirthday / 7);
+                const remainingDays = daysSinceBirthday % 7;
+                
+                return {
+                    years: years,
+                    months: months,
+                    weeks: weeks,
+                    days: remainingDays
+                };
+            }
+            
+            // Calculate next birthday
+            function calculateNextBirthday(birthDate, ageAtDate) {
+                const currentYear = ageAtDate.getFullYear();
+                let nextBirthday = new Date(currentYear, birthDate.getMonth(), birthDate.getDate());
+                
+                // If birthday has already passed this year, use next year
+                if (nextBirthday < ageAtDate) {
+                    nextBirthday.setFullYear(currentYear + 1);
+                }
+                
+                return nextBirthday;
+            }
+            
+            // Calculate half birthday (6 months after last birthday)
+            function calculateHalfBirthday(birthDate, ageAtDate) {
+                const currentYear = ageAtDate.getFullYear();
+                let lastBirthday = new Date(currentYear, birthDate.getMonth(), birthDate.getDate());
+                
+                // If birthday hasn't occurred yet this year, use last year
+                if (lastBirthday > ageAtDate) {
+                    lastBirthday.setFullYear(currentYear - 1);
+                }
+                
+                const halfBirthday = new Date(lastBirthday);
+                halfBirthday.setMonth(lastBirthday.getMonth() + 6);
+                
+                return halfBirthday;
+            }
+            
+            // Calculate 1/3 birthday (4 months after last birthday)
+            function calculateThirdBirthday(birthDate, ageAtDate) {
+                const currentYear = ageAtDate.getFullYear();
+                let lastBirthday = new Date(currentYear, birthDate.getMonth(), birthDate.getDate());
+                
+                // If birthday hasn't occurred yet this year, use last year
+                if (lastBirthday > ageAtDate) {
+                    lastBirthday.setFullYear(currentYear - 1);
+                }
+                
+                const thirdBirthday = new Date(lastBirthday);
+                thirdBirthday.setMonth(lastBirthday.getMonth() + 4);
+                
+                return thirdBirthday;
+            }
+            
+            // Format date as YYYY-MM-DD for input
+            function formatDate(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+            
+            // Format date for display (MMM DD, YYYY)
+            function formatDateForDisplay(date) {
+                const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                return date.toLocaleDateString('en-US', options);
+            }
+            
+            // Allow Enter key to calculate
+            birthDateInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    calculateBtn.click();
+                }
+            });
+            
+            ageAtDateInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    calculateBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
