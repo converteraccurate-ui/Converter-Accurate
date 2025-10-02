@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter - Olive Green Theme</title>
+  <style>
+    :root {
+      --primary-color: olive;
+      --secondary-color: white;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--secondary-color);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .converter {
+      background: var(--secondary-color);
+      box-shadow: 0 4px 12px var(--shadow-color);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    button {
+      background: var(--primary-color);
+      color: var(--secondary-color);
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    option {
+      padding: 5px;
+    }
+
+    @media (max-width: 480px) {
+      .converter {
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="converter">
+    <h1>Currency Converter</h1>
+    <p>Convert currencies in real-time using live exchange rates.</p>
+
+    <div class="input-group">
+      <input type="number" id="amount" placeholder="Enter amount" inputmode="decimal">
+
+      <select id="fromCurrency"></select>
+      <select id="toCurrency"></select>
+
+      <button onclick="convertCurrency()">Convert</button>
+    </div>
+
+    <div id="result" class="result">Result will appear here</div>
+  </div>
+
+  <script>
+    const fromCurrency = document.getElementById('fromCurrency');
+    const toCurrency = document.getElementById('toCurrency');
+    const resultDiv = document.getElementById('result');
+
+    // Country flags mapping (emoji flags)
+    const currencyFlags = {
+      USD: '🇺🇸',
+      EUR: '🇪🇺',
+      INR: '🇮🇳',
+      GBP: '🇬🇧',
+      AUD: '🇦🇺',
+      CAD: '🇨🇦',
+      SGD: '🇸🇬',
+      JPY: '🇯🇵',
+      CNY: '🇨🇳',
+      RUB: '🇷🇺',
+      BRL: '🇧🇷',
+      ZAR: '🇿🇦'
+    };
+
+    async function loadCurrencies() {
+      try {
+        const res = await fetch('https://open.er-api.com/v6/latest/USD');
+        const data = await res.json();
+        const currencies = Object.keys(data.rates);
+
+        currencies.forEach(code => {
+          let option1 = document.createElement('option');
+          option1.value = code;
+          option1.textContent = `${currencyFlags[code] || ''} ${code}`;
+
+          let option2 = option1.cloneNode(true);
+
+          fromCurrency.appendChild(option1);
+          toCurrency.appendChild(option2);
+        });
+
+        fromCurrency.value = 'USD';
+        toCurrency.value = 'INR';
+      } catch (error) {
+        resultDiv.innerText = 'Error loading currencies.';
+      }
+    }
+
+    loadCurrencies();
+
+    async function convertCurrency() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const from = fromCurrency.value;
+      const to = toCurrency.value;
+
+      if (isNaN(amount)) {
+        resultDiv.innerText = 'Please enter a valid number';
+        return;
+      }
+
+      try {
+        const res = await fetch(`https://open.er-api.com/v6/latest/${from}`);
+        const data = await res.json();
+        const rate = data.rates[to];
+        const converted = amount * rate;
+
+        resultDiv.innerText = `${currencyFlags[from] || ''} ${amount} ${from} = ${currencyFlags[to] || ''} ${converted.toFixed(4)} ${to}`;
+      } catch (error) {
+        resultDiv.innerText = 'Conversion failed. Try again later.';
+      }
+    }
+  </script>
+</body>
+</html>
