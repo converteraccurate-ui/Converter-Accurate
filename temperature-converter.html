@@ -1,0 +1,403 @@
+<!doctype html>
+<!--
+  Temperature Converter - Single-file HTML/CSS/JS
+  Theme: Olive green & white (matches previous converters)
+  Features: real-time conversion, copy/share, download history as CSV/JSON, localStorage history, mobile-responsive
+  Base unit: Kelvin (K)
+
+  Quick checks (in-code comments):
+    - 0 °C -> 273.15 K
+    - 32 °F -> 273.15 K
+    - -40 °C -> -40 °F
+
+  Change colors via CSS variables in :root
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Temperature Converter</title>
+  <style>
+    :root{
+      --olive-500: #6b8e23; /* olive green */
+      --olive-600: #5f7e1d;
+      --olive-50: #f5f8f2;
+      --bg: #ffffff;
+      --muted: #666666;
+      --radius-xl: 1rem; /* 2xl style */
+      --shadow: 0 6px 18px rgba(0,0,0,0.06);
+      --gap: 1rem;
+      --max-width: 980px;
+      --focus: 3px solid rgba(107,142,35,0.18);
+    }
+
+    /* Basic reset */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      margin:0; background:var(--bg); color:#0b0b0b; -webkit-font-smoothing:antialiased;
+      padding:1rem; display:flex; align-items:flex-start; justify-content:center;
+    }
+
+    .container{
+      width:100%; max-width:var(--max-width);
+      background:linear-gradient(180deg,var(--bg) 0%,var(--olive-50) 100%);
+      border-radius:calc(var(--radius-xl) + 0.25rem); padding:1.25rem; box-shadow:var(--shadow);
+      display:grid; grid-template-columns: 1fr; gap:1rem;
+    }
+
+    header{display:flex; gap:0.75rem; align-items:center}
+    .logo{
+      width:56px; height:56px; background:var(--olive-500); border-radius:12px; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 14px rgba(107,142,35,0.12);
+    }
+    .logo svg{filter:drop-shadow(0 2px 6px rgba(0,0,0,0.08));}
+    h1{margin:0; font-size:1.1rem}
+    p.subtitle{margin:0; color:var(--muted); font-size:0.9rem}
+
+    /* Controls */
+    .controls{background:white; border-radius:12px; padding:1rem; display:grid; gap:0.75rem; box-shadow:var(--shadow)}
+    .row{display:flex; gap:0.5rem; align-items:center}
+    .col{flex:1}
+    label{font-size:0.8rem; display:block; margin-bottom:0.25rem}
+
+    input[type="text"], select{width:100%; padding:0.6rem 0.75rem; border-radius:10px; border:1px solid #e6e6e6; font-size:1rem}
+    input[type="text"]:focus, select:focus{outline:none; box-shadow:var(--focus)}
+
+    .btn{background:var(--olive-500); color:white; padding:0.6rem 0.8rem; border:none; border-radius:10px; cursor:pointer; font-weight:600}
+    .btn.secondary{background:transparent; color:var(--olive-600); border:1px solid rgba(95,126,29,0.12)}
+    .btn.ghost{background:transparent; color:var(--olive-600); border:none}
+    .btn:active{transform:translateY(1px)}
+
+    .swap-btn{width:44px; height:44px; display:inline-grid; place-items:center; border-radius:10px; border:1px dashed rgba(0,0,0,0.06)}
+
+    /* Result card */
+    .result{background:var(--olive-500); color:white; border-radius:12px; padding:1rem; display:flex; gap:1rem; align-items:center; justify-content:space-between}
+    .result .value{font-size:1.6rem; font-weight:700}
+    .result .meta{font-size:0.9rem; color:rgba(255,255,255,0.9)}
+
+    /* History */
+    .history{background:white; border-radius:12px; padding:0.75rem; box-shadow:var(--shadow)}
+    .history-list{display:flex; flex-direction:column; gap:0.5rem; max-height:280px; overflow:auto; padding-right:0.25rem}
+    .history-item{display:flex; justify-content:space-between; gap:0.5rem; padding:0.5rem; border-radius:8px; background:linear-gradient(90deg, rgba(107,142,35,0.03), rgba(255,255,255,0));}
+    .chip{display:inline-block; background:rgba(95,126,29,0.1); padding:0.25rem 0.5rem; border-radius:999px; font-size:0.8rem}
+
+    /* Responsive layout */
+    @media (min-width:820px){
+      .container{grid-template-columns: 1fr 380px}
+      header{grid-column:1/-1}
+      .controls{grid-column:1/2}
+    }
+
+    /* small helpers */
+    .small{font-size:0.85rem}
+    .muted{color:var(--muted)}
+    .flex{display:flex; gap:0.5rem; align-items:center}
+    .right{margin-left:auto}
+
+    /* Toast */
+    .toast{position:fixed; left:50%; transform:translateX(-50%); bottom:1.25rem; background:rgba(0,0,0,0.8); color:white; padding:0.6rem 0.9rem; border-radius:8px; display:none}
+    .toast.show{display:block}
+
+    /* Focus visible for keyboard users */
+    button:focus, a:focus, input:focus, select:focus{outline:none; box-shadow:var(--focus)}
+
+    /* small animation */
+    .animate-pop{transition:transform 180ms ease, opacity 180ms ease}
+    .popped{transform:scale(1.03); opacity:0.98}
+
+    .warning{color:#ffcc00; font-weight:600}
+
+  </style>
+</head>
+<body>
+  <main class="container" id="app">
+    <header>
+      <div class="logo" aria-hidden="true">
+        <!-- thermometer svg -->
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 2v10.5a3 3 0 1 0 2 0V2h-2z" fill="white" />
+          <rect x="9" y="2" width="6" height="14" rx="3" stroke="var(--olive-500)" stroke-width="0.9" fill="white" />
+        </svg>
+      </div>
+      <div>
+        <h1>Temperature Converter</h1>
+        <p class="subtitle">Convert temperatures instantly — olive green & white theme. History saved locally.</p>
+      </div>
+    </header>
+
+    <!-- Controls / Left column -->
+    <section class="controls" aria-labelledby="controls-heading">
+      <h2 id="controls-heading" class="small">Convert temperature units</h2>
+
+      <div class="row">
+        <div class="col">
+          <label for="inputValue">Value</label>
+          <input id="inputValue" inputmode="decimal" type="text" placeholder="Enter number (e.g. 25, -40, 3.2e2)" aria-describedby="valueHelp" />
+          <div id="valueHelp" class="small muted">Supports negative & scientific notation. Updates in real time.</div>
+        </div>
+        <div style="width:44px" class="flex" aria-hidden="true">
+          <button class="swap-btn" id="swapBtn" title="Swap units" aria-label="Swap units">↔</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label for="fromUnit">From</label>
+          <select id="fromUnit" aria-label="From unit"></select>
+        </div>
+        <div class="col">
+          <label for="toUnit">To</label>
+          <select id="toUnit" aria-label="To unit"></select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div style="flex:0 0 140px">
+          <label for="precision">Precision</label>
+          <select id="precision" aria-label="Precision selector">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+
+        <div class="right" style="display:flex; gap:0.5rem; align-items:center">
+          <button id="convertBtn" class="btn">Convert</button>
+          <button id="resetBtn" class="btn secondary">Reset</button>
+        </div>
+      </div>
+
+      <div id="resultCard" class="result animate-pop" aria-live="polite">
+        <div>
+          <div class="value" id="resultValue">—</div>
+          <div class="meta" id="resultMeta">Awaiting input</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.5rem">
+          <button id="copyBtn" class="btn ghost" aria-label="Copy result">Copy</button>
+          <button id="shareBtn" class="btn ghost" aria-label="Share result">Share</button>
+          <button id="downloadResultBtn" class="btn" title="Download result as CSV/JSON">Download</button>
+        </div>
+      </div>
+
+      <div id="warning" class="small" style="display:none; margin-top:0.25rem"><span class="warning" id="warningText"></span></div>
+
+      <details id="presets" class="small">
+        <summary class="muted">Quick presets</summary>
+        <div style="margin-top:0.6rem; display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="chip" data-value="0" data-from="C" data-to="F">0 °C → °F</button>
+          <button class="chip" data-value="100" data-from="C" data-to="F">100 °C → °F</button>
+          <button class="chip" data-value="32" data-from="F" data-to="C">32 °F → °C</button>
+          <button class="chip" data-value="-40" data-from="C" data-to="F">-40 °C → °F</button>
+        </div>
+      </details>
+
+    </section>
+
+    <!-- Right column: history + help -->
+    <aside class="history" aria-labelledby="history-heading">
+      <h3 id="history-heading" class="small">Conversion history</h3>
+      <div style="display:flex; gap:0.5rem; align-items:center; margin-bottom:0.5rem">
+        <button id="exportAllBtn" class="btn small">Export CSV</button>
+        <button id="clearHistoryBtn" class="btn secondary small">Clear</button>
+        <div class="right small muted">Saved locally (localStorage)</div>
+      </div>
+
+      <div class="history-list" id="historyList" role="list" aria-live="polite"></div>
+      <div style="margin-top:0.6rem" class="small muted">
+        Tip: Temperatures are converted via Kelvin as base. Values below absolute zero (-273.15 °C) are physically invalid and won't be saved.
+      </div>
+    </aside>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">Copied!</div>
+
+  </main>
+
+  <script>
+  /* ===== Unit set =====
+     Supported units: Celsius (C), Fahrenheit (F), Kelvin (K), Rankine (R)
+     Base: Kelvin (K)
+  */
+  const UNITS = {
+    C: {name: 'Celsius', aliases:['c','celsius','°c','degc']},
+    F: {name: 'Fahrenheit', aliases:['f','fahrenheit','°f','degf']},
+    K: {name: 'Kelvin', aliases:['k','kelvin']},
+    R: {name: 'Rankine', aliases:['r','rankine','°r']}
+  };
+
+  /* ===== Conversion helpers (to/from Kelvin) =====
+     K = C + 273.15
+     K = (F + 459.67) * 5/9
+     K = R * 5/9
+  */
+  function toKelvin(value, unit){
+    switch(unit){
+      case 'C': return value + 273.15;
+      case 'F': return (value + 459.67) * 5/9;
+      case 'K': return value;
+      case 'R': return value * 5/9;
+      default: throw new Error('Unknown unit');
+    }
+  }
+  function fromKelvin(kelvin, unit){
+    switch(unit){
+      case 'C': return kelvin - 273.15;
+      case 'F': return kelvin * 9/5 - 459.67;
+      case 'K': return kelvin;
+      case 'R': return kelvin * 9/5;
+      default: throw new Error('Unknown unit');
+    }
+  }
+
+  /* ===== Utilities ===== */
+  function formatNumber(num, precision, useScientific=false){
+    if(!isFinite(num)) return String(num);
+    if(useScientific){ return Number(num).toExponential(precision); }
+    return Number(num).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits: precision});
+  }
+
+  function debounce(fn, wait){ let t; return function(...args){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,args), wait); }; }
+
+  /* ===== DOM refs ===== */
+  const inputEl = document.getElementById('inputValue');
+  const fromEl = document.getElementById('fromUnit');
+  const toEl = document.getElementById('toUnit');
+  const precisionEl = document.getElementById('precision');
+  const convertBtn = document.getElementById('convertBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const swapBtn = document.getElementById('swapBtn');
+  const resultValueEl = document.getElementById('resultValue');
+  const resultMetaEl = document.getElementById('resultMeta');
+  const copyBtn = document.getElementById('copyBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const downloadResultBtn = document.getElementById('downloadResultBtn');
+  const historyListEl = document.getElementById('historyList');
+  const exportAllBtn = document.getElementById('exportAllBtn');
+  const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+  const toast = document.getElementById('toast');
+  const warningEl = document.getElementById('warning');
+  const warningText = document.getElementById('warningText');
+
+  /* ===== Populate units dropdowns ===== */
+  function populateUnits(){
+    Object.keys(UNITS).forEach(k=>{
+      const opt1 = document.createElement('option'); opt1.value = k; opt1.textContent = `${k} — ${UNITS[k].name}`;
+      const opt2 = opt1.cloneNode(true);
+      fromEl.appendChild(opt1);
+      toEl.appendChild(opt2);
+    });
+    fromEl.value = 'C'; toEl.value = 'F';
+  }
+  populateUnits();
+
+  /* ===== Input parsing ===== */
+  function parseInput(text){
+    if(typeof text !== 'string') text = String(text);
+    const trimmed = text.trim(); if(trimmed === '') return null;
+    const n = Number(trimmed);
+    if(Number.isFinite(n)) return n; return NaN;
+  }
+
+  /* ===== History (localStorage) ===== */
+  const STORAGE_KEY = 'temp_converter_history_v1';
+  function loadHistory(){ try{ const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : []; }catch(e){ return []; } }
+  function saveHistory(h){ localStorage.setItem(STORAGE_KEY, JSON.stringify(h.slice(0,1000))); }
+  function addHistoryRow(row){ const h = loadHistory(); h.unshift(row); saveHistory(h.slice(0,100)); renderHistory(); }
+  function clearHistory(){ localStorage.removeItem(STORAGE_KEY); renderHistory(); }
+
+  function exportHistoryCSV(){ const h = loadHistory(); if(h.length===0) return alert('No history'); const header=['timestamp','input','from','result','to','precision']; const rows=h.map(r=>header.map(k=>escapeCsv(String(r[k] ?? ''))).join(',')); const csv=[header.join(','), ...rows].join('\n'); downloadBlob(csv, 'temperature-history.csv', 'text/csv'); }
+  function escapeCsv(v){ if(v.includes(',')||v.includes('\n')||v.includes('"')) return '"'+v.replace(/"/g,'""')+'"'; return v; }
+
+  function renderHistory(){ const h = loadHistory(); historyListEl.innerHTML=''; if(h.length===0){ const e=document.createElement('div'); e.className='small muted'; e.textContent='No conversions yet.'; historyListEl.appendChild(e); return; } h.slice(0,10).forEach(item=>{ const it=document.createElement('div'); it.className='history-item'; it.role='listitem'; const left=document.createElement('div'); left.style.maxWidth='60%'; left.innerHTML = `<div style="font-weight:600">${item.input} ${item.from} → ${item.result} ${item.to}</div><div class="small muted">${new Date(item.timestamp).toLocaleString()}</div>`; const right=document.createElement('div'); right.style.textAlign='right'; const dl=document.createElement('button'); dl.className='btn secondary small'; dl.textContent='Download'; dl.onclick=()=>downloadCompressedRow(item); right.appendChild(dl); it.appendChild(left); it.appendChild(right); historyListEl.appendChild(it); }); }
+
+  /* ===== Download helpers ===== */
+  function downloadBlob(content, filename, mime){ const blob = new Blob([content], {type:mime}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),5000); }
+  function downloadCompressedRow(item){ const compressed=JSON.stringify(item); downloadBlob(compressed, `temp-conversion-${item.timestamp}.json`, 'application/json'); }
+
+  /* ===== Core conversion ===== */
+  function performConversion(){
+    hideWarning();
+    const raw = inputEl.value; const parsed = parseInput(raw);
+    const precision = Number(precisionEl.value);
+    const from = fromEl.value; const to = toEl.value;
+    if(parsed === null){ resultValueEl.textContent='—'; resultMetaEl.textContent='Awaiting input'; return null; }
+    if(Number.isNaN(parsed)){ resultValueEl.textContent='Invalid'; resultMetaEl.textContent='Enter a valid number (e.g. 25, -40, 3.2e2)'; return null; }
+
+    try{
+      const k = toKelvin(parsed, from);
+      // Physical check: Kelvin cannot be < 0. We'll show warning and abort saving if below absolute zero.
+      if(k < 0){
+        resultValueEl.textContent = '—';
+        resultMetaEl.textContent = 'Result below absolute zero';
+        showWarning('Value is physically below absolute zero (K < 0). Conversion not saved.');
+        return null;
+      }
+      const out = fromKelvin(k, to);
+      const formatted = formatNumber(out, precision, false);
+      resultValueEl.textContent = formatted;
+      resultMetaEl.textContent = `${from} → ${to} • precision ${precision}`;
+
+      const card = document.getElementById('resultCard'); card.classList.add('popped'); setTimeout(()=>card.classList.remove('popped'),200);
+
+      const row = { timestamp: new Date().toISOString(), input: String(parsed), from, result: String(out), to, precision };
+      addHistoryRow(row);
+      return {parsed, out, row};
+    }catch(e){ resultValueEl.textContent='Error'; resultMetaEl.textContent=e.message; return null; }
+  }
+
+  const debouncedConvert = debounce(()=>performConversion(), 150);
+
+  /* ===== UI interactions ===== */
+  inputEl.addEventListener('input', debouncedConvert);
+  fromEl.addEventListener('change', debouncedConvert);
+  toEl.addEventListener('change', debouncedConvert);
+  precisionEl.addEventListener('change', debouncedConvert);
+  convertBtn.addEventListener('click', performConversion);
+  resetBtn.addEventListener('click', ()=>{ inputEl.value=''; fromEl.value='C'; toEl.value='F'; precisionEl.value='4'; performConversion(); });
+  swapBtn.addEventListener('click', ()=>{ const a=fromEl.value; fromEl.value=toEl.value; toEl.value=a; performConversion(); });
+
+  copyBtn.addEventListener('click', async ()=>{ const text = resultValueEl.textContent + ' ' + toEl.value; try{ await navigator.clipboard.writeText(text); showToast('Copied to clipboard'); }catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); showToast('Copied'); }catch(_){ alert('Copy failed'); } ta.remove(); } });
+
+  shareBtn.addEventListener('click', async ()=>{ const text = `${inputEl.value} ${fromEl.value} → ${resultValueEl.textContent} ${toEl.value}`; if(navigator.share){ try{ await navigator.share({title:'Temperature conversion', text}); }catch(e){} }else{ try{ await navigator.clipboard.writeText(text); showToast('Result copied (share fallback)'); }catch(e){ alert(text); } } });
+
+  downloadResultBtn.addEventListener('click', ()=>{ const parsed = parseInput(inputEl.value); if(parsed===null||Number.isNaN(parsed)) return alert('Enter valid number first'); const precision = Number(precisionEl.value); const from = fromEl.value; const to = toEl.value; const k = toKelvin(parsed, from); if(k<0) return alert('Result below absolute zero; cannot download'); const out = fromKelvin(k, to); const row={timestamp:new Date().toISOString(), input:String(parsed), from, result:String(out), to, precision}; downloadCompressedRow(row); });
+
+  exportAllBtn.addEventListener('click', exportHistoryCSV);
+  clearHistoryBtn.addEventListener('click', ()=>{ if(confirm('Clear history?')) clearHistory(); });
+
+  document.querySelectorAll('#presets .chip').forEach(ch=>{ ch.addEventListener('click', ()=>{ inputEl.value = ch.dataset.value; fromEl.value = ch.dataset.from; toEl.value = ch.dataset.to; performConversion(); }); });
+
+  /* ===== Warning & toast helpers ===== */
+  let toastTimer = null;
+  function showToast(msg, ms=1600){ toast.textContent = msg; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(()=>toast.classList.remove('show'), ms); }
+  function showWarning(msg){ warningEl.style.display='block'; warningText.textContent = msg; }
+  function hideWarning(){ warningEl.style.display='none'; warningText.textContent=''; }
+
+  /* ===== Initial render & URL params recovery ===== */
+  renderHistory();
+  (function tryRecoverFromParams(){ try{ const p = new URLSearchParams(location.search); if(p.has('v')) inputEl.value = p.get('v'); if(p.has('from')) fromEl.value = p.get('from'); if(p.has('to')) toEl.value = p.get('to'); if(p.has('prec')) precisionEl.value = p.get('prec'); }catch(e){} performConversion(); })();
+
+  /* ===== Notes on numeric limits =====
+     - Uses JS Number (IEEE 754). Good for typical temperature conversions.
+     - Absolute zero enforced: Kelvin < 0 will be flagged and not saved.
+  */
+
+  /* ===== Example quick tests (comments) =====
+     // 0 °C -> 273.15 K
+     console.assert(Math.abs(toKelvin(0,'C') - 273.15) < 1e-12, '0C->273.15K');
+     // 32 °F -> 273.15 K
+     console.assert(Math.abs(toKelvin(32,'F') - 273.15) < 1e-12, '32F->273.15K');
+     // -40 C -> -40 F (via conversions)
+     console.assert(Math.abs(fromKelvin(toKelvin(-40,'C'),'F') + 40) < 1e-12, '-40C->-40F');
+  */
+
+  </script>
+</body>
+</html>
