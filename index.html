@@ -162,7 +162,6 @@
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            cursor: pointer;
         }
 
         .tool-card:hover {
@@ -314,109 +313,6 @@
             font-size: 0.9rem;
         }
 
-        /* Tool Implementation Styles */
-        .tool-implementation {
-            padding: 80px 0;
-            background-color: var(--white);
-            display: none;
-        }
-
-        .tool-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--light-gray);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .tool-title {
-            color: var(--dark-olive);
-            margin-bottom: 30px;
-            text-align: center;
-            font-size: 1.8rem;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-
-        .input-group input,
-        .input-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .input-group input:focus,
-        .input-group select:focus {
-            border-color: var(--olive-green);
-            outline: none;
-        }
-
-        .tool-button {
-            background-color: var(--olive-green);
-            color: var(--white);
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: block;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .tool-button:hover {
-            background-color: var(--light-olive);
-        }
-
-        .result {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: var(--cream);
-            border-radius: 5px;
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--dark-olive);
-            font-weight: 600;
-            display: none;
-        }
-
-        .bmi-category {
-            margin-top: 10px;
-            font-size: 1rem;
-            font-weight: normal;
-        }
-
-        .back-button {
-            background-color: var(--light-olive);
-            color: var(--white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-bottom: 20px;
-        }
-
-        .back-button:hover {
-            background-color: var(--olive-green);
-        }
-
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -461,7 +357,7 @@
                 font-size: 2.2rem;
             }
 
-            .tools-section, .features-section, .tool-implementation {
+            .tools-section, .features-section {
                 padding: 60px 0;
             }
         }
@@ -493,25 +389,25 @@
             
             <nav>
                 <ul>
-                    <li><a href="#" onclick="showHome()">Home</a></li>
-                    <li><a href="#tools" onclick="showHome()">Tools</a></li>
-                    <li><a href="#contact" onclick="showHome()">Contact</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home-section">
+    <section class="hero">
         <div class="container hero-content">
             <h1>Your Daily Tools, All in One Place</h1>
             <p>Convert, calculate, and measure with precision using our comprehensive suite of online tools. Fast, accurate, and completely free.</p>
-            <a href="#tools" class="cta-button" onclick="showHome()">Explore Tools <i class="fas fa-arrow-right"></i></a>
+            <a href="#tools" class="cta-button">Explore Tools <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
     <!-- Tools Section -->
-    <section class="tools-section" id="tools-section">
+    <section class="tools-section" id="tools">
         <div class="container">
             <h2 class="section-title">Our Conversion Tools</h2>
             <div class="tools-grid">
@@ -523,7 +419,7 @@
                     <div class="tool-content">
                         <h3>Length Converter</h3>
                         <p>Convert between meters, feet, inches, centimeters, and more with precision.</p>
-                        <a href="length-converter.html" class="tool-link" onclick="showTool('length-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -535,7 +431,7 @@
                     <div class="tool-content">
                         <h3>Weight Converter</h3>
                         <p>Convert kilograms to pounds, grams to ounces, and other weight measurements.</p>
-                        <a href="weight-coverter.html" class="tool-link" onclick="showTool('weight-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -547,7 +443,7 @@
                     <div class="tool-content">
                         <h3>Temperature Converter</h3>
                         <p>Convert between Celsius, Fahrenheit, and Kelvin temperature scales.</p>
-                        <a href="temperature-converter.html" class="tool-link" onclick="showTool('temperature-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -559,7 +455,7 @@
                     <div class="tool-content">
                         <h3>Speed Converter</h3>
                         <p>Convert miles per hour to kilometers per hour and other speed units.</p>
-                        <a href="speed-converter.html" class="tool-link" onclick="showTool('speed-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -571,7 +467,7 @@
                     <div class="tool-content">
                         <h3>Time Converter</h3>
                         <p>Convert between time zones, hours to minutes, and other time measurements.</p>
-                        <a href="time-converter.html" class="tool-link" onclick="showTool('time-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -583,7 +479,7 @@
                     <div class="tool-content">
                         <h3>Currency Converter</h3>
                         <p>Convert between different currencies with up-to-date exchange rates.</p>
-                        <a href="currency-converter.html" class="tool-link" onclick="showTool('currency-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -595,7 +491,7 @@
                     <div class="tool-content">
                         <h3>Data Converter</h3>
                         <p>Convert between KB, MB, GB, TB, bits, and bytes with precision.</p>
-                        <a href="data-converter.html" class="tool-link" onclick="showTool('data-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -607,7 +503,7 @@
                     <div class="tool-content">
                         <h3>Age Calculator</h3>
                         <p>Calculate your exact age in years, months, and days from your birth date.</p>
-                        <a href="age-calcularltor.html" class="tool-link" onclick="showTool('age-calculator')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -619,201 +515,15 @@
                     <div class="tool-content">
                         <h3>BMI Calculator</h3>
                         <p>Calculate your Body Mass Index and understand your health category.</p>
-                        <a href="bmi-calculator.html" class="tool-link" onclick="showTool('bmi-calculator')">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Length Converter Implementation -->
-    <section class="tool-implementation" id="length-converter-tool">
-        <div class="container">
-            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
-            <div class="tool-container">
-                <h2 class="tool-title">Length Converter</h2>
-                <div class="input-group">
-                    <label for="length-value">Enter Value:</label>
-                    <input type="number" id="length-value" placeholder="Enter a number" step="any">
-                </div>
-                <div class="input-group">
-                    <label for="length-from">From:</label>
-                    <select id="length-from">
-                        <option value="meter">Meter</option>
-                        <option value="kilometer">Kilometer</option>
-                        <option value="centimeter">Centimeter</option>
-                        <option value="millimeter">Millimeter</option>
-                        <option value="inch">Inch</option>
-                        <option value="foot">Foot</option>
-                        <option value="yard">Yard</option>
-                        <option value="mile">Mile</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="length-to">To:</label>
-                    <select id="length-to">
-                        <option value="meter">Meter</option>
-                        <option value="kilometer">Kilometer</option>
-                        <option value="centimeter">Centimeter</option>
-                        <option value="millimeter">Millimeter</option>
-                        <option value="inch">Inch</option>
-                        <option value="foot">Foot</option>
-                        <option value="yard">Yard</option>
-                        <option value="mile">Mile</option>
-                    </select>
-                </div>
-                <button class="tool-button" onclick="convertLength()">Convert</button>
-                <div class="result" id="length-result"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Weight Converter Implementation -->
-    <section class="tool-implementation" id="weight-converter-tool">
-        <div class="container">
-            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
-            <div class="tool-container">
-                <h2 class="tool-title">Weight Converter</h2>
-                <div class="input-group">
-                    <label for="weight-value">Enter Value:</label>
-                    <input type="number" id="weight-value" placeholder="Enter a number" step="any">
-                </div>
-                <div class="input-group">
-                    <label for="weight-from">From:</label>
-                    <select id="weight-from">
-                        <option value="kilogram">Kilogram</option>
-                        <option value="gram">Gram</option>
-                        <option value="milligram">Milligram</option>
-                        <option value="pound">Pound</option>
-                        <option value="ounce">Ounce</option>
-                        <option value="ton">Ton</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="weight-to">To:</label>
-                    <select id="weight-to">
-                        <option value="kilogram">Kilogram</option>
-                        <option value="gram">Gram</option>
-                        <option value="milligram">Milligram</option>
-                        <option value="pound">Pound</option>
-                        <option value="ounce">Ounce</option>
-                        <option value="ton">Ton</option>
-                    </select>
-                </div>
-                <button class="tool-button" onclick="convertWeight()">Convert</button>
-                <div class="result" id="weight-result"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Temperature Converter Implementation -->
-    <section class="tool-implementation" id="temperature-converter-tool">
-        <div class="container">
-            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
-            <div class="tool-container">
-                <h2 class="tool-title">Temperature Converter</h2>
-                <div class="input-group">
-                    <label for="temp-value">Enter Value:</label>
-                    <input type="number" id="temp-value" placeholder="Enter a number" step="any">
-                </div>
-                <div class="input-group">
-                    <label for="temp-from">From:</label>
-                    <select id="temp-from">
-                        <option value="celsius">Celsius</option>
-                        <option value="fahrenheit">Fahrenheit</option>
-                        <option value="kelvin">Kelvin</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="temp-to">To:</label>
-                    <select id="temp-to">
-                        <option value="celsius">Celsius</option>
-                        <option value="fahrenheit">Fahrenheit</option>
-                        <option value="kelvin">Kelvin</option>
-                    </select>
-                </div>
-                <button class="tool-button" onclick="convertTemperature()">Convert</button>
-                <div class="result" id="temp-result"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Data Converter Implementation -->
-    <section class="tool-implementation" id="data-converter-tool">
-        <div class="container">
-            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
-            <div class="tool-container">
-                <h2 class="tool-title">Data Converter</h2>
-                <div class="input-group">
-                    <label for="data-value">Enter Value:</label>
-                    <input type="number" id="data-value" placeholder="Enter a number" step="any">
-                </div>
-                <div class="input-group">
-                    <label for="data-from">From:</label>
-                    <select id="data-from">
-                        <option value="bit">Bit</option>
-                        <option value="byte">Byte</option>
-                        <option value="kilobyte">Kilobyte (KB)</option>
-                        <option value="megabyte" selected>Megabyte (MB)</option>
-                        <option value="gigabyte">Gigabyte (GB)</option>
-                        <option value="terabyte">Terabyte (TB)</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="data-to">To:</label>
-                    <select id="data-to">
-                        <option value="bit">Bit</option>
-                        <option value="byte">Byte</option>
-                        <option value="kilobyte">Kilobyte (KB)</option>
-                        <option value="megabyte">Megabyte (MB)</option>
-                        <option value="gigabyte" selected>Gigabyte (GB)</option>
-                        <option value="terabyte">Terabyte (TB)</option>
-                    </select>
-                </div>
-                <button class="tool-button" onclick="convertData()">Convert</button>
-                <div class="result" id="data-result"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Age Calculator Implementation -->
-    <section class="tool-implementation" id="age-calculator-tool">
-        <div class="container">
-            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
-            <div class="tool-container">
-                <h2 class="tool-title">Age Calculator</h2>
-                <div class="input-group">
-                    <label for="birth-date">Enter Your Birth Date:</label>
-                    <input type="date" id="birth-date">
-                </div>
-                <button class="tool-button" onclick="calculateAge()">Calculate Age</button>
-                <div class="result" id="age-result"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BMI Calculator Implementation -->
-    <section class="tool-implementation" id="bmi-calculator-tool">
-        <div class="container">
-            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
-            <div class="tool-container">
-                <h2 class="tool-title">BMI Calculator</h2>
-                <div class="input-group">
-                    <label for="height">Height (cm):</label>
-                    <input type="number" id="height" placeholder="Enter height in centimeters">
-                </div>
-                <div class="input-group">
-                    <label for="weight">Weight (kg):</label>
-                    <input type="number" id="weight" placeholder="Enter weight in kilograms">
-                </div>
-                <button class="tool-button" onclick="calculateBMI()">Calculate BMI</button>
-                <div class="result" id="bmi-result"></div>
-            </div>
-        </div>
-    </section>
-
     <!-- Features Section -->
-    <section class="features-section" id="features-section">
+    <section class="features-section">
         <div class="container">
             <h2 class="section-title">Why Choose Converter Accurate?</h2>
             <div class="features-grid">
@@ -856,9 +566,9 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#" onclick="showHome()">Home</a></li>
-                        <li><a href="#tools" onclick="showHome()">All Tools</a></li>
-                        <li><a href="#contact" onclick="showHome()">Contact Us</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#tools">All Tools</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
@@ -866,10 +576,10 @@
                 <div class="footer-column">
                     <h3>Popular Tools</h3>
                     <ul>
-                        <li><a href="#" onclick="showTool('data-converter')">Data Converter</a></li>
-                        <li><a href="#" onclick="showTool('age-calculator')">Age Calculator</a></li>
-                        <li><a href="#" onclick="showTool('bmi-calculator')">BMI Calculator</a></li>
-                        <li><a href="#" onclick="showTool('currency-converter')">Currency Converter</a></li>
+                        <li><a href="#">Data Converter</a></li>
+                        <li><a href="#">Age Calculator</a></li>
+                        <li><a href="#">BMI Calculator</a></li>
+                        <li><a href="#">Currency Converter</a></li>
                     </ul>
                 </div>
                 
@@ -893,234 +603,6 @@
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.querySelector('nav').classList.toggle('active');
         });
-
-        // Show/Hide sections
-        function showHome() {
-            document.getElementById('home-section').style.display = 'block';
-            document.getElementById('tools-section').style.display = 'block';
-            document.getElementById('features-section').style.display = 'block';
-            
-            // Hide all tool implementations
-            const toolSections = document.querySelectorAll('.tool-implementation');
-            toolSections.forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            window.scrollTo(0, 0);
-        }
-
-        function showTool(toolId) {
-            document.getElementById('home-section').style.display = 'none';
-            document.getElementById('tools-section').style.display = 'none';
-            document.getElementById('features-section').style.display = 'none';
-            
-            // Hide all tool implementations
-            const toolSections = document.querySelectorAll('.tool-implementation');
-            toolSections.forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            // Show selected tool
-            document.getElementById(toolId + '-tool').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        // Data Converter
-        function convertData() {
-            const value = parseFloat(document.getElementById('data-value').value);
-            const fromUnit = document.getElementById('data-from').value;
-            const toUnit = document.getElementById('data-to').value;
-            
-            if (isNaN(value)) {
-                alert('Please enter a valid number');
-                return;
-            }
-            
-            // Conversion factors relative to bytes
-            const units = {
-                bit: 0.125,
-                byte: 1,
-                kilobyte: 1024,
-                megabyte: 1048576,
-                gigabyte: 1073741824,
-                terabyte: 1099511627776
-            };
-            
-            // Convert to bytes first
-            const bytes = value * units[fromUnit];
-            
-            // Convert from bytes to target unit
-            const result = bytes / units[toUnit];
-            
-            document.getElementById('data-result').textContent = `${value} ${fromUnit} = ${result.toFixed(6)} ${toUnit}`;
-            document.getElementById('data-result').style.display = 'block';
-        }
-
-        // Age Calculator
-        function calculateAge() {
-            const birthDate = new Date(document.getElementById('birth-date').value);
-            const today = new Date();
-            
-            if (isNaN(birthDate.getTime())) {
-                alert('Please select a valid birth date');
-                return;
-            }
-            
-            let years = today.getFullYear() - birthDate.getFullYear();
-            let months = today.getMonth() - birthDate.getMonth();
-            let days = today.getDate() - birthDate.getDate();
-            
-            if (days < 0) {
-                months--;
-                // Get days in previous month
-                const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-                days += prevMonth.getDate();
-            }
-            
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-            
-            document.getElementById('age-result').innerHTML = `
-                Your age is: <br>
-                ${years} years, ${months} months, and ${days} days
-            `;
-            document.getElementById('age-result').style.display = 'block';
-        }
-
-        // BMI Calculator
-        function calculateBMI() {
-            const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to m
-            const weight = parseFloat(document.getElementById('weight').value);
-            
-            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
-                alert('Please enter valid height and weight values');
-                return;
-            }
-            
-            const bmi = weight / (height * height);
-            let category = '';
-            
-            if (bmi < 18.5) {
-                category = 'Underweight';
-            } else if (bmi < 25) {
-                category = 'Normal weight';
-            } else if (bmi < 30) {
-                category = 'Overweight';
-            } else {
-                category = 'Obese';
-            }
-            
-            document.getElementById('bmi-result').innerHTML = `
-                Your BMI is: ${bmi.toFixed(2)} <br>
-                <span class="bmi-category">Category: ${category}</span>
-            `;
-            document.getElementById('bmi-result').style.display = 'block';
-        }
-
-        // Length Converter
-        function convertLength() {
-            const value = parseFloat(document.getElementById('length-value').value);
-            const fromUnit = document.getElementById('length-from').value;
-            const toUnit = document.getElementById('length-to').value;
-            
-            if (isNaN(value)) {
-                alert('Please enter a valid number');
-                return;
-            }
-            
-            // Conversion factors relative to meters
-            const units = {
-                meter: 1,
-                kilometer: 1000,
-                centimeter: 0.01,
-                millimeter: 0.001,
-                inch: 0.0254,
-                foot: 0.3048,
-                yard: 0.9144,
-                mile: 1609.34
-            };
-            
-            // Convert to meters first
-            const meters = value * units[fromUnit];
-            
-            // Convert from meters to target unit
-            const result = meters / units[toUnit];
-            
-            document.getElementById('length-result').textContent = `${value} ${fromUnit} = ${result.toFixed(6)} ${toUnit}`;
-            document.getElementById('length-result').style.display = 'block';
-        }
-
-        // Weight Converter
-        function convertWeight() {
-            const value = parseFloat(document.getElementById('weight-value').value);
-            const fromUnit = document.getElementById('weight-from').value;
-            const toUnit = document.getElementById('weight-to').value;
-            
-            if (isNaN(value)) {
-                alert('Please enter a valid number');
-                return;
-            }
-            
-            // Conversion factors relative to kilograms
-            const units = {
-                kilogram: 1,
-                gram: 0.001,
-                milligram: 0.000001,
-                pound: 0.453592,
-                ounce: 0.0283495,
-                ton: 1000
-            };
-            
-            // Convert to kilograms first
-            const kilograms = value * units[fromUnit];
-            
-            // Convert from kilograms to target unit
-            const result = kilograms / units[toUnit];
-            
-            document.getElementById('weight-result').textContent = `${value} ${fromUnit} = ${result.toFixed(6)} ${toUnit}`;
-            document.getElementById('weight-result').style.display = 'block';
-        }
-
-        // Temperature Converter
-        function convertTemperature() {
-            const value = parseFloat(document.getElementById('temp-value').value);
-            const fromUnit = document.getElementById('temp-from').value;
-            const toUnit = document.getElementById('temp-to').value;
-            
-            if (isNaN(value)) {
-                alert('Please enter a valid number');
-                return;
-            }
-            
-            let result;
-            
-            // Convert to Celsius first
-            let celsius;
-            if (fromUnit === 'celsius') {
-                celsius = value;
-            } else if (fromUnit === 'fahrenheit') {
-                celsius = (value - 32) * 5/9;
-            } else if (fromUnit === 'kelvin') {
-                celsius = value - 273.15;
-            }
-            
-            // Convert from Celsius to target unit
-            if (toUnit === 'celsius') {
-                result = celsius;
-            } else if (toUnit === 'fahrenheit') {
-                result = (celsius * 9/5) + 32;
-            } else if (toUnit === 'kelvin') {
-                result = celsius + 273.15;
-            }
-            
-            document.getElementById('temp-result').textContent = `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
-            document.getElementById('temp-result').style.display = 'block';
-        }
-
-        // Initialize page
-        showHome();
     </script>
 </body>
-</html>
+                        </html>
