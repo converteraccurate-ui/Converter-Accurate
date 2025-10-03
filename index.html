@@ -516,112 +516,224 @@
             <h2 class="section-title">Our Conversion Tools</h2>
             <div class="tools-grid">
                 <!-- Tool Card 1 -->
-                <div class="tool-card" onclick="showTool('length-converter')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-ruler-combined"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Length Converter</h3>
                         <p>Convert between meters, feet, inches, centimeters, and more with precision.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('length-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Tool Card 2 -->
-                <div class="tool-card" onclick="showTool('weight-converter')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-weight-hanging"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Weight Converter</h3>
                         <p>Convert kilograms to pounds, grams to ounces, and other weight measurements.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('weight-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Tool Card 3 -->
-                <div class="tool-card" onclick="showTool('temperature-converter')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-temperature-high"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Temperature Converter</h3>
                         <p>Convert between Celsius, Fahrenheit, and Kelvin temperature scales.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('temperature-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Tool Card 4 -->
-                <div class="tool-card" onclick="showTool('speed-converter')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Speed Converter</h3>
                         <p>Convert miles per hour to kilometers per hour and other speed units.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('speed-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Tool Card 5 -->
-                <div class="tool-card" onclick="showTool('time-converter')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Time Converter</h3>
                         <p>Convert between time zones, hours to minutes, and other time measurements.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('time-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Tool Card 6 -->
-                <div class="tool-card" onclick="showTool('currency-converter')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-dollar-sign"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Currency Converter</h3>
                         <p>Convert between different currencies with up-to-date exchange rates.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('currency-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Tool Card 7: Data Converter -->
-                <div class="tool-card" onclick="showTool('data-converter')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-database"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Data Converter</h3>
                         <p>Convert between KB, MB, GB, TB, bits, and bytes with precision.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('data-converter')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Tool Card 8: Age Calculator -->
-                <div class="tool-card" onclick="showTool('age-calculator')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-birthday-cake"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Age Calculator</h3>
                         <p>Calculate your exact age in years, months, and days from your birth date.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('age-calculator')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
                 <!-- Tool Card 9: BMI Calculator -->
-                <div class="tool-card" onclick="showTool('bmi-calculator')">
+                <div class="tool-card">
                     <div class="tool-icon">
                         <i class="fas fa-heartbeat"></i>
                     </div>
                     <div class="tool-content">
                         <h3>BMI Calculator</h3>
                         <p>Calculate your Body Mass Index and understand your health category.</p>
-                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="tool-link" onclick="showTool('bmi-calculator')">Use Tool <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Length Converter Implementation -->
+    <section class="tool-implementation" id="length-converter-tool">
+        <div class="container">
+            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
+            <div class="tool-container">
+                <h2 class="tool-title">Length Converter</h2>
+                <div class="input-group">
+                    <label for="length-value">Enter Value:</label>
+                    <input type="number" id="length-value" placeholder="Enter a number" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="length-from">From:</label>
+                    <select id="length-from">
+                        <option value="meter">Meter</option>
+                        <option value="kilometer">Kilometer</option>
+                        <option value="centimeter">Centimeter</option>
+                        <option value="millimeter">Millimeter</option>
+                        <option value="inch">Inch</option>
+                        <option value="foot">Foot</option>
+                        <option value="yard">Yard</option>
+                        <option value="mile">Mile</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="length-to">To:</label>
+                    <select id="length-to">
+                        <option value="meter">Meter</option>
+                        <option value="kilometer">Kilometer</option>
+                        <option value="centimeter">Centimeter</option>
+                        <option value="millimeter">Millimeter</option>
+                        <option value="inch">Inch</option>
+                        <option value="foot">Foot</option>
+                        <option value="yard">Yard</option>
+                        <option value="mile">Mile</option>
+                    </select>
+                </div>
+                <button class="tool-button" onclick="convertLength()">Convert</button>
+                <div class="result" id="length-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weight Converter Implementation -->
+    <section class="tool-implementation" id="weight-converter-tool">
+        <div class="container">
+            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
+            <div class="tool-container">
+                <h2 class="tool-title">Weight Converter</h2>
+                <div class="input-group">
+                    <label for="weight-value">Enter Value:</label>
+                    <input type="number" id="weight-value" placeholder="Enter a number" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="weight-from">From:</label>
+                    <select id="weight-from">
+                        <option value="kilogram">Kilogram</option>
+                        <option value="gram">Gram</option>
+                        <option value="milligram">Milligram</option>
+                        <option value="pound">Pound</option>
+                        <option value="ounce">Ounce</option>
+                        <option value="ton">Ton</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="weight-to">To:</label>
+                    <select id="weight-to">
+                        <option value="kilogram">Kilogram</option>
+                        <option value="gram">Gram</option>
+                        <option value="milligram">Milligram</option>
+                        <option value="pound">Pound</option>
+                        <option value="ounce">Ounce</option>
+                        <option value="ton">Ton</option>
+                    </select>
+                </div>
+                <button class="tool-button" onclick="convertWeight()">Convert</button>
+                <div class="result" id="weight-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temperature Converter Implementation -->
+    <section class="tool-implementation" id="temperature-converter-tool">
+        <div class="container">
+            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
+            <div class="tool-container">
+                <h2 class="tool-title">Temperature Converter</h2>
+                <div class="input-group">
+                    <label for="temp-value">Enter Value:</label>
+                    <input type="number" id="temp-value" placeholder="Enter a number" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="temp-from">From:</label>
+                    <select id="temp-from">
+                        <option value="celsius">Celsius</option>
+                        <option value="fahrenheit">Fahrenheit</option>
+                        <option value="kelvin">Kelvin</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="temp-to">To:</label>
+                    <select id="temp-to">
+                        <option value="celsius">Celsius</option>
+                        <option value="fahrenheit">Fahrenheit</option>
+                        <option value="kelvin">Kelvin</option>
+                    </select>
+                </div>
+                <button class="tool-button" onclick="convertTemperature()">Convert</button>
+                <div class="result" id="temp-result"></div>
             </div>
         </div>
     </section>
@@ -658,7 +770,7 @@
                         <option value="terabyte">Terabyte (TB)</option>
                     </select>
                 </div>
-                <button class="tool-button" id="convert-data">Convert</button>
+                <button class="tool-button" onclick="convertData()">Convert</button>
                 <div class="result" id="data-result"></div>
             </div>
         </div>
@@ -674,7 +786,7 @@
                     <label for="birth-date">Enter Your Birth Date:</label>
                     <input type="date" id="birth-date">
                 </div>
-                <button class="tool-button" id="calculate-age">Calculate Age</button>
+                <button class="tool-button" onclick="calculateAge()">Calculate Age</button>
                 <div class="result" id="age-result"></div>
             </div>
         </div>
@@ -694,7 +806,7 @@
                     <label for="weight">Weight (kg):</label>
                     <input type="number" id="weight" placeholder="Enter weight in kilograms">
                 </div>
-                <button class="tool-button" id="calculate-bmi">Calculate BMI</button>
+                <button class="tool-button" onclick="calculateBMI()">Calculate BMI</button>
                 <div class="result" id="bmi-result"></div>
             </div>
         </div>
@@ -787,9 +899,13 @@
             document.getElementById('home-section').style.display = 'block';
             document.getElementById('tools-section').style.display = 'block';
             document.getElementById('features-section').style.display = 'block';
-            document.getElementById('data-converter-tool').style.display = 'none';
-            document.getElementById('age-calculator-tool').style.display = 'none';
-            document.getElementById('bmi-calculator-tool').style.display = 'none';
+            
+            // Hide all tool implementations
+            const toolSections = document.querySelectorAll('.tool-implementation');
+            toolSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
             window.scrollTo(0, 0);
         }
 
@@ -799,9 +915,10 @@
             document.getElementById('features-section').style.display = 'none';
             
             // Hide all tool implementations
-            document.getElementById('data-converter-tool').style.display = 'none';
-            document.getElementById('age-calculator-tool').style.display = 'none';
-            document.getElementById('bmi-calculator-tool').style.display = 'none';
+            const toolSections = document.querySelectorAll('.tool-implementation');
+            toolSections.forEach(section => {
+                section.style.display = 'none';
+            });
             
             // Show selected tool
             document.getElementById(toolId + '-tool').style.display = 'block';
@@ -809,7 +926,7 @@
         }
 
         // Data Converter
-        document.getElementById('convert-data').addEventListener('click', function() {
+        function convertData() {
             const value = parseFloat(document.getElementById('data-value').value);
             const fromUnit = document.getElementById('data-from').value;
             const toUnit = document.getElementById('data-to').value;
@@ -837,10 +954,10 @@
             
             document.getElementById('data-result').textContent = `${value} ${fromUnit} = ${result.toFixed(6)} ${toUnit}`;
             document.getElementById('data-result').style.display = 'block';
-        });
+        }
 
         // Age Calculator
-        document.getElementById('calculate-age').addEventListener('click', function() {
+        function calculateAge() {
             const birthDate = new Date(document.getElementById('birth-date').value);
             const today = new Date();
             
@@ -870,10 +987,10 @@
                 ${years} years, ${months} months, and ${days} days
             `;
             document.getElementById('age-result').style.display = 'block';
-        });
+        }
 
         // BMI Calculator
-        document.getElementById('calculate-bmi').addEventListener('click', function() {
+        function calculateBMI() {
             const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to m
             const weight = parseFloat(document.getElementById('weight').value);
             
@@ -900,7 +1017,107 @@
                 <span class="bmi-category">Category: ${category}</span>
             `;
             document.getElementById('bmi-result').style.display = 'block';
-        });
+        }
+
+        // Length Converter
+        function convertLength() {
+            const value = parseFloat(document.getElementById('length-value').value);
+            const fromUnit = document.getElementById('length-from').value;
+            const toUnit = document.getElementById('length-to').value;
+            
+            if (isNaN(value)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            
+            // Conversion factors relative to meters
+            const units = {
+                meter: 1,
+                kilometer: 1000,
+                centimeter: 0.01,
+                millimeter: 0.001,
+                inch: 0.0254,
+                foot: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34
+            };
+            
+            // Convert to meters first
+            const meters = value * units[fromUnit];
+            
+            // Convert from meters to target unit
+            const result = meters / units[toUnit];
+            
+            document.getElementById('length-result').textContent = `${value} ${fromUnit} = ${result.toFixed(6)} ${toUnit}`;
+            document.getElementById('length-result').style.display = 'block';
+        }
+
+        // Weight Converter
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weight-value').value);
+            const fromUnit = document.getElementById('weight-from').value;
+            const toUnit = document.getElementById('weight-to').value;
+            
+            if (isNaN(value)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            
+            // Conversion factors relative to kilograms
+            const units = {
+                kilogram: 1,
+                gram: 0.001,
+                milligram: 0.000001,
+                pound: 0.453592,
+                ounce: 0.0283495,
+                ton: 1000
+            };
+            
+            // Convert to kilograms first
+            const kilograms = value * units[fromUnit];
+            
+            // Convert from kilograms to target unit
+            const result = kilograms / units[toUnit];
+            
+            document.getElementById('weight-result').textContent = `${value} ${fromUnit} = ${result.toFixed(6)} ${toUnit}`;
+            document.getElementById('weight-result').style.display = 'block';
+        }
+
+        // Temperature Converter
+        function convertTemperature() {
+            const value = parseFloat(document.getElementById('temp-value').value);
+            const fromUnit = document.getElementById('temp-from').value;
+            const toUnit = document.getElementById('temp-to').value;
+            
+            if (isNaN(value)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            
+            let result;
+            
+            // Convert to Celsius first
+            let celsius;
+            if (fromUnit === 'celsius') {
+                celsius = value;
+            } else if (fromUnit === 'fahrenheit') {
+                celsius = (value - 32) * 5/9;
+            } else if (fromUnit === 'kelvin') {
+                celsius = value - 273.15;
+            }
+            
+            // Convert from Celsius to target unit
+            if (toUnit === 'celsius') {
+                result = celsius;
+            } else if (toUnit === 'fahrenheit') {
+                result = (celsius * 9/5) + 32;
+            } else if (toUnit === 'kelvin') {
+                result = celsius + 273.15;
+            }
+            
+            document.getElementById('temp-result').textContent = `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+            document.getElementById('temp-result').style.display = 'block';
+        }
 
         // Initialize page
         showHome();
