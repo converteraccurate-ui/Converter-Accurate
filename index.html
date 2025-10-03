@@ -162,6 +162,7 @@
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
         }
 
         .tool-card:hover {
@@ -317,6 +318,7 @@
         .tool-implementation {
             padding: 80px 0;
             background-color: var(--white);
+            display: none;
         }
 
         .tool-container {
@@ -399,6 +401,22 @@
             font-weight: normal;
         }
 
+        .back-button {
+            background-color: var(--light-olive);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            background-color: var(--olive-green);
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -475,133 +493,133 @@
             
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#tools">Tools</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" onclick="showHome()">Home</a></li>
+                    <li><a href="#tools" onclick="showHome()">Tools</a></li>
+                    <li><a href="#contact" onclick="showHome()">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home-section">
         <div class="container hero-content">
             <h1>Your Daily Tools, All in One Place</h1>
             <p>Convert, calculate, and measure with precision using our comprehensive suite of online tools. Fast, accurate, and completely free.</p>
-            <a href="#tools" class="cta-button">Explore Tools <i class="fas fa-arrow-right"></i></a>
+            <a href="#tools" class="cta-button" onclick="showHome()">Explore Tools <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
     <!-- Tools Section -->
-    <section class="tools-section" id="tools">
+    <section class="tools-section" id="tools-section">
         <div class="container">
             <h2 class="section-title">Our Conversion Tools</h2>
             <div class="tools-grid">
                 <!-- Tool Card 1 -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('length-converter')">
                     <div class="tool-icon">
                         <i class="fas fa-ruler-combined"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Length Converter</h3>
                         <p>Convert between meters, feet, inches, centimeters, and more with precision.</p>
-                        <a href="length-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
                 <!-- Tool Card 2 -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('weight-converter')">
                     <div class="tool-icon">
                         <i class="fas fa-weight-hanging"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Weight Converter</h3>
                         <p>Convert kilograms to pounds, grams to ounces, and other weight measurements.</p>
-                        <a href="weight-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
                 <!-- Tool Card 3 -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('temperature-converter')">
                     <div class="tool-icon">
                         <i class="fas fa-temperature-high"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Temperature Converter</h3>
                         <p>Convert between Celsius, Fahrenheit, and Kelvin temperature scales.</p>
-                        <a href="temperature-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
                 <!-- Tool Card 4 -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('speed-converter')">
                     <div class="tool-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Speed Converter</h3>
                         <p>Convert miles per hour to kilometers per hour and other speed units.</p>
-                        <a href="speed-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
                 <!-- Tool Card 5 -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('time-converter')">
                     <div class="tool-icon">
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Time Converter</h3>
                         <p>Convert between time zones, hours to minutes, and other time measurements.</p>
-                        <a href="time-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
                 <!-- Tool Card 6 -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('currency-converter')">
                     <div class="tool-icon">
                         <i class="fas fa-dollar-sign"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Currency Converter</h3>
                         <p>Convert between different currencies with up-to-date exchange rates.</p>
-                        <a href="currency-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
                 <!-- Tool Card 7: Data Converter -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('data-converter')">
                     <div class="tool-icon">
                         <i class="fas fa-database"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Data Converter</h3>
                         <p>Convert between KB, MB, GB, TB, bits, and bytes with precision.</p>
-                        <a href="data-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
                 <!-- Tool Card 8: Age Calculator -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('age-calculator')">
                     <div class="tool-icon">
                         <i class="fas fa-birthday-cake"></i>
                     </div>
                     <div class="tool-content">
                         <h3>Age Calculator</h3>
                         <p>Calculate your exact age in years, months, and days from your birth date.</p>
-                        <a href="age-calcularltor.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
                 
                 <!-- Tool Card 9: BMI Calculator -->
-                <div class="tool-card">
+                <div class="tool-card" onclick="showTool('bmi-calculator')">
                     <div class="tool-icon">
                         <i class="fas fa-heartbeat"></i>
                     </div>
                     <div class="tool-content">
                         <h3>BMI Calculator</h3>
                         <p>Calculate your Body Mass Index and understand your health category.</p>
-                        <a href="bmi-calculator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                        <div class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </div>
             </div>
@@ -609,8 +627,9 @@
     </section>
 
     <!-- Data Converter Implementation -->
-    <section class="tool-implementation" id="data-converter">
+    <section class="tool-implementation" id="data-converter-tool">
         <div class="container">
+            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
             <div class="tool-container">
                 <h2 class="tool-title">Data Converter</h2>
                 <div class="input-group">
@@ -646,8 +665,9 @@
     </section>
 
     <!-- Age Calculator Implementation -->
-    <section class="tool-implementation" id="age-calculator">
+    <section class="tool-implementation" id="age-calculator-tool">
         <div class="container">
+            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
             <div class="tool-container">
                 <h2 class="tool-title">Age Calculator</h2>
                 <div class="input-group">
@@ -661,8 +681,9 @@
     </section>
 
     <!-- BMI Calculator Implementation -->
-    <section class="tool-implementation" id="bmi-calculator">
+    <section class="tool-implementation" id="bmi-calculator-tool">
         <div class="container">
+            <button class="back-button" onclick="showHome()"><i class="fas fa-arrow-left"></i> Back to Tools</button>
             <div class="tool-container">
                 <h2 class="tool-title">BMI Calculator</h2>
                 <div class="input-group">
@@ -680,7 +701,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features-section">
+    <section class="features-section" id="features-section">
         <div class="container">
             <h2 class="section-title">Why Choose Converter Accurate?</h2>
             <div class="features-grid">
@@ -723,9 +744,9 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#tools">All Tools</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#" onclick="showHome()">Home</a></li>
+                        <li><a href="#tools" onclick="showHome()">All Tools</a></li>
+                        <li><a href="#contact" onclick="showHome()">Contact Us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
@@ -733,10 +754,10 @@
                 <div class="footer-column">
                     <h3>Popular Tools</h3>
                     <ul>
-                        <li><a href="#data-converter">Data Converter</a></li>
-                        <li><a href="#age-calculator">Age Calculator</a></li>
-                        <li><a href="#bmi-calculator">BMI Calculator</a></li>
-                        <li><a href="#">Currency Converter</a></li>
+                        <li><a href="#" onclick="showTool('data-converter')">Data Converter</a></li>
+                        <li><a href="#" onclick="showTool('age-calculator')">Age Calculator</a></li>
+                        <li><a href="#" onclick="showTool('bmi-calculator')">BMI Calculator</a></li>
+                        <li><a href="#" onclick="showTool('currency-converter')">Currency Converter</a></li>
                     </ul>
                 </div>
                 
@@ -760,6 +781,32 @@
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.querySelector('nav').classList.toggle('active');
         });
+
+        // Show/Hide sections
+        function showHome() {
+            document.getElementById('home-section').style.display = 'block';
+            document.getElementById('tools-section').style.display = 'block';
+            document.getElementById('features-section').style.display = 'block';
+            document.getElementById('data-converter-tool').style.display = 'none';
+            document.getElementById('age-calculator-tool').style.display = 'none';
+            document.getElementById('bmi-calculator-tool').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+
+        function showTool(toolId) {
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('tools-section').style.display = 'none';
+            document.getElementById('features-section').style.display = 'none';
+            
+            // Hide all tool implementations
+            document.getElementById('data-converter-tool').style.display = 'none';
+            document.getElementById('age-calculator-tool').style.display = 'none';
+            document.getElementById('bmi-calculator-tool').style.display = 'none';
+            
+            // Show selected tool
+            document.getElementById(toolId + '-tool').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
 
         // Data Converter
         document.getElementById('convert-data').addEventListener('click', function() {
@@ -854,6 +901,9 @@
             `;
             document.getElementById('bmi-result').style.display = 'block';
         });
+
+        // Initialize page
+        showHome();
     </script>
 </body>
 </html>
