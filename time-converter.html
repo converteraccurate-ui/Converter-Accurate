@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Converter - Olive Green Theme</title>
+  <style>
+    :root {
+      --primary-color: olive;
+      --secondary-color: white;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--secondary-color);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .converter {
+      background: var(--secondary-color);
+      box-shadow: 0 4px 12px var(--shadow-color);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    button {
+      background: var(--primary-color);
+      color: var(--secondary-color);
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    @media (max-width: 480px) {
+      .converter {
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="converter">
+    <h1>Time Converter</h1>
+    <p>Convert between different time units instantly.</p>
+
+    <div class="input-group">
+      <input type="number" id="timeInput" placeholder="Enter time" inputmode="decimal" />
+
+      <select id="fromUnit">
+        <option value="seconds">Seconds</option>
+        <option value="minutes">Minutes</option>
+        <option value="hours">Hours</option>
+        <option value="days">Days</option>
+      </select>
+
+      <select id="toUnit">
+        <option value="seconds">Seconds</option>
+        <option value="minutes">Minutes</option>
+        <option value="hours">Hours</option>
+        <option value="days">Days</option>
+      </select>
+
+      <button onclick="convertTime()">Convert</button>
+    </div>
+
+    <div id="result" class="result">Result will appear here</div>
+  </div>
+
+  <script>
+    const conversionRates = {
+      seconds: 1,
+      minutes: 60,
+      hours: 3600,
+      days: 86400
+    };
+
+    function convertTime() {
+      const input = parseFloat(document.getElementById('timeInput').value);
+      const fromUnit = document.getElementById('fromUnit').value;
+      const toUnit = document.getElementById('toUnit').value;
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(input)) {
+        resultDiv.innerText = 'Please enter a valid number';
+        return;
+      }
+
+      // Convert input to seconds (base)
+      const inSeconds = input * conversionRates[fromUnit];
+      // Convert seconds to target unit
+      const converted = inSeconds / conversionRates[toUnit];
+
+      resultDiv.innerText = `${input} ${fromUnit} = ${converted.toFixed(4)} ${toUnit}`;
+    }
+  </script>
+</body>
+</html>
