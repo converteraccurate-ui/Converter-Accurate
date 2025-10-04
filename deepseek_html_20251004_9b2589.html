@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpful Guides & Articles - Converter Accurate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --olive-green: #556B2F;
+            --light-olive: #6B8E23;
+            --dark-olive: #3D4C21;
+            --cream: #F5F5DC;
+            --light-gray: #f8f8f8;
+            --white: #ffffff;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--olive-green);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--light-olive);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--olive-green);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--olive-green);
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Articles Section */
+        .articles-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-olive);
+            font-size: 2.2rem;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2.5rem;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--light-olive);
+        }
+
+        .article-date {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .article-date i {
+            margin-right: 5px;
+        }
+
+        .article-category {
+            background: var(--cream);
+            color: var(--olive-green);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .article-content h3 {
+            color: var(--dark-olive);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+
+        .article-content p {
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .article-link {
+            color: var(--olive-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .article-link i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .article-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            gap: 15px;
+        }
+
+        .pagination a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .pagination a:hover, .pagination a.active {
+            background: var(--olive-green);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-olive);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--cream);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--cream);
+        }
+
+        .contact-details {
+            color: var(--light-gray);
+        }
+
+        .contact-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-right: 10px;
+            color: var(--cream);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px 0;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .page-header {
+                padding: 40px 0;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .articles-section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Converter <span>Accurate</span></a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#tools">Tools</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Helpful Guides & Articles</h1>
+            <p>Learn more about conversions, calculations, and measurements with our comprehensive guides and tutorials.</p>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles-section">
+        <div class="container">
+            <div class="article-grid">
+                
+                <!-- Article 1: BMI Guide -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Dec 15, 2023</span>
+                            <span class="article-category">Health</span>
+                        </div>
+                        <h3>Understanding BMI: Complete Guide to Body Mass Index</h3>
+                        <p>Learn how to calculate your BMI accurately, understand the health categories, and what your number really means for your overall wellness.</p>
+                        <a href="bmi-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Article 2: Data Storage Guide -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Dec 12, 2023</span>
+                            <span class="article-category">Technology</span>
+                        </div>
+                        <h3>Data Storage Units Explained: Bytes to Terabytes</h3>
+                        <p>Complete guide to understanding digital storage units, conversion formulas, and practical examples for everyday use.</p>
+                        <a href="data-storage-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Article 3: Age Calculation -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Dec 10, 2023</span>
+                            <span class="article-category">Tools</span>
+                        </div>
+                        <h3>How Age Calculation Works: Methods & Formulas</h3>
+                        <p>Discover the mathematics behind age calculation, different methods used worldwide, and how to calculate exact age precisely.</p>
+                        <a href="age-calculation-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Article 4: Temperature Conversion -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Dec 8, 2023</span>
+                            <span class="article-category">Science</span>
+                        </div>
+                        <h3>Temperature Conversion: Celsius, Fahrenheit & Kelvin</h3>
+                        <p>Complete guide to temperature scales, conversion formulas, and practical applications in daily life and science.</p>
+                        <a href="temperature-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Article 5: Length Measurement -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Dec 5, 2023</span>
+                            <span class="article-category">Measurement</span>
+                        </div>
+                        <h3>Length Conversion: Metric vs Imperial Systems</h3>
+                        <p>Understanding different measurement systems and how to convert between meters, feet, inches, and other length units accurately.</p>
+                        <a href="length-conversion-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Article 6: Currency Conversion -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Dec 3, 2023</span>
+                            <span class="article-category">Finance</span>
+                        </div>
+                        <h3>Currency Conversion: Exchange Rates & Calculations</h3>
+                        <p>Learn how currency conversion works, understanding exchange rates, and tips for accurate financial calculations.</p>
+                        <a href="currency-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Converter Accurate</h3>
+                    <p>Your comprehensive solution for all measurement conversion needs. Fast, accurate, and completely free.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">All Tools</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Popular Articles</h3>
+                    <ul>
+                        <li><a href="bmi-guide.html">BMI Calculation Guide</a></li>
+                        <li><a href="data-storage-guide.html">Data Storage Guide</a></li>
+                        <li><a href="age-calculation-guide.html">Age Calculation</a></li>
+                        <li><a href="temperature-guide.html">Temperature Conversion</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-envelope"></i> converteraccurate@gmail.com</p>
+                        <p><i class="fas fa-globe"></i> www.converteraccurate.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Converter Accurate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
