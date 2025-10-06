@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GST Calculator Online | Add or Remove GST Easily | Converter Accurate</title>
+  <meta name="description" content="Free online GST Calculator to add or remove GST easily. Calculate total price with or without GST for 5%, 12%, 18%, or 28% rates.">
+  <meta name="keywords" content="gst calculator, gst calculator online, add gst, remove gst, gst amount calculator, converter accurate">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --olive-green: #556B2F;
+      --light-olive: #6B8E23;
+      --dark-olive: #3D4C21;
+      --cream: #F5F5DC;
+      --light-gray: #f8f8f8;
+      --white: #ffffff;
+      --text-dark: #333333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--light-gray);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--olive-green);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    
+    .logo span {
+      color: var(--light-olive);
+    }
+    
+    h1 {
+      color: var(--dark-olive);
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+    
+    .content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    @media (max-width: 900px) {
+      .content-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .calculator {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .calculator h2 {
+      color: var(--dark-olive);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--cream);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark-olive);
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    input:focus, select:focus {
+      border-color: var(--olive-green);
+      outline: none;
+    }
+    
+    .input-with-icon {
+      position: relative;
+    }
+    
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--olive-green);
+    }
+    
+    .input-with-icon input, .input-with-icon select {
+      padding-left: 40px;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    
+    button {
+      flex: 1;
+      background: var(--olive-green);
+      color: var(--white);
+      border: none;
+      padding: 14px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    button:hover {
+      background: var(--light-olive);
+    }
+    
+    .btn-add {
+      background: var(--light-olive);
+    }
+    
+    .btn-remove {
+      background: var(--dark-olive);
+    }
+    
+    .result {
+      background: var(--cream);
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--olive-green);
+    }
+    
+    .result h3 {
+      color: var(--dark-olive);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(85, 107, 47, 0.2);
+    }
+    
+    .result-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .result-label {
+      font-weight: 600;
+      color: var(--dark-olive);
+    }
+    
+    .result-value {
+      font-weight: 700;
+      color: var(--olive-green);
+    }
+    
+    .guide {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .guide h2 {
+      color: var(--dark-olive);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--cream);
+    }
+    
+    .info-box {
+      background: var(--cream);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      border-left: 4px solid var(--olive-green);
+    }
+    
+    .info-box h3 {
+      color: var(--dark-olive);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .gst-rates {
+      margin: 25px 0;
+    }
+    
+    .gst-rates h3 {
+      color: var(--olive-green);
+      margin-bottom: 15px;
+    }
+    
+    .rates-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .rates-table th {
+      background: var(--olive-green);
+      color: var(--white);
+      padding: 12px 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .rates-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--cream);
+    }
+    
+    .rates-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .rates-table tr:nth-child(even) {
+      background: var(--light-gray);
+    }
+    
+    .step {
+      margin-bottom: 25px;
+    }
+    
+    .step h3 {
+      color: var(--olive-green);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .step-number {
+      background: var(--olive-green);
+      color: var(--white);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      font-weight: 700;
+    }
+    
+    .example {
+      background: var(--light-gray);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    
+    .example h4 {
+      color: var(--dark-olive);
+      margin-bottom: 10px;
+    }
+    
+    .ads {
+      background: var(--cream);
+      border: 1px dashed var(--olive-green);
+      padding: 20px;
+      margin: 30px auto;
+      text-align: center;
+      border-radius: 8px;
+      color: var(--dark-olive);
+    }
+    
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--text-dark);
+      font-size: 14px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
+    
+    footer a {
+      color: var(--olive-green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="https://www.converteraccurate.com" class="logo">Converter <span>Accurate</span></a>
+      <h1>GST Calculator</h1>
+      <p class="subtitle">Calculate total price with or without GST for 5%, 12%, 18%, or 28% rates</p>
+    </header>
+
+    <div class="ads">
+      <!-- Google AdSense Ad Slot -->
+      <p>Ad Space (Place your AdSense code here)</p>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="calculator">
+        <h2><i class="fas fa-calculator"></i> Calculate GST</h2>
+        
+        <div class="form-group">
+          <label for="amount">Enter Amount (₹)</label>
+          <div class="input-with-icon">
+            <i class="fas fa-rupee-sign"></i>
+            <input type="number" id="amount" placeholder="Enter amount" min="1" value="1000" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="gstRate">Select GST Rate (%)</label>
+          <div class="input-with-icon">
+            <i class="fas fa-percentage"></i>
+            <select id="gstRate">
+              <option value="5">5% - Common for essential goods</option>
+              <option value="12">12% - Standard for some services</option>
+              <option value="18" selected>18% - Standard rate (most common)</option>
+              <option value="28">28% - Luxury items and sin goods</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button onclick="addGST()" class="btn-add">
+            <i class="fas fa-plus-circle"></i> Add GST
+          </button>
+          <button onclick="removeGST()" class="btn-remove">
+            <i class="fas fa-minus-circle"></i> Remove GST
+          </button>
+        </div>
+
+        <div class="result" id="result" style="display:none;">
+          <h3><i class="fas fa-chart-pie"></i> GST Calculation</h3>
+          <div class="result-item">
+            <span class="result-label">Base Amount:</span>
+            <span class="result-value">₹<span id="baseAmount"></span></span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">GST Amount:</span>
+            <span class="result-value">₹<span id="gstAmount"></span></span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Total Amount:</span>
+            <span class="result-value">₹<span id="totalAmount"></span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide">
+        <h2><i class="fas fa-info-circle"></i> About GST</h2>
+        
+        <div class="info-box">
+          <h3><i class="fas fa-receipt"></i> What is GST?</h3>
+          <p>GST (Goods and Services Tax) is a comprehensive indirect tax levied on the supply of goods and services in India. It replaced multiple cascading taxes and unified the Indian market.</p>
+        </div>
+        
+        <div class="gst-rates">
+          <h3><i class="fas fa-list-alt"></i> GST Rate Structure</h3>
+          <table class="rates-table">
+            <thead>
+              <tr>
+                <th>Rate</th>
+                <th>Category</th>
+                <th>Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0%</td>
+                <td>Exempted</td>
+                <td>Fresh vegetables, milk, bread</td>
+              </tr>
+              <tr>
+                <td>5%</td>
+                <td>Essential goods</td>
+                <td>Tea, coffee, edible oil, medicines</td>
+              </tr>
+              <tr>
+                <td>12%</td>
+                <td>Standard</td>
+                <td>Butter, cheese, mobiles, processed foods</td>
+              </tr>
+              <tr>
+                <td>18%</td>
+                <td>Standard</td>
+                <td>Soaps, toothpaste, capital goods, IT services</td>
+              </tr>
+              <tr>
+                <td>28%</td>
+                <td>Luxury & sin goods</td>
+                <td>Cars, ACs, cigarettes, luxury hotels</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="step">
+          <h3><span class="step-number">1</span> Adding GST</h3>
+          <p>Use "Add GST" when you have the base price and want to calculate the total price including GST. This is useful for pricing products or services.</p>
+          <div class="example">
+            <h4>Example:</h4>
+            <p>Base Price: ₹1,000<br>
+            GST Rate: 18%<br>
+            GST Amount: ₹180<br>
+            <strong>Total Price: ₹1,180</strong></p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <h3><span class="step-number">2</span> Removing GST</h3>
+          <p>Use "Remove GST" when you have the total price including GST and want to find the base price and GST amount separately. This helps in accounting and tax filing.</p>
+          <div class="example">
+            <h4>Example:</h4>
+            <p>Total Price: ₹1,180<br>
+            GST Rate: 18%<br>
+            Base Price: ₹1,000<br>
+            <strong>GST Amount: ₹180</strong></p>
+          </div>
+        </div>
+        
+        <div class="info-box">
+          <h3><i class="fas fa-lightbulb"></i> GST Calculation Formulas</h3>
+          <p><strong>Add GST:</strong> Total Amount = Base Amount × (1 + GST Rate/100)</p>
+          <p><strong>Remove GST:</strong> Base Amount = Total Amount / (1 + GST Rate/100)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ads">
+      <!-- Google AdSense Ad Slot -->
+      <p>Ad Space (Place your AdSense code here)</p>
+    </div>
+
+    <footer>
+      <p>© 2025 <a href="https://www.converteraccurate.com">Converter Accurate</a> — All rights reserved.</p>
+      <p>This calculator provides estimates for informational purposes only. Consult a tax professional for official GST calculations.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Format currency for display
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('en-IN').format(value.toFixed(2));
+    }
+    
+    // Add GST function
+    function addGST() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const gstRate = parseFloat(document.getElementById('gstRate').value);
+      
+      if (!amount || amount <= 0) {
+        alert("Please enter a valid amount");
+        return;
+      }
+      
+      const gstAmount = (amount * gstRate) / 100;
+      const total = amount + gstAmount;
+
+      document.getElementById('baseAmount').textContent = formatCurrency(amount);
+      document.getElementById('gstAmount').textContent = formatCurrency(gstAmount);
+      document.getElementById('totalAmount').textContent = formatCurrency(total);
+      document.getElementById('result').style.display = "block";
+    }
+
+    // Remove GST function
+    function removeGST() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const gstRate = parseFloat(document.getElementById('gstRate').value);
+      
+      if (!amount || amount <= 0) {
+        alert("Please enter a valid amount");
+        return;
+      }
+      
+      const baseAmount = amount / (1 + (gstRate / 100));
+      const gstAmount = amount - baseAmount;
+
+      document.getElementById('baseAmount').textContent = formatCurrency(baseAmount);
+      document.getElementById('gstAmount').textContent = formatCurrency(gstAmount);
+      document.getElementById('totalAmount').textContent = formatCurrency(amount);
+      document.getElementById('result').style.display = "block";
+    }
+    
+    // Calculate GST on page load with default values
+    window.onload = addGST;
+  </script>
+</body>
+  </html>
