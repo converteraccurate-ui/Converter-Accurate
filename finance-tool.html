@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FD & Percentage Calculator | Online Finance Tools | Converter Accurate</title>
+  <meta name="description" content="Use our free online FD Calculator and Percentage Calculator to find fixed deposit maturity value, total interest, and percentage increase or decrease quickly.">
+  <meta name="keywords" content="fd calculator, percentage calculator, fixed deposit, maturity value, percent increase, converter accurate, finance tools">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --olive-green: #556B2F;
+      --light-olive: #6B8E23;
+      --dark-olive: #3D4C21;
+      --cream: #F5F5DC;
+      --light-gray: #f8f8f8;
+      --white: #ffffff;
+      --text-dark: #333333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--light-gray);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--olive-green);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    
+    .logo span {
+      color: var(--light-olive);
+    }
+    
+    h1 {
+      color: var(--dark-olive);
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+    
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .tab-button {
+      background: transparent;
+      color: var(--dark-olive);
+      border: none;
+      padding: 12px 25px;
+      cursor: pointer;
+      margin: 0 5px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .tab-button:hover {
+      background: var(--cream);
+    }
+    
+    .tab-button.active {
+      background: var(--olive-green);
+      color: var(--white);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    @media (max-width: 900px) {
+      .content-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .calculator {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .calculator h2 {
+      color: var(--dark-olive);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--cream);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark-olive);
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    input:focus, select:focus {
+      border-color: var(--olive-green);
+      outline: none;
+    }
+    
+    .input-with-icon {
+      position: relative;
+    }
+    
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--olive-green);
+    }
+    
+    .input-with-icon input, .input-with-icon select {
+      padding-left: 40px;
+    }
+    
+    .slider-container {
+      margin-top: 10px;
+    }
+    
+    .slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: #ddd;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--olive-green);
+      cursor: pointer;
+    }
+    
+    .slider-value {
+      text-align: right;
+      font-size: 14px;
+      color: var(--dark-olive);
+      margin-top: 5px;
+    }
+    
+    button {
+      background: var(--olive-green);
+      color: var(--white);
+      border: none;
+      padding: 14px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+    
+    button:hover {
+      background: var(--light-olive);
+    }
+    
+    .percent-buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .percent-btn {
+      background: var(--light-olive);
+    }
+    
+    .percent-btn:hover {
+      background: var(--olive-green);
+    }
+    
+    .result {
+      background: var(--cream);
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--olive-green);
+    }
+    
+    .result h3 {
+      color: var(--dark-olive);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(85, 107, 47, 0.2);
+    }
+    
+    .result-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .result-label {
+      font-weight: 600;
+      color: var(--dark-olive);
+    }
+    
+    .result-value {
+      font-weight: 700;
+      color: var(--olive-green);
+    }
+    
+    .guide {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .guide h2 {
+      color: var(--dark-olive);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--cream);
+    }
+    
+    .info-box {
+      background: var(--cream);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      border-left: 4px solid var(--olive-green);
+    }
+    
+    .info-box h3 {
+      color: var(--dark-olive);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .step {
+      margin-bottom: 25px;
+    }
+    
+    .step h3 {
+      color: var(--olive-green);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .step-number {
+      background: var(--olive-green);
+      color: var(--white);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      font-weight: 700;
+    }
+    
+    .example {
+      background: var(--light-gray);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    
+    .example h4 {
+      color: var(--dark-olive);
+      margin-bottom: 10px;
+    }
+    
+    .ads {
+      background: var(--cream);
+      border: 1px dashed var(--olive-green);
+      padding: 20px;
+      margin: 30px auto;
+      text-align: center;
+      border-radius: 8px;
+      color: var(--dark-olive);
+    }
+    
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--text-dark);
+      font-size: 14px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
+    
+    footer a {
+      color: var(--olive-green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="https://www.converteraccurate.com" class="logo">Converter <span>Accurate</span></a>
+      <h1>Finance Tools</h1>
+      <p class="subtitle">Use our free tools to calculate Fixed Deposit Maturity and Percentage values easily</p>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab('fd')">
+        <i class="fas fa-piggy-bank"></i> FD Calculator
+      </button>
+      <button class="tab-button" onclick="openTab('percentage')">
+        <i class="fas fa-percentage"></i> Percentage Calculator
+      </button>
+    </div>
+
+    <div class="ads">
+      <!-- Google AdSense Ad Slot -->
+      <p>Ad Space (Place your AdSense code here)</p>
+    </div>
+
+    <!-- FD Calculator -->
+    <div id="fd" class="tab-content active">
+      <div class="content-wrapper">
+        <div class="calculator">
+          <h2><i class="fas fa-calculator"></i> FD Calculator</h2>
+          
+          <div class="form-group">
+            <label for="fdAmount">Deposit Amount (₹)</label>
+            <div class="input-with-icon">
+              <i class="fas fa-rupee-sign"></i>
+              <input type="number" id="fdAmount" placeholder="Enter deposit amount" min="1000" max="100000000" value="100000" required>
+            </div>
+            <div class="slider-container">
+              <input type="range" min="1000" max="100000000" value="100000" class="slider" id="fdAmountSlider">
+              <div class="slider-value">₹1,00,000</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fdRate">Annual Interest Rate (%)</label>
+            <div class="input-with-icon">
+              <i class="fas fa-percentage"></i>
+              <input type="number" id="fdRate" placeholder="e.g. 7.5" min="1" max="20" step="0.1" value="7.5" required>
+            </div>
+            <div class="slider-container">
+              <input type="range" min="1" max="20" value="7.5" step="0.1" class="slider" id="fdRateSlider">
+              <div class="slider-value">7.5%</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fdYears">Time Period (Years)</label>
+            <div class="input-with-icon">
+              <i class="fas fa-calendar-alt"></i>
+              <input type="number" id="fdYears" placeholder="e.g. 5" min="1" max="30" value="5" required>
+            </div>
+            <div class="slider-container">
+              <input type="range" min="1" max="30" value="5" class="slider" id="fdYearsSlider">
+              <div class="slider-value">5 Years</div>
+            </div>
+          </div>
+
+          <button onclick="calculateFD()">
+            <i class="fas fa-calculator"></i> Calculate FD
+          </button>
+
+          <div class="result" id="fdResult" style="display:none;">
+            <h3><i class="fas fa-chart-line"></i> FD Maturity Details</h3>
+            <div class="result-item">
+              <span class="result-label">Principal Amount:</span>
+              <span class="result-value">₹<span id="fdPrincipal"></span></span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Total Interest Earned:</span>
+              <span class="result-value">₹<span id="fdInterest"></span></span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Maturity Value:</span>
+              <span class="result-value">₹<span id="fdMaturity"></span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide">
+          <h2><i class="fas fa-info-circle"></i> About Fixed Deposits</h2>
+          
+          <div class="info-box">
+            <h3><i class="fas fa-piggy-bank"></i> What is a Fixed Deposit?</h3>
+            <p>A Fixed Deposit (FD) is a financial instrument provided by banks and NBFCs that offers a higher rate of interest than a regular savings account, until the given maturity date.</p>
+          </div>
+          
+          <div class="step">
+            <h3><span class="step-number">1</span> How FD Calculator Works</h3>
+            <p>The calculator uses compound interest formula to determine your FD maturity amount. Interest is compounded quarterly as per standard banking practice.</p>
+          </div>
+          
+          <div class="step">
+            <h3><span class="step-number">2</span> FD Interest Calculation</h3>
+            <p>Formula: A = P (1 + r/n)^(nt)</p>
+            <p>Where:<br>
+            A = Maturity amount<br>
+            P = Principal amount<br>
+            r = Annual interest rate<br>
+            n = Number of times interest is compounded per year (4 for quarterly)<br>
+            t = Number of years</p>
+          </div>
+          
+          <div class="example">
+            <h4>Example Calculation:</h4>
+            <p>Principal: ₹1,00,000<br>
+            Interest Rate: 7.5% per annum<br>
+            Tenure: 5 years<br>
+            <strong>Maturity Value: ₹1,44,504</strong><br>
+            Total Interest: ₹44,504</p>
+          </div>
+          
+          <div class="info-box">
+            <h3><i class="fas fa-lightbulb"></i> FD Benefits</h3>
+            <p>• Higher interest rates than savings accounts<br>
+            • Safe and secure investment<br>
+            • Fixed returns guaranteed<br>
+            • Flexible tenure options<br>
+            • Loan facility against FD</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Percentage Calculator -->
+    <div id="percentage" class="tab-content">
+      <div class="content-wrapper">
+        <div class="calculator">
+          <h2><i class="fas fa-calculator"></i> Percentage Calculator</h2>
+          
+          <div class="form-group">
+            <label for="val1">Value 1</label>
+            <div class="input-with-icon">
+              <i class="fas fa-hashtag"></i>
+              <input type="number" id="val1" placeholder="Enter first value" value="50" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="val2">Value 2</label>
+            <div class="input-with-icon">
+              <i class="fas fa-hashtag"></i>
+              <input type="number" id="val2" placeholder="Enter second value" value="200" required>
+            </div>
+          </div>
+
+          <div class="percent-buttons">
+            <button onclick="findPercent()" class="percent-btn">
+              <i class="fas fa-question-circle"></i> What % is Value1 of Value2?
+            </button>
+            <button onclick="increasePercent()" class="percent-btn">
+              <i class="fas fa-arrow-up"></i> % Increase from Value1 to Value2
+            </button>
+            <button onclick="decreasePercent()" class="percent-btn">
+              <i class="fas fa-arrow-down"></i> % Decrease from Value1 to Value2
+            </button>
+          </div>
+
+          <div class="result" id="percentResult" style="display:none;">
+            <h3><i class="fas fa-chart-pie"></i> Percentage Result</h3>
+            <div class="result-item">
+              <span class="result-label">Percentage:</span>
+              <span class="result-value"><span id="percentValue"></span>%</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Calculation:</span>
+              <span class="result-value" id="calculationDetail"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide">
+          <h2><i class="fas fa-info-circle"></i> About Percentage Calculations</h2>
+          
+          <div class="info-box">
+            <h3><i class="fas fa-percentage"></i> What is Percentage?</h3>
+            <p>Percentage is a way of expressing a number as a fraction of 100. It is often denoted using the percent sign "%". It's useful for comparing proportions and changes.</p>
+          </div>
+          
+          <div class="step">
+            <h3><span class="step-number">1</span> Percentage Of</h3>
+            <p>Calculates what percentage one number is of another number.</p>
+            <p>Formula: (Value1 ÷ Value2) × 100</p>
+            <div class="example">
+              <h4>Example:</h4>
+              <p>What percentage is 50 of 200?<br>
+              (50 ÷ 200) × 100 = <strong>25%</strong></p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <h3><span class="step-number">2</span> Percentage Increase</h3>
+            <p>Calculates the percentage increase from one value to another.</p>
+            <p>Formula: [(Value2 - Value1) ÷ Value1] × 100</p>
+            <div class="example">
+              <h4>Example:</h4>
+              <p>Percentage increase from 50 to 75?<br>
+              [(75 - 50) ÷ 50] × 100 = <strong>50%</strong></p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <h3><span class="step-number">3</span> Percentage Decrease</h3>
+            <p>Calculates the percentage decrease from one value to another.</p>
+            <p>Formula: [(Value1 - Value2) ÷ Value1] × 100</p>
+            <div class="example">
+              <h4>Example:</h4>
+              <p>Percentage decrease from 100 to 80?<br>
+              [(100 - 80) ÷ 100] × 100 = <strong>20%</strong></p>
+            </div>
+          </div>
+          
+          <div class="info-box">
+            <h3><i class="fas fa-lightbulb"></i> Practical Applications</h3>
+            <p>• Calculate discounts during shopping<br>
+            • Determine tax amounts<br>
+            • Analyze growth or decline in business metrics<br>
+            • Calculate exam scores and grades<br>
+            • Measure ingredient proportions in recipes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ads">
+      <!-- Google AdSense Ad Slot -->
+      <p>Ad Space (Place your AdSense code here)</p>
+    </div>
+
+    <footer>
+      <p>© 2025 <a href="https://www.converteraccurate.com">Converter Accurate</a> — All rights reserved.</p>
+      <p>These calculators provide estimates for informational purposes only. Consult a financial advisor for professional advice.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Tab switcher
+    function openTab(tabName) {
+      const contents = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Format currency for display
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('en-IN').format(value.toFixed(0));
+    }
+
+    // FD Calculator Sliders
+    const fdAmountSlider = document.getElementById('fdAmountSlider');
+    const fdAmountInput = document.getElementById('fdAmount');
+    const fdRateSlider = document.getElementById('fdRateSlider');
+    const fdRateInput = document.getElementById('fdRate');
+    const fdYearsSlider = document.getElementById('fdYearsSlider');
+    const fdYearsInput = document.getElementById('fdYears');
+    
+    // Update FD amount slider and input
+    fdAmountSlider.addEventListener('input', function() {
+      fdAmountInput.value = this.value;
+      document.querySelectorAll('.slider-value')[0].textContent = '₹' + formatCurrency(this.value);
+    });
+    
+    fdAmountInput.addEventListener('input', function() {
+      fdAmountSlider.value = this.value;
+      document.querySelectorAll('.slider-value')[0].textContent = '₹' + formatCurrency(this.value);
+    });
+    
+    // Update FD rate slider and input
+    fdRateSlider.addEventListener('input', function() {
+      fdRateInput.value = this.value;
+      document.querySelectorAll('.slider-value')[1].textContent = this.value + '%';
+    });
+    
+    fdRateInput.addEventListener('input', function() {
+      fdRateSlider.value = this.value;
+      document.querySelectorAll('.slider-value')[1].textContent = this.value + '%';
+    });
+    
+    // Update FD years slider and input
+    fdYearsSlider.addEventListener('input', function() {
+      fdYearsInput.value = this.value;
+      document.querySelectorAll('.slider-value')[2].textContent = this.value + ' Years';
+    });
+    
+    fdYearsInput.addEventListener('input', function() {
+      fdYearsSlider.value = this.value;
+      document.querySelectorAll('.slider-value')[2].textContent = this.value + ' Years';
+    });
+
+    // FD Calculator
+    function calculateFD() {
+      const p = parseFloat(fdAmountInput.value);
+      const r = parseFloat(fdRateInput.value)/100;
+      const t = parseFloat(fdYearsInput.value);
+      
+      if(!p || !r || !t) {
+        alert("Please fill all fields correctly");
+        return;
+      }
+      
+      const n = 4; // Quarterly compounding
+      const maturity = p * Math.pow(1 + (r/n), n*t);
+      const interest = maturity - p;
+
+      document.getElementById('fdPrincipal').textContent = formatCurrency(p);
+      document.getElementById('fdInterest').textContent = formatCurrency(interest);
+      document.getElementById('fdMaturity').textContent = formatCurrency(maturity);
+      document.getElementById('fdResult').style.display = "block";
+    }
+
+    // Percentage Calculator
+    function findPercent() {
+      const a = parseFloat(document.getElementById('val1').value);
+      const b = parseFloat(document.getElementById('val2').value);
+      
+      if(!a || !b) {
+        alert("Please enter both values");
+        return;
+      }
+      
+      const percentage = (a/b)*100;
+      showPercent(percentage, `${a} is ${percentage.toFixed(2)}% of ${b}`);
+    }
+    
+    function increasePercent() {
+      const a = parseFloat(document.getElementById('val1').value);
+      const b = parseFloat(document.getElementById('val2').value);
+      
+      if(!a || !b) {
+        alert("Please enter both values");
+        return;
+      }
+      
+      const percentage = ((b - a)/a)*100;
+      showPercent(percentage, `Increase from ${a} to ${b} is ${percentage.toFixed(2)}%`);
+    }
+    
+    function decreasePercent() {
+      const a = parseFloat(document.getElementById('val1').value);
+      const b = parseFloat(document.getElementById('val2').value);
+      
+      if(!a || !b) {
+        alert("Please enter both values");
+        return;
+      }
+      
+      const percentage = ((a - b)/a)*100;
+      showPercent(percentage, `Decrease from ${a} to ${b} is ${percentage.toFixed(2)}%`);
+    }
+    
+    function showPercent(p, detail) {
+      document.getElementById('percentValue').textContent = p.toFixed(2);
+      document.getElementById('calculationDetail').textContent = detail;
+      document.getElementById('percentResult').style.display = "block";
+    }
+    
+    // Calculate FD on page load with default values
+    window.onload = calculateFD;
+  </script>
+</body>
+  </html>
