@@ -1,539 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator - Converter Accurate</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --olive-green: #556B2F;
-            --light-olive: #6B8E23;
-            --dark-olive: #3D4C21;
-            --cream: #F5F5DC;
-            --light-gray: #f8f8f8;
-            --white: #ffffff;
-            --text-dark: #333333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <title>Age Calculator Online - Calculate Exact Age in Years, Months & Days | Converter Accurate</title>
 
-        body {
-            background-color: var(--light-gray);
-            color: var(--text-dark);
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+  <meta name="description" content="Free online Age Calculator by Converter Accurate. Instantly calculate your age in years, months, weeks, and days from your birth date. 100% accurate and easy to use." />
+  <meta name="keywords" content="age calculator, online age calculator, date of birth calculator, calculate age in years and months, birthday calculator, age finder, Converter Accurate" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Converter Accurate" />
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Age Calculator - Find Your Exact Age in Years, Months & Days" />
+  <meta property="og:description" content="Instantly calculate your exact age using Converter Accurate's free online age calculator tool." />
+  <meta property="og:url" content="https://www.converteraccurate.com/age-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.converteraccurate.com/images/age-calculator-preview.png" />
 
-        .calculator-card {
-            background-color: var(--white);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Age Calculator - Calculate Your Exact Age Online | Converter Accurate" />
+  <meta name="twitter:description" content="Easily find your exact age in years, months, weeks, and days using our free age calculator." />
+  <meta name="twitter:image" content="https://www.converteraccurate.com/images/age-calculator-preview.png" />
 
-        .calculator-header {
-            background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
-            color: var(--white);
-            padding: 30px;
-            text-align: center;
-        }
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.converteraccurate.com/age-calculator" />
 
-        .calculator-header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-        .calculator-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Age Calculator",
+    "url": "https://www.converteraccurate.com/age-calculator",
+    "description": "Free online age calculator to calculate exact age in years, months, weeks, and days.",
+    "applicationCategory": "Calculator",
+    "operatingSystem": "All",
+    "creator": {
+      "@type": "Organization",
+      "name": "Converter Accurate",
+      "url": "https://www.converteraccurate.com"
+    }
+  }
+  </script>
 
-        .calculator-body {
-            padding: 30px;
-        }
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxx"
+     crossorigin="anonymous"></script>
 
-        .input-group {
-            margin-bottom: 25px;
-        }
+  <style>
+    :root {
+      --olive-green: #556b2f;
+      --light-olive: #6b8e23;
+      --dark-olive: #3d4c21;
+      --cream: #f5f5dc;
+      --light-gray: #f8f8f8;
+      --white: #ffffff;
+      --text-dark: #333333;
+    }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark-olive);
-            font-size: 1.1rem;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        .input-row {
-            display: flex;
-            gap: 15px;
-        }
+    body {
+      background-color: var(--light-gray);
+      color: var(--text-dark);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-        .input-field {
-            flex: 1;
-            position: relative;
-        }
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-        .input-field input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
+    .calculator-card {
+      background-color: var(--white);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
 
-        .input-field input:focus {
-            border-color: var(--olive-green);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(85, 107, 47, 0.2);
-        }
+    .calculator-header {
+      background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
+      color: var(--white);
+      padding: 30px;
+      text-align: center;
+    }
 
-        .unit {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-dark);
-            font-weight: 500;
-        }
+    .calculator-header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
 
-        .measurement-system {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
+    .calculator-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
 
-        .system-btn {
-            flex: 1;
-            padding: 12px;
-            background-color: var(--light-gray);
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
+    .calculator-body {
+      padding: 30px;
+    }
 
-        .system-btn.active {
-            background-color: var(--olive-green);
-            color: var(--white);
-            border-color: var(--olive-green);
-        }
+    .ad-slot {
+      margin: 20px auto;
+      text-align: center;
+    }
 
-        .calculate-btn {
-            display: block;
-            width: 100%;
-            background-color: var(--olive-green);
-            color: var(--white);
-            border: none;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-bottom: 25px;
-        }
+    .input-group {
+      margin-bottom: 25px;
+    }
 
-        .calculate-btn:hover {
-            background-color: var(--light-olive);
-        }
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark-olive);
+      font-size: 1.1rem;
+    }
 
-        .result-container {
-            background-color: var(--cream);
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            display: none;
-        }
+    .input-field input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1.1rem;
+    }
 
-        .result-container.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
+    .calculate-btn {
+      width: 100%;
+      background-color: var(--olive-green);
+      color: var(--white);
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 25px 0;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .calculate-btn:hover {
+      background-color: var(--light-olive);
+    }
 
-        .bmi-value {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--dark-olive);
-            margin-bottom: 10px;
-        }
+    .result-container {
+      background-color: var(--cream);
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      display: none;
+    }
 
-        .bmi-category {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            padding: 8px 15px;
-            border-radius: 30px;
-            display: inline-block;
-        }
+    .result-container.active {
+      display: block;
+    }
 
-        .underweight {
-            background-color: #FFEAA7;
-            color: #E17055;
-        }
+    .age-display {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-        .normal {
-            background-color: #A3E4D7;
-            color: #16A085;
-        }
+    .age-unit {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      min-width: 120px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
 
-        .overweight {
-            background-color: #F8C471;
-            color: #E67E22;
-        }
+    .age-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--dark-olive);
+    }
 
-        .obese {
-            background-color: #F1948A;
-            color: #C0392B;
-        }
+    .age-label {
+      color: var(--text-dark);
+    }
 
-        .bmi-explanation {
-            margin-top: 20px;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
+    .related-tools {
+      margin-top: 40px;
+      background: var(--white);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
 
-        .bmi-scale {
-            margin-top: 30px;
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
+    .related-tools a {
+      color: var(--olive-green);
+      text-decoration: none;
+      font-weight: 600;
+    }
 
-        .bmi-scale h3 {
-            color: var(--dark-olive);
-            margin-bottom: 15px;
-            text-align: center;
-        }
+    .related-tools a:hover {
+      color: var(--light-olive);
+    }
 
-        .scale-bar {
-            height: 25px;
-            background: linear-gradient(to right, #FFEAA7, #A3E4D7, #F8C471, #F1948A);
-            border-radius: 12px;
-            position: relative;
-            margin-bottom: 10px;
-        }
-
-        .scale-markers {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .scale-categories {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            font-size: 0.85rem;
-            color: var(--text-dark);
-        }
-
-        .info-section {
-            margin-top: 30px;
-            background-color: var(--light-gray);
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .info-section h3 {
-            color: var(--dark-olive);
-            margin-bottom: 15px;
-        }
-
-        .info-section p {
-            margin-bottom: 15px;
-        }
-
-        .info-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .info-list li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .info-list li:before {
-            content: "•";
-            color: var(--olive-green);
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -5px;
-        }
-
-        @media (max-width: 768px) {
-            .input-row {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .bmi-value {
-                font-size: 2.8rem;
-            }
-            
-            .calculator-header h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .calculator-body {
-                padding: 20px;
-            }
-            
-            .bmi-value {
-                font-size: 2.2rem;
-            }
-            
-            .bmi-category {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .age-value {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="calculator-card">
-            <div class="calculator-header">
-                <h1><i class="fas fa-heartbeat"></i> BMI Calculator</h1>
-                <p>Calculate your Body Mass Index and understand your health category</p>
-            </div>
-            
-            <div class="calculator-body">
-                <div class="measurement-system">
-                    <div class="system-btn active" id="metric-btn">Metric (kg, cm)</div>
-                    <div class="system-btn" id="imperial-btn">Imperial (lbs, in)</div>
-                </div>
-                
-                <div class="input-group">
-                    <label for="height">Height</label>
-                    <div class="input-row">
-                        <div class="input-field">
-                            <input type="number" id="height" placeholder="Enter your height">
-                            <span class="unit" id="height-unit">cm</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="input-group">
-                    <label for="weight">Weight</label>
-                    <div class="input-row">
-                        <div class="input-field">
-                            <input type="number" id="weight" placeholder="Enter your weight">
-                            <span class="unit" id="weight-unit">kg</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="calculate-btn" id="calculate">
-                    Calculate BMI <i class="fas fa-calculator"></i>
-                </button>
-                
-                <div class="result-container" id="result">
-                    <div class="bmi-value" id="bmi-value">--</div>
-                    <div class="bmi-category" id="bmi-category">--</div>
-                    <div class="bmi-explanation" id="bmi-explanation">
-                        Your BMI suggests you are in the <span id="category-text">--</span> category.
-                    </div>
-                </div>
-                
-                <div class="bmi-scale">
-                    <h3>BMI Scale</h3>
-                    <div class="scale-bar"></div>
-                    <div class="scale-markers">
-                        <span>Underweight</span>
-                        <span>Normal</span>
-                        <span>Overweight</span>
-                        <span>Obese</span>
-                    </div>
-                    <div class="scale-categories">
-                        <span>&lt; 18.5</span>
-                        <span>18.5 - 24.9</span>
-                        <span>25 - 29.9</span>
-                        <span>30+</span>
-                    </div>
-                </div>
-                
-                <div class="info-section">
-                    <h3>About BMI</h3>
-                    <p>Body Mass Index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.</p>
-                    
-                    <h3>BMI Categories:</h3>
-                    <ul class="info-list">
-                        <li><strong>Underweight:</strong> BMI less than 18.5</li>
-                        <li><strong>Normal weight:</strong> BMI between 18.5 and 24.9</li>
-                        <li><strong>Overweight:</strong> BMI between 25 and 29.9</li>
-                        <li><strong>Obese:</strong> BMI 30 or greater</li>
-                    </ul>
-                    
-                    <p><strong>Note:</strong> BMI is a screening tool, not a diagnostic of body fatness or health. Consult a healthcare provider for assessment.</p>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <!-- Top Ad -->
+    <div class="ad-slot">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+        data-ad-slot="1111111111"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const metricBtn = document.getElementById('metric-btn');
-            const imperialBtn = document.getElementById('imperial-btn');
-            const heightInput = document.getElementById('height');
-            const weightInput = document.getElementById('weight');
-            const heightUnit = document.getElementById('height-unit');
-            const weightUnit = document.getElementById('weight-unit');
-            const calculateBtn = document.getElementById('calculate');
-            const resultContainer = document.getElementById('result');
-            const bmiValue = document.getElementById('bmi-value');
-            const bmiCategory = document.getElementById('bmi-category');
-            const categoryText = document.getElementById('category-text');
-            const bmiExplanation = document.getElementById('bmi-explanation');
-            
-            let isMetric = true;
-            
-            // Toggle between metric and imperial systems
-            metricBtn.addEventListener('click', function() {
-                if (!isMetric) {
-                    isMetric = true;
-                    metricBtn.classList.add('active');
-                    imperialBtn.classList.remove('active');
-                    heightUnit.textContent = 'cm';
-                    weightUnit.textContent = 'kg';
-                    heightInput.placeholder = 'Enter your height';
-                    weightInput.placeholder = 'Enter your weight';
-                    
-                    // Convert values if they exist
-                    if (heightInput.value) {
-                        heightInput.value = Math.round(heightInput.value * 2.54);
-                    }
-                    if (weightInput.value) {
-                        weightInput.value = Math.round(weightInput.value * 0.453592);
-                    }
-                }
-            });
-            
-            imperialBtn.addEventListener('click', function() {
-                if (isMetric) {
-                    isMetric = false;
-                    imperialBtn.classList.add('active');
-                    metricBtn.classList.remove('active');
-                    heightUnit.textContent = 'in';
-                    weightUnit.textContent = 'lbs';
-                    heightInput.placeholder = 'Enter your height';
-                    weightInput.placeholder = 'Enter your weight';
-                    
-                    // Convert values if they exist
-                    if (heightInput.value) {
-                        heightInput.value = Math.round(heightInput.value / 2.54);
-                    }
-                    if (weightInput.value) {
-                        weightInput.value = Math.round(weightInput.value / 0.453592);
-                    }
-                }
-            });
-            
-            // Calculate BMI
-            calculateBtn.addEventListener('click', function() {
-                const height = parseFloat(heightInput.value);
-                const weight = parseFloat(weightInput.value);
-                
-                // Validate inputs
-                if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
-                    alert('Please enter valid height and weight values.');
-                    return;
-                }
-                
-                let bmi;
-                
-                if (isMetric) {
-                    // Metric calculation: weight (kg) / [height (m)]²
-                    bmi = weight / ((height / 100) ** 2);
-                } else {
-                    // Imperial calculation: [weight (lbs) / height (in)²] * 703
-                    bmi = (weight / (height ** 2)) * 703;
-                }
-                
-                // Round to one decimal place
-                bmi = Math.round(bmi * 10) / 10;
-                
-                // Determine category
-                let category, categoryClass, explanation;
-                
-                if (bmi < 18.5) {
-                    category = 'Underweight';
-                    categoryClass = 'underweight';
-                    explanation = 'You may need to gain weight. Consult with a healthcare provider for guidance.';
-                } else if (bmi < 25) {
-                    category = 'Normal weight';
-                    categoryClass = 'normal';
-                    explanation = 'You have a healthy body weight for your height. Maintain your current weight with a balanced diet and regular exercise.';
-                } else if (bmi < 30) {
-                    category = 'Overweight';
-                    categoryClass = 'overweight';
-                    explanation = 'You may need to lose weight for better health. Consider consulting with a healthcare provider.';
-                } else {
-                    category = 'Obese';
-                    categoryClass = 'obese';
-                    explanation = 'You may need to lose weight for better health. Consult with a healthcare provider for guidance.';
-                }
-                
-                // Update the UI with results
-                bmiValue.textContent = bmi;
-                bmiCategory.textContent = category;
-                bmiCategory.className = `bmi-category ${categoryClass}`;
-                categoryText.textContent = category.toLowerCase();
-                bmiExplanation.textContent = explanation;
-                
-                // Show result container
-                resultContainer.classList.add('active');
-                
-                // Scroll to results
-                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
-            
-            // Allow Enter key to calculate
-            heightInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    calculateBtn.click();
-                }
-            });
-            
-            weightInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    calculateBtn.click();
-                }
-            });
-        });
-    </script>
+    <div class="calculator-card">
+      <div class="calculator-header">
+        <h1><i class="fas fa-birthday-cake"></i> Age Calculator</h1>
+        <p>Calculate your exact age in years, months, weeks, and days</p>
+      </div>
+
+      <div class="calculator-body">
+        <div class="input-group">
+          <label for="birth-date">Your Birth Date</label>
+          <div class="input-field">
+            <input type="date" id="birth-date" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="age-at-date">Calculate Age As Of (Optional)</label>
+          <div class="input-field">
+            <input type="date" id="age-at-date" />
+          </div>
+        </div>
+
+        <button class="calculate-btn" id="calculate">Calculate Age <i class="fas fa-calculator"></i></button>
+
+        <!-- Middle Ad -->
+        <div class="ad-slot">
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+            data-ad-slot="2222222222"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="result-container" id="result">
+          <div class="age-display">
+            <div class="age-unit"><div class="age-value" id="years">--</div><div class="age-label">Years</div></div>
+            <div class="age-unit"><div class="age-value" id="months">--</div><div class="age-label">Months</div></div>
+            <div class="age-unit"><div class="age-value" id="weeks">--</div><div class="age-label">Weeks</div></div>
+            <div class="age-unit"><div class="age-value" id="days">--</div><div class="age-label">Days</div></div>
+          </div>
+          <p id="detailed-age">Your exact age will appear here.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Ad -->
+    <div class="ad-slot">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+        data-ad-slot="3333333333"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Related Tools -->
+    <section class="related-tools">
+      <h2>Other Useful Tools</h2>
+      <p>
+        <a href="/bmi-calculator">BMI Calculator</a> |
+        <a href="/loan-emi-calculator">Loan EMI Calculator</a> |
+        <a href="/gst-calculator">GST Calculator</a>
+      </p>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const birthDateInput = document.getElementById("birth-date");
+      const ageAtDateInput = document.getElementById("age-at-date");
+      const calculateBtn = document.getElementById("calculate");
+      const resultContainer = document.getElementById("result");
+      const years = document.getElementById("years");
+      const months = document.getElementById("months");
+      const weeks = document.getElementById("weeks");
+      const days = document.getElementById("days");
+      const detailed = document.getElementById("detailed-age");
+
+      const today = new Date();
+      const formatted = today.toISOString().split("T")[0];
+      birthDateInput.max = formatted;
+      ageAtDateInput.max = formatted;
+      ageAtDateInput.value = formatted;
+
+      calculateBtn.addEventListener("click", () => {
+        if (!birthDateInput.value) return alert("Please enter your birth date.");
+        const birth = new Date(birthDateInput.value);
+        const asOf = new Date(ageAtDateInput.value || new Date());
+
+        if (birth > asOf) return alert("Birth date cannot be after the selected date.");
+
+        let y = asOf.getFullYear() - birth.getFullYear();
+        let m = asOf.getMonth() - birth.getMonth();
+        let d = asOf.getDate() - birth.getDate();
+
+        if (d < 0) {
+          m--;
+          d += new Date(asOf.getFullYear(), asOf.getMonth(), 0).getDate();
+        }
+        if (m < 0) {
+          y--;
+          m += 12;
+        }
+
+        const totalDays = Math.floor((asOf - birth) / (1000 * 60 * 60 * 24));
+        const w = Math.floor(totalDays / 7);
+        const rem = totalDays % 7;
+
+        years.textContent = y;
+        months.textContent = m;
+        weeks.textContent = w;
+        days.textContent = rem;
+        detailed.textContent = `You are ${y} years, ${m} months, ${w} weeks, and ${rem} days old.`;
+
+        resultContainer.classList.add("active");
+      });
+    });
+  </script>
 </body>
 </html>
