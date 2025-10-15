@@ -1,152 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Speed Converter - Olive Green Theme</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speed Converter | Convert m/s, km/h, mph, ft/s Instantly</title>
+  <meta name="description" content="Free online speed converter tool. Convert between meters/second (m/s), kilometers/hour (km/h), miles/hour (mph), and feet/second (ft/s) with precision.">
+  <meta name="keywords" content="speed converter, m/s to km/h, mph to km/h, ft/s to m/s, convert speed, km/h to mph">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Speed Converter | Convert Units Instantly">
+  <meta property="og:description" content="Convert m/s, km/h, mph and ft/s instantly. Mobile-friendly, accurate, and free.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Speed Converter">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Speed Converter",
+    "description": "Free online speed converter: convert between m/s, km/h, mph and ft/s quickly.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  
   <style>
     :root {
-      --primary-color: olive;
-      --secondary-color: white;
-      --shadow-color: rgba(0, 0, 0, 0.1);
+      --primary: #007e7a;
+      --primary-dark: #006b6b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
     }
-
-    body {
+    
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: var(--secondary-color);
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
+      padding: 0;
     }
-
-    .converter {
-      background: var(--secondary-color);
-      box-shadow: 0 4px 12px var(--shadow-color);
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 420px;
-      width: 100%;
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background-color: var(--bg);
+      padding: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    header {
       text-align: center;
+      margin-bottom: 2rem;
     }
-
+    
     h1 {
-      color: var(--primary-color);
-      margin-bottom: 8px;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.75rem;
     }
-
-    p {
-      margin-bottom: 20px;
-      font-size: 14px;
-      color: #555;
+    
+    .subtitle {
+      color: var(--text-light);
+      font-size: 1rem;
     }
-
+    
+    .converter-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+    
     .input-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
-
-    input, select, button {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
+    
+    @media (min-width: 640px) {
+      .input-group {
+        flex-direction: row;
+        align-items: end;
+      }
+    }
+    
+    .field {
+      flex: 1;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    input, select {
       width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: border-color 0.2s;
     }
-
-    button {
-      background: var(--primary-color);
-      color: var(--secondary-color);
+    
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 126, 122, 0.1);
+    }
+    
+    .swap-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+    
+    .swap-btn {
+      background: var(--primary);
+      color: white;
       border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background-color 0.2s;
     }
-
-    button:hover {
-      opacity: 0.9;
+    
+    .swap-btn:hover {
+      background: var(--primary-dark);
     }
-
+    
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .precision-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .btn {
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text);
+    }
+    
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+    
     .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #f9f9f9;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      color: var(--primary-color);
+      background: #f0fdfa;
+      border: 1px solid #ccfbf1;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    @media (max-width: 480px) {
-      .converter {
-        padding: 16px;
-      }
-
-      h1 {
-        font-size: 22px;
-      }
+    
+    .result-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .result-meta {
+      color: var(--text-light);
+      font-size: 0.875rem;
+    }
+    
+    .result-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .presets {
+      margin-top: 1.5rem;
+    }
+    
+    .presets-title {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+    
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .preset-btn {
+      background: #f1f5f9;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .preset-btn:hover {
+      background: #e2e8f0;
+    }
+    
+    .history-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .history-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .history-item:last-child {
+      border-bottom: none;
+    }
+    
+    .history-conversion {
+      font-weight: 600;
+    }
+    
+    .history-time {
+      color: var(--text-light);
+      font-size: 0.875rem;
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .toast.show {
+      opacity: 1;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: var(--text-light);
+      font-size: 0.875rem;
+    }
+    
+    .info-section {
+      margin-top: 2rem;
+    }
+    
+    .info-section h2 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    .info-section p {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+    
+    .info-section ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .info-section li {
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
     }
   </style>
 </head>
 <body>
-  <div class="converter">
+  <header>
     <h1>Speed Converter</h1>
-    <p>Convert between different speed units instantly.</p>
-
-    <div class="input-group">
-      <input type="number" id="speedInput" placeholder="Enter speed" inputmode="decimal" />
-
-      <select id="fromUnit">
-        <option value="mps">Meters/second (m/s)</option>
-        <option value="kmph">Kilometers/hour (km/h)</option>
-        <option value="mph">Miles/hour (mph)</option>
-        <option value="fps">Feet/second (ft/s)</option>
-      </select>
-
-      <select id="toUnit">
-        <option value="mps">Meters/second (m/s)</option>
-        <option value="kmph">Kilometers/hour (km/h)</option>
-        <option value="mph">Miles/hour (mph)</option>
-        <option value="fps">Feet/second (ft/s)</option>
-      </select>
-
-      <button onclick="convertSpeed()">Convert</button>
-    </div>
-
-    <div id="result" class="result">Result will appear here</div>
-  </div>
-
+    <p class="subtitle">Convert between m/s, km/h, mph, and ft/s instantly</p>
+  </header>
+  
+  <main>
+    <section class="converter-card">
+      <div class="input-group">
+        <div class="field">
+          <label for="inputValue">Value</label>
+          <input type="text" id="inputValue" placeholder="Enter value" inputmode="decimal">
+        </div>
+        
+        <div class="field">
+          <label for="fromUnit">From</label>
+          <select id="fromUnit"></select>
+        </div>
+        
+        <div class="swap-container">
+          <button class="swap-btn" id="swapBtn" title="Swap units">⇄</button>
+        </div>
+        
+        <div class="field">
+          <label for="toUnit">To</label>
+          <select id="toUnit"></select>
+        </div>
+      </div>
+      
+      <div class="controls">
+        <div class="precision-control">
+          <label for="precision">Precision:</label>
+          <select id="precision">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="btn btn-primary" id="convertBtn">Convert</button>
+          <button class="btn btn-secondary" id="resetBtn">Reset</button>
+        </div>
+      </div>
+      
+      <div class="result">
+        <div>
+          <div class="result-value" id="resultValue">—</div>
+          <div class="result-meta" id="resultMeta">Enter a value to convert</div>
+        </div>
+        <div class="result-actions">
+          <button class="btn btn-secondary" id="copyBtn">Copy</button>
+          <button class="btn btn-secondary" id="downloadBtn">Save</button>
+        </div>
+      </div>
+      
+      <div class="presets">
+        <div class="presets-title">Quick conversions:</div>
+        <div class="preset-buttons">
+          <button class="preset-btn" data-value="1" data-from="mps" data-to="kmph">1 m/s → km/h</button>
+          <button class="preset-btn" data-value="100" data-from="kmph" data-to="mps">100 km/h → m/s</button>
+          <button class="preset-btn" data-value="60" data-from="mph" data-to="kmph">60 mph → km/h</button>
+          <button class="preset-btn" data-value="30" data-from="fps" data-to="mps">30 ft/s → m/s</button>
+        </div>
+      </div>
+    </section>
+    
+    <section class="history-card">
+      <div class="history-header">
+        <h2>Conversion History</h2>
+        <div>
+          <button class="btn btn-secondary" id="clearHistoryBtn">Clear</button>
+        </div>
+      </div>
+      <div class="history-list" id="historyList">
+        <!-- History items will be added here -->
+      </div>
+    </section>
+    
+    <section class="info-section">
+      <h2>About Speed Conversion</h2>
+      <p>Speed conversion is essential for various applications including driving, aviation, sports, and scientific calculations. This tool helps you convert between the most common speed units accurately.</p>
+      
+      <h2>Common Conversions</h2>
+      <ul>
+        <li>1 m/s = 3.6 km/h</li>
+        <li>1 mph ≈ 1.609344 km/h</li>
+        <li>1 ft/s = 0.3048 m/s</li>
+        <li>1 km/h ≈ 0.621371 mph</li>
+      </ul>
+    </section>
+  </main>
+  
+  <footer>
+    <p>© <span id="year">2025</span> Speed Converter — Free Online Tool</p>
+  </footer>
+  
+  <div class="toast" id="toast">Copied to clipboard!</div>
+  
   <script>
-    const conversionRates = {
-      mps: 1, // base unit
-      kmph: 0.277778,
-      mph: 0.44704,
-      fps: 0.3048
+    // Conversion factors (base: meters per second)
+    const UNITS = {
+      mps: { name: 'm/s', to_mps: 1 },
+      kmph: { name: 'km/h', to_mps: 0.2777777777777778 },
+      mph: { name: 'mph', to_mps: 0.44704 },
+      fps: { name: 'ft/s', to_mps: 0.3048 }
     };
 
-    function convertSpeed() {
-      const input = parseFloat(document.getElementById('speedInput').value);
-      const fromUnit = document.getElementById('fromUnit').value;
-      const toUnit = document.getElementById('toUnit').value;
-      const resultDiv = document.getElementById('result');
+    // DOM elements
+    const inputEl = document.getElementById('inputValue');
+    const fromEl = document.getElementById('fromUnit');
+    const toEl = document.getElementById('toUnit');
+    const precisionEl = document.getElementById('precision');
+    const convertBtn = document.getElementById('convertBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const swapBtn = document.getElementById('swapBtn');
+    const resultValueEl = document.getElementById('resultValue');
+    const resultMetaEl = document.getElementById('resultMeta');
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const historyListEl = document.getElementById('historyList');
+    const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+    const toast = document.getElementById('toast');
 
-      if (isNaN(input)) {
-        resultDiv.innerText = 'Please enter a valid number';
+    // Initialize units dropdowns
+    function populateUnits() {
+      Object.keys(UNITS).forEach(key => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = `${UNITS[key].name} (${key})`;
+        fromEl.appendChild(option);
+        
+        const option2 = option.cloneNode(true);
+        toEl.appendChild(option2);
+      });
+      
+      // Set default values
+      fromEl.value = 'kmph';
+      toEl.value = 'mps';
+    }
+    
+    populateUnits();
+
+    // Parse input value
+    function parseInput(text) {
+      if (!text) return null;
+      const num = Number(text.trim());
+      return Number.isFinite(num) ? num : NaN;
+    }
+
+    // History management
+    const STORAGE_KEY = 'speed_converter_history';
+    
+    function loadHistory() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+    
+    function saveHistory(history) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(0, 100)));
+    }
+    
+    function addHistory(conversion) {
+      const history = loadHistory();
+      history.unshift(conversion);
+      saveHistory(history);
+      renderHistory();
+    }
+    
+    function clearHistory() {
+      if (confirm('Clear all conversion history?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderHistory();
+      }
+    }
+    
+    function renderHistory() {
+      const history = loadHistory();
+      historyListEl.innerHTML = '';
+      
+      if (history.length === 0) {
+        const emptyMsg = document.createElement('div');
+        emptyMsg.textContent = 'No conversions yet.';
+        emptyMsg.style.color = '#64748b';
+        emptyMsg.style.textAlign = 'center';
+        emptyMsg.style.padding = '2rem';
+        historyListEl.appendChild(emptyMsg);
         return;
       }
-
-      // Convert input to meters per second (base)
-      const inMps = input * conversionRates[fromUnit];
-      // Convert meters per second to target unit
-      const converted = inMps / conversionRates[toUnit];
-
-      resultDiv.innerText = `${input} ${fromUnit} = ${converted.toFixed(4)} ${toUnit}`;
+      
+      history.slice(0, 10).forEach(item => {
+        const historyItem = document.createElement('div');
+        historyItem.className = 'history-item';
+        
+        const conversion = document.createElement('div');
+        conversion.className = 'history-conversion';
+        conversion.textContent = `${item.input} ${item.from} → ${item.result} ${item.to}`;
+        
+        const time = document.createElement('div');
+        time.className = 'history-time';
+        time.textContent = new Date(item.timestamp).toLocaleString();
+        
+        historyItem.appendChild(conversion);
+        historyItem.appendChild(time);
+        historyListEl.appendChild(historyItem);
+      });
     }
+
+    // Conversion function
+    function convertValue() {
+      const inputValue = inputEl.value;
+      const parsedValue = parseInput(inputValue);
+      const precision = parseInt(precisionEl.value, 10) || 2;
+      const fromUnit = fromEl.value;
+      const toUnit = toEl.value;
+
+      // Handle empty or invalid input
+      if (parsedValue === null) {
+        resultValueEl.textContent = '—';
+        resultMetaEl.textContent = 'Enter a value to convert';
+        return null;
+      }
+      
+      if (Number.isNaN(parsedValue)) {
+        resultValueEl.textContent = 'Invalid';
+        resultMetaEl.textContent = 'Please enter a valid number';
+        return null;
+      }
+
+      // Perform conversion
+      const valueInMps = parsedValue * UNITS[fromUnit].to_mps;
+      const result = valueInMps / UNITS[toUnit].to_mps;
+      const displayValue = Number(result.toFixed(precision));
+      
+      // Update result display
+      resultValueEl.textContent = displayValue.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: precision
+      });
+      
+      resultMetaEl.textContent = `${fromUnit} → ${toUnit} • ${precision} decimal places`;
+
+      // Save to history
+      const conversionRecord = {
+        timestamp: new Date().toISOString(),
+        input: String(parsedValue),
+        from: fromUnit,
+        result: String(displayValue),
+        to: toUnit,
+        precision: precision
+      };
+      
+      addHistory(conversionRecord);
+      return conversionRecord;
+    }
+
+    // Event listeners
+    inputEl.addEventListener('input', convertValue);
+    fromEl.addEventListener('change', convertValue);
+    toEl.addEventListener('change', convertValue);
+    precisionEl.addEventListener('change', convertValue);
+    
+    convertBtn.addEventListener('click', convertValue);
+    
+    resetBtn.addEventListener('click', () => {
+      inputEl.value = '';
+      fromEl.value = 'kmph';
+      toEl.value = 'mps';
+      precisionEl.value = '2';
+      convertValue();
+    });
+    
+    swapBtn.addEventListener('click', () => {
+      const temp = fromEl.value;
+      fromEl.value = toEl.value;
+      toEl.value = temp;
+      convertValue();
+    });
+    
+    copyBtn.addEventListener('click', async () => {
+      const text = `${inputEl.value} ${fromEl.value} → ${resultValueEl.textContent} ${toEl.value}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Copied to clipboard!');
+      } catch (err) {
+        showToast('Failed to copy');
+      }
+    });
+    
+    downloadBtn.addEventListener('click', () => {
+      const conversion = convertValue();
+      if (!conversion) return;
+      
+      const dataStr = JSON.stringify(conversion, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `speed-conversion-${Date.now()}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      setTimeout(() => URL.revokeObjectURL(url), 100);
+    });
+    
+    clearHistoryBtn.addEventListener('click', clearHistory);
+    
+    // Preset buttons
+    document.querySelectorAll('.preset-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        inputEl.value = button.dataset.value;
+        fromEl.value = button.dataset.from;
+        toEl.value = button.dataset.to;
+        convertValue();
+      });
+    });
+    
+    // Toast notification
+    function showToast(message, duration = 2000) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, duration);
+    }
+    
+    // Initialize
+    function init() {
+      renderHistory();
+      convertValue();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    }
+    
+    // Run initialization
+    init();
   </script>
 </body>
-</html>
+  </html>
