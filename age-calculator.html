@@ -1,359 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Age Calculator Online - Calculate Exact Age in Years, Months & Days | Converter Accurate</title>
-
-  <meta name="description" content="Free online Age Calculator by Converter Accurate. Instantly calculate your age in years, months, weeks, and days from your birth date. 100% accurate and easy to use." />
-  <meta name="keywords" content="age calculator, online age calculator, date of birth calculator, calculate age in years and months, birthday calculator, age finder, Converter Accurate" />
-  <meta name="robots" content="index, follow" />
-  <meta name="author" content="Converter Accurate" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Free Age Calculator - Find Your Exact Age in Years, Months & Days" />
-  <meta property="og:description" content="Instantly calculate your exact age using Converter Accurate's free online age calculator tool." />
-  <meta property="og:url" content="https://www.converteraccurate.com/age-calculator" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://www.converteraccurate.com/images/age-calculator-preview.png" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Age Calculator - Calculate Your Exact Age Online | Converter Accurate" />
-  <meta name="twitter:description" content="Easily find your exact age in years, months, weeks, and days using our free age calculator." />
-  <meta name="twitter:image" content="https://www.converteraccurate.com/images/age-calculator-preview.png" />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://www.converteraccurate.com/age-calculator" />
-
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Age Calculator",
-    "url": "https://www.converteraccurate.com/age-calculator",
-    "description": "Free online age calculator to calculate exact age in years, months, weeks, and days.",
-    "applicationCategory": "Calculator",
-    "operatingSystem": "All",
-    "creator": {
-      "@type": "Organization",
-      "name": "Converter Accurate",
-      "url": "https://www.converteraccurate.com"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - Calculate Exact Age in Years, Months & Days | Converter Accurate</title>
+    <meta name="description" content="Free online Age Calculator by Converter Accurate. Instantly calculate your age in years, months, weeks, and days from your birth date. 100% accurate and easy to use.">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Age Calculator",
+        "url": "https://www.converteraccurate.com/age-calculator",
+        "description": "Free online age calculator to calculate exact age in years, months, weeks, and days from birth date.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "permissions": "none",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "Converter Accurate",
+            "url": "https://www.converteraccurate.com"
+        },
+        "featureList": [
+            "Calculate age in years",
+            "Calculate age in months", 
+            "Calculate age in weeks",
+            "Calculate age in days",
+            "Calculate age as of specific date"
+        ]
     }
-  }
-  </script>
+    </script>
 
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxx"
-     crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #2c7a7b;
+            --primary-dark: #285e61;
+            --primary-light: #81e6d9;
+            --secondary-color: #ed8936;
+            --text-color: #2d3748;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
-  <style>
-    :root {
-      --olive-green: #556b2f;
-      --light-olive: #6b8e23;
-      --dark-olive: #3d4c21;
-      --cream: #f5f5dc;
-      --light-gray: #f8f8f8;
-      --white: #ffffff;
-      --text-dark: #333333;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    body {
-      background-color: var(--light-gray);
-      color: var(--text-dark);
-      line-height: 1.6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    .container {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+        .calculator-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
 
-    .calculator-card {
-      background-color: var(--white);
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
+        .calculator-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
 
-    .calculator-header {
-      background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
-      color: var(--white);
-      padding: 30px;
-      text-align: center;
-    }
+        .calculator-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+        }
 
-    .calculator-header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
+        .calculator-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
 
-    .calculator-header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
+        .calculator-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
 
-    .calculator-body {
-      padding: 30px;
-    }
+        .calculator-body {
+            padding: 30px;
+        }
 
-    .ad-slot {
-      margin: 20px auto;
-      text-align: center;
-    }
+        .input-group {
+            margin-bottom: 25px;
+        }
 
-    .input-group {
-      margin-bottom: 25px;
-    }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
 
-    .input-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: var(--dark-olive);
-      font-size: 1.1rem;
-    }
+        .input-field input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
 
-    .input-field input {
-      width: 100%;
-      padding: 15px;
-      border: 2px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 1.1rem;
-    }
+        .input-field input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.1);
+        }
 
-    .calculate-btn {
-      width: 100%;
-      background-color: var(--olive-green);
-      color: var(--white);
-      border: none;
-      padding: 16px;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      margin: 25px 0;
-    }
+        .calculate-btn {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 16px;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 25px 0;
+        }
 
-    .calculate-btn:hover {
-      background-color: var(--light-olive);
-    }
+        .calculate-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-    .result-container {
-      background-color: var(--cream);
-      border-radius: 10px;
-      padding: 25px;
-      text-align: center;
-      display: none;
-    }
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
 
-    .result-container.active {
-      display: block;
-    }
+        .result-container {
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            display: none;
+            border-left: 4px solid var(--secondary-color);
+        }
 
-    .age-display {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-    .age-unit {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      min-width: 120px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .age-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--dark-olive);
-    }
+        .age-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-    .age-label {
-      color: var(--text-dark);
-    }
+        .age-unit {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            min-width: 120px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 3px solid var(--primary-light);
+        }
 
-    .related-tools {
-      margin-top: 40px;
-      background: var(--white);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      text-align: center;
-    }
+        .age-unit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
 
-    .related-tools a {
-      color: var(--olive-green);
-      text-decoration: none;
-      font-weight: 600;
-    }
+        .age-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
 
-    .related-tools a:hover {
-      color: var(--light-olive);
-    }
+        .age-label {
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    @media (max-width: 768px) {
-      .age-value {
-        font-size: 2rem;
-      }
-    }
-  </style>
+        #detailed-age {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 15px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .age-value {
+                font-size: 2rem;
+            }
+            
+            .age-unit {
+                min-width: 100px;
+                padding: 15px;
+            }
+            
+            .calculator-header {
+                padding: 20px;
+            }
+            
+            .calculator-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .calculator-body {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .age-display {
+                gap: 10px;
+            }
+            
+            .age-unit {
+                min-width: 80px;
+                padding: 12px;
+            }
+            
+            .age-value {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Top Ad -->
-    <div class="ad-slot">
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-xxxxxxxxxxxxxx"
-        data-ad-slot="1111111111"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <div class="container">
+        <div class="calculator-card">
+            <div class="calculator-header">
+                <h1>📅 Age Calculator</h1>
+                <p>Calculate your exact age in years, months, weeks, and days</p>
+            </div>
+
+            <div class="calculator-body">
+                <div class="input-group">
+                    <label for="birth-date">Your Birth Date</label>
+                    <div class="input-field">
+                        <input type="date" id="birth-date" />
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="age-at-date">Calculate Age As Of (Optional)</label>
+                    <div class="input-field">
+                        <input type="date" id="age-at-date" />
+                    </div>
+                </div>
+
+                <button class="calculate-btn" id="calculate">Calculate Age</button>
+
+                <div class="result-container" id="result">
+                    <div class="age-display">
+                        <div class="age-unit">
+                            <div class="age-value" id="years">--</div>
+                            <div class="age-label">Years</div>
+                        </div>
+                        <div class="age-unit">
+                            <div class="age-value" id="months">--</div>
+                            <div class="age-label">Months</div>
+                        </div>
+                        <div class="age-unit">
+                            <div class="age-value" id="weeks">--</div>
+                            <div class="age-label">Weeks</div>
+                        </div>
+                        <div class="age-unit">
+                            <div class="age-value" id="days">--</div>
+                            <div class="age-label">Days</div>
+                        </div>
+                    </div>
+                    <p id="detailed-age">Your exact age will appear here.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="calculator-card">
-      <div class="calculator-header">
-        <h1><i class="fas fa-birthday-cake"></i> Age Calculator</h1>
-        <p>Calculate your exact age in years, months, weeks, and days</p>
-      </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const birthDateInput = document.getElementById("birth-date");
+            const ageAtDateInput = document.getElementById("age-at-date");
+            const calculateBtn = document.getElementById("calculate");
+            const resultContainer = document.getElementById("result");
+            const years = document.getElementById("years");
+            const months = document.getElementById("months");
+            const weeks = document.getElementById("weeks");
+            const days = document.getElementById("days");
+            const detailed = document.getElementById("detailed-age");
 
-      <div class="calculator-body">
-        <div class="input-group">
-          <label for="birth-date">Your Birth Date</label>
-          <div class="input-field">
-            <input type="date" id="birth-date" />
-          </div>
-        </div>
+            const today = new Date();
+            const formatted = today.toISOString().split("T")[0];
+            birthDateInput.max = formatted;
+            ageAtDateInput.max = formatted;
+            ageAtDateInput.value = formatted;
 
-        <div class="input-group">
-          <label for="age-at-date">Calculate Age As Of (Optional)</label>
-          <div class="input-field">
-            <input type="date" id="age-at-date" />
-          </div>
-        </div>
+            calculateBtn.addEventListener("click", () => {
+                if (!birthDateInput.value) {
+                    alert("Please enter your birth date.");
+                    return;
+                }
+                
+                const birth = new Date(birthDateInput.value);
+                const asOf = new Date(ageAtDateInput.value || new Date());
 
-        <button class="calculate-btn" id="calculate">Calculate Age <i class="fas fa-calculator"></i></button>
+                if (birth > asOf) {
+                    alert("Birth date cannot be after the selected date.");
+                    return;
+                }
 
-        <!-- Middle Ad -->
-        <div class="ad-slot">
-          <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-xxxxxxxxxxxxxx"
-            data-ad-slot="2222222222"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
+                let y = asOf.getFullYear() - birth.getFullYear();
+                let m = asOf.getMonth() - birth.getMonth();
+                let d = asOf.getDate() - birth.getDate();
 
-        <div class="result-container" id="result">
-          <div class="age-display">
-            <div class="age-unit"><div class="age-value" id="years">--</div><div class="age-label">Years</div></div>
-            <div class="age-unit"><div class="age-value" id="months">--</div><div class="age-label">Months</div></div>
-            <div class="age-unit"><div class="age-value" id="weeks">--</div><div class="age-label">Weeks</div></div>
-            <div class="age-unit"><div class="age-value" id="days">--</div><div class="age-label">Days</div></div>
-          </div>
-          <p id="detailed-age">Your exact age will appear here.</p>
-        </div>
-      </div>
-    </div>
+                if (d < 0) {
+                    m--;
+                    d += new Date(asOf.getFullYear(), asOf.getMonth(), 0).getDate();
+                }
+                if (m < 0) {
+                    y--;
+                    m += 12;
+                }
 
-    <!-- Bottom Ad -->
-    <div class="ad-slot">
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-xxxxxxxxxxxxxx"
-        data-ad-slot="3333333333"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+                const totalDays = Math.floor((asOf - birth) / (1000 * 60 * 60 * 24));
+                const w = Math.floor(totalDays / 7);
+                const rem = totalDays % 7;
 
-    <!-- Related Tools -->
-    <section class="related-tools">
-      <h2>Other Useful Tools</h2>
-      <p>
-        <a href="/bmi-calculator">BMI Calculator</a> |
-        <a href="/loan-emi-calculator">Loan EMI Calculator</a> |
-        <a href="/gst-calculator">GST Calculator</a>
-      </p>
-    </section>
-  </div>
+                years.textContent = y;
+                months.textContent = m;
+                weeks.textContent = w;
+                days.textContent = rem;
+                detailed.textContent = `You are ${y} years, ${m} months, ${w} weeks, and ${rem} days old.`;
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const birthDateInput = document.getElementById("birth-date");
-      const ageAtDateInput = document.getElementById("age-at-date");
-      const calculateBtn = document.getElementById("calculate");
-      const resultContainer = document.getElementById("result");
-      const years = document.getElementById("years");
-      const months = document.getElementById("months");
-      const weeks = document.getElementById("weeks");
-      const days = document.getElementById("days");
-      const detailed = document.getElementById("detailed-age");
-
-      const today = new Date();
-      const formatted = today.toISOString().split("T")[0];
-      birthDateInput.max = formatted;
-      ageAtDateInput.max = formatted;
-      ageAtDateInput.value = formatted;
-
-      calculateBtn.addEventListener("click", () => {
-        if (!birthDateInput.value) return alert("Please enter your birth date.");
-        const birth = new Date(birthDateInput.value);
-        const asOf = new Date(ageAtDateInput.value || new Date());
-
-        if (birth > asOf) return alert("Birth date cannot be after the selected date.");
-
-        let y = asOf.getFullYear() - birth.getFullYear();
-        let m = asOf.getMonth() - birth.getMonth();
-        let d = asOf.getDate() - birth.getDate();
-
-        if (d < 0) {
-          m--;
-          d += new Date(asOf.getFullYear(), asOf.getMonth(), 0).getDate();
-        }
-        if (m < 0) {
-          y--;
-          m += 12;
-        }
-
-        const totalDays = Math.floor((asOf - birth) / (1000 * 60 * 60 * 24));
-        const w = Math.floor(totalDays / 7);
-        const rem = totalDays % 7;
-
-        years.textContent = y;
-        months.textContent = m;
-        weeks.textContent = w;
-        days.textContent = rem;
-        detailed.textContent = `You are ${y} years, ${m} months, ${w} weeks, and ${rem} days old.`;
-
-        resultContainer.classList.add("active");
-      });
-    });
-  </script>
+                resultContainer.classList.add("active");
+            });
+        });
+    </script>
 </body>
 </html>
