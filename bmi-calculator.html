@@ -339,7 +339,7 @@
   <div class="container">
     <div class="calculator-card">
       <div class="calculator-header">
-        <h1> BMI Calculator</h1>
+        <h1>⚕️ BMI Calculator</h1>
         <p>Calculate your Body Mass Index and understand your weight category</p>
       </div>
 
@@ -414,12 +414,12 @@
             </div>
             <div class="scale-item obese" id="scale-obese">
               <div class="scale-label">Obese</div>
-              <div class="scale-range"> 30</div>
+              <div class="scale-range">≥ 30</div>
             </div>
           </div>
 
           <div class="health-tips" id="health-tips">
-            <h3> Health Tips</h3>
+            <h3>💡 Health Tips</h3>
             <ul id="tips-list">
               <li>Calculate your BMI to see health recommendations</li>
             </ul>
@@ -430,60 +430,60 @@
   </div>
 
   <script>
-    document.addEventListener(�DOMContentLoaded�, function() {
-      const unitOptions = document.querySelectorAll(�.unit-option�);
-      const metricInputs = document.getElementById(�metric-inputs�);
-      const imperialInputs = document.getElementById(�imperial-inputs�);
-      const calculateBtn = document.getElementById(�calculate-bmi�);
-      const resultContainer = document.getElementById(�result�);
-      const bmiValue = document.getElementById(�bmi-value�);
-      const bmiCategory = document.getElementById(�bmi-category�);
-      const bmiDescription = document.getElementById(�bmi-description�);
-      const tipsList = document.getElementById(�tips-list�);
-      const scaleItems = document.querySelectorAll(�.scale-item�);
+    document.addEventListener('DOMContentLoaded', function() {
+      const unitOptions = document.querySelectorAll('.unit-option');
+      const metricInputs = document.getElementById('metric-inputs');
+      const imperialInputs = document.getElementById('imperial-inputs');
+      const calculateBtn = document.getElementById('calculate-bmi');
+      const resultContainer = document.getElementById('result');
+      const bmiValue = document.getElementById('bmi-value');
+      const bmiCategory = document.getElementById('bmi-category');
+      const bmiDescription = document.getElementById('bmi-description');
+      const tipsList = document.getElementById('tips-list');
+      const scaleItems = document.querySelectorAll('.scale-item');
 
       // Unit toggle functionality
       unitOptions.forEach(option => {
-        option.addEventListener(�click�, function() {
-          unitOptions.forEach(opt => opt.classList.remove(�active�));
-          this.classList.add(�active�);
+        option.addEventListener('click', function() {
+          unitOptions.forEach(opt => opt.classList.remove('active'));
+          this.classList.add('active');
           
-          const unit = this.getAttribute(�data-unit�);
-          if (unit === �metric�) {
-            metricInputs.style.display = �block�;
-            imperialInputs.style.display = �none�;
+          const unit = this.getAttribute('data-unit');
+          if (unit === 'metric') {
+            metricInputs.style.display = 'block';
+            imperialInputs.style.display = 'none';
           } else {
-            metricInputs.style.display = �none�;
-            imperialInputs.style.display = �block�;
+            metricInputs.style.display = 'none';
+            imperialInputs.style.display = 'block';
           }
           
           // Clear results when switching units
-          resultContainer.classList.remove(�active�);
+          resultContainer.classList.remove('active');
         });
       });
 
       // Calculate BMI function
-      calculateBtn.addEventListener(�click�, function() {
-        const activeUnit = document.querySelector(�.unit-option.active�).getAttribute(�data-unit�);
+      calculateBtn.addEventListener('click', function() {
+        const activeUnit = document.querySelector('.unit-option.active').getAttribute('data-unit');
         let bmi;
 
-        if (activeUnit === �metric�) {
-          const weight = parseFloat(document.getElementById(�weight-kg�).value);
-          const height = parseFloat(document.getElementById(�height-cm�).value) / 100; // Convert cm to m
+        if (activeUnit === 'metric') {
+          const weight = parseFloat(document.getElementById('weight-kg').value);
+          const height = parseFloat(document.getElementById('height-cm').value) / 100; // Convert cm to m
           
           if (!weight || !height || height === 0) {
-            alert(�Please enter valid weight and height values.�);
+            alert('Please enter valid weight and height values.');
             return;
           }
           
           bmi = weight / (height * height);
         } else {
-          const weight = parseFloat(document.getElementById(�weight-lbs�).value);
-          const feet = parseFloat(document.getElementById(�height-ft�).value);
-          const inches = parseFloat(document.getElementById(�height-in�).value) || 0;
+          const weight = parseFloat(document.getElementById('weight-lbs').value);
+          const feet = parseFloat(document.getElementById('height-ft').value);
+          const inches = parseFloat(document.getElementById('height-in').value) || 0;
           
           if (!weight || !feet) {
-            alert(�Please enter valid weight and height values.�);
+            alert('Please enter valid weight and height values.');
             return;
           }
           
@@ -503,73 +503,73 @@
 
         // Determine BMI category
         if (bmi < 18.5) {
-          category = �Underweight�;
-          description = �You may need to gain weight for optimal health.�;
-          categoryClass = �underweight�;
+          category = 'Underweight';
+          description = 'You may need to gain weight for optimal health.';
+          categoryClass = 'underweight';
           tips = [
-            �Consult with a nutritionist for healthy weight gain strategies�,
-            �Focus on nutrient-dense foods rather than empty calories�,
-            �Include strength training in your exercise routine�,
-            �Eat regular meals and healthy snacks throughout the day�
+            'Consult with a nutritionist for healthy weight gain strategies',
+            'Focus on nutrient-dense foods rather than empty calories',
+            'Include strength training in your exercise routine',
+            'Eat regular meals and healthy snacks throughout the day'
           ];
         } else if (bmi >= 18.5 && bmi < 25) {
-          category = �Normal Weight�;
-          description = �Congratulations! You have a healthy weight.�;
-          categoryClass = �normal�;
+          category = 'Normal Weight';
+          description = 'Congratulations! You have a healthy weight.';
+          categoryClass = 'normal';
           tips = [
-            �Maintain your current healthy lifestyle�,
-            �Continue balanced diet and regular exercise�,
-            �Get regular health check-ups�,
-            �Stay hydrated and manage stress levels�
+            'Maintain your current healthy lifestyle',
+            'Continue balanced diet and regular exercise',
+            'Get regular health check-ups',
+            'Stay hydrated and manage stress levels'
           ];
         } else if (bmi >= 25 && bmi < 30) {
-          category = �Overweight�;
-          description = �Consider lifestyle changes for better health.�;
-          categoryClass = �overweight�;
+          category = 'Overweight';
+          description = 'Consider lifestyle changes for better health.';
+          categoryClass = 'overweight';
           tips = [
-            �Incorporate more physical activity into your daily routine�,
-            �Focus on portion control and balanced meals�,
-            �Reduce intake of processed foods and sugary drinks�,
-            �Aim for gradual, sustainable weight loss�
+            'Incorporate more physical activity into your daily routine',
+            'Focus on portion control and balanced meals',
+            'Reduce intake of processed foods and sugary drinks',
+            'Aim for gradual, sustainable weight loss'
           ];
         } else {
-          category = �Obese�;
-          description = �Consult a healthcare provider for guidance.�;
-          categoryClass = �obese�;
+          category = 'Obese';
+          description = 'Consult a healthcare provider for guidance.';
+          categoryClass = 'obese';
           tips = [
-            �Consult with a healthcare professional�,
-            �Consider a comprehensive weight management program�,
-            �Focus on both diet and exercise modifications�,
-            �Set realistic, achievable health goals�
+            'Consult with a healthcare professional',
+            'Consider a comprehensive weight management program',
+            'Focus on both diet and exercise modifications',
+            'Set realistic, achievable health goals'
           ];
         }
 
         // Update category display
         bmiCategory.textContent = category;
-        bmiCategory.className = �bmi-category ${categoryClass}�;
+        bmiCategory.className = `bmi-category ${categoryClass}`;
         bmiDescription.textContent = description;
 
         // Update health tips
-        tipsList.innerHTML = tips.map(tip => �<li>${tip}</li>�).join(��);
+        tipsList.innerHTML = tips.map(tip => `<li>${tip}</li>`).join('');
 
         // Highlight active scale item
-        scaleItems.forEach(item => item.classList.remove(�active�));
-        document.getElementById(�scale-${category.toLowerCase().replace(� �, �-�)}�).classList.add(�active�);
+        scaleItems.forEach(item => item.classList.remove('active'));
+        document.getElementById(`scale-${category.toLowerCase().replace(' ', '-')}`).classList.add('active');
 
         // Show results
-        resultContainer.classList.add(�active�);
+        resultContainer.classList.add('active');
       }
 
       // Auto-calculate when inputs change
-      const inputs = document.querySelectorAll(�input[type="number"]�);
+      const inputs = document.querySelectorAll('input[type="number"]');
       inputs.forEach(input => {
-        input.addEventListener(�input�, function() {
+        input.addEventListener('input', function() {
           if (this.value) {
-            document.getElementById(�calculate-bmi�).click();
+            document.getElementById('calculate-bmi').click();
           }
         });
       });
     });
   </script>
 </body>
-            </html>
+</html>
