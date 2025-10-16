@@ -1,21 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Time Converter | Convert Seconds, Minutes, Hours & Days</title>
-  <meta name="description" content="Free online time converter. Convert between seconds, minutes, hours, and days with precision. Real-time conversions with history tracking.">
-  <meta name="keywords" content="time converter, seconds to minutes, minutes to hours, hours to days, time calculator, time conversion">
-  <meta name="author" content="Time Converter">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weight Converter | Convert Kilograms, Pounds, Ounces & More</title>
+  <meta name="description" content="Free online weight converter. Convert between kilograms, grams, pounds, ounces, stones and more with precision. Real-time conversions with history tracking.">
+  <meta name="keywords" content="weight converter, kg to lbs, pounds to kilograms, ounces to grams, weight calculator, mass conversion">
+  <meta name="author" content="Weight Converter">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Weight Converter | Convert Kilograms, Pounds, Ounces & More">
+  <meta property="og:description" content="Free online weight converter. Convert between kilograms, grams, pounds, ounces, stones and more with precision.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://example.com/weight-converter-preview.png">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Weight Converter | Convert Kilograms, Pounds, Ounces & More">
+  <meta name="twitter:description" content="Free online weight converter. Convert between kilograms, grams, pounds, ounces, stones and more with precision.">
   
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Time Converter",
-    "description": "Free online time converter that converts between seconds, minutes, hours, and days with precision control.",
-    "url": "https://example.com/time-converter",
+    "name": "Weight Converter",
+    "description": "Free online weight converter that converts between kilograms, grams, pounds, ounces, stones and more with precision control.",
+    "url": "https://example.com/weight-converter",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Any",
     "permissions": "browser",
@@ -26,11 +37,11 @@
     },
     "author": {
       "@type": "Organization",
-      "name": "Time Converter"
+      "name": "Weight Converter"
     },
     "featureList": [
-      "Real-time time conversion",
-      "Multiple time units (seconds, minutes, hours, days)",
+      "Real-time weight conversion",
+      "Multiple weight units (kilograms, grams, pounds, ounces, stones, tonnes)",
       "Adjustable precision",
       "Conversion history",
       "Export results as CSV/JSON"
@@ -63,115 +74,159 @@
       line-height: 1.6;
       color: var(--text-color);
       background-color: var(--light-bg);
+      padding: 1rem;
       display: flex;
+      align-items: flex-start;
       justify-content: center;
-      align-items: center;
       min-height: 100vh;
-      padding: 20px;
     }
 
     .container {
-      max-width: 800px;
-      margin: 0 auto;
       width: 100%;
-    }
-
-    .converter-header {
-      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-      color: var(--white);
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-bottom: 2rem;
-      border-radius: var(--border-radius);
+      max-width: 980px;
+      background: linear-gradient(180deg, var(--white) 0%, var(--light-bg) 100%);
+      border-radius: calc(var(--border-radius) + 0.25rem);
+      padding: 1.25rem;
       box-shadow: var(--box-shadow);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
-    .converter-header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
+    header {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
     }
 
-    .converter-header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .converter-card {
-      background: var(--white);
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 2rem;
-      transition: var(--transition);
-      margin-bottom: 2rem;
-    }
-
-    .converter-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-title {
-      font-size: 1.4rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary-color);
+    .logo {
+      width: 56px;
+      height: 56px;
+      background: var(--primary-color);
+      border-radius: 12px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      border-bottom: 2px solid var(--primary-light);
-      padding-bottom: 0.5rem;
+      justify-content: center;
+      box-shadow: 0 6px 14px rgba(44, 122, 123, 0.12);
     }
 
-    .input-group {
+    .logo svg {
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    p.subtitle {
+      margin: 0;
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* Controls */
+    .controls {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1rem;
+      display: grid;
+      gap: 0.75rem;
+      box-shadow: var(--box-shadow);
+    }
+
+    .row {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .col {
+      flex: 1;
     }
 
     label {
+      font-size: 0.8rem;
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
       font-weight: 600;
-      color: var(--text-color);
     }
 
-    input, select {
+    input[type="text"], select {
       width: 100%;
-      padding: 12px 15px;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--border-radius);
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid #e6e6e6;
       font-size: 1rem;
       transition: var(--transition);
     }
 
-    input:focus, select:focus {
+    input[type="text"]:focus, select:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.2);
+      box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.18);
     }
 
-    .conversion-row {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 1rem;
-      align-items: end;
-      margin-bottom: 1.5rem;
-    }
-
-    .swap-btn {
-      background: var(--white);
-      border: 1px solid #e2e8f0;
-      border-radius: var(--border-radius);
-      width: 50px;
-      height: 50px;
+    .btn {
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 0.6rem 0.8rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      gap: 0.5rem;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--primary-color);
+      border: 1px solid rgba(44, 122, 123, 0.12);
+    }
+
+    .btn.secondary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--primary-color);
+      border: none;
+    }
+
+    .btn.ghost:hover {
+      background: rgba(44, 122, 123, 0.1);
+    }
+
+    .btn-orange {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    .btn-orange:hover {
+      background: #dd6b20;
+    }
+
+    .swap-btn {
+      width: 44px;
+      height: 44px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 10px;
+      border: 1px dashed rgba(0, 0, 0, 0.06);
+      background: var(--white);
       transition: var(--transition);
-      margin-bottom: 0.5rem;
     }
 
     .swap-btn:hover {
@@ -179,520 +234,652 @@
       border-color: var(--primary-color);
     }
 
-    .swap-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--primary-color);
-    }
-
-    .precision-control {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .precision-control label {
-      margin-bottom: 0;
-      white-space: nowrap;
-    }
-
-    .precision-control select {
-      width: auto;
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      padding: 12px 20px;
-      border: none;
-      border-radius: var(--border-radius);
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn-primary {
-      background: var(--primary-color);
-      color: white;
-      flex: 1;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: var(--white);
-      color: var(--primary-color);
-      border: 1px solid var(--primary-color);
-    }
-
-    .btn-secondary:hover {
-      background: var(--primary-light);
-    }
-
-    .result-container {
+    /* Result card */
+    .result {
       background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-      border-radius: var(--border-radius);
-      padding: 1.5rem;
-      color: white;
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .result-value {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .result-meta {
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-
-    .result-actions {
+      color: var(--white);
+      border-radius: 12px;
+      padding: 1rem;
       display: flex;
       gap: 1rem;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-
-    .btn-result {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: var(--border-radius);
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
       align-items: center;
-      gap: 5px;
+      justify-content: space-between;
     }
 
-    .btn-result:hover {
-      background: rgba(255, 255, 255, 0.3);
+    .result .value {
+      font-size: 1.6rem;
+      font-weight: 700;
     }
 
-    .btn-result svg {
-      width: 16px;
-      height: 16px;
-      fill: white;
-    }
-
-    .quick-presets {
-      margin-top: 1.5rem;
-    }
-
-    .preset-title {
-      font-size: 1rem;
-      margin-bottom: 0.8rem;
-      color: var(--text-color);
-    }
-
-    .preset-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    .preset-btn {
-      background: var(--primary-light);
-      border: 1px solid var(--primary-color);
-      border-radius: 20px;
-      padding: 8px 15px;
+    .result .meta {
       font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* History */
+    .history {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 0.75rem;
+      box-shadow: var(--box-shadow);
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 280px;
+      overflow: auto;
+      padding-right: 0.25rem;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(44, 122, 123, 0.03), rgba(255, 255, 255, 0));
+      transition: var(--transition);
+    }
+
+    .history-item:hover {
+      background: linear-gradient(90deg, rgba(44, 122, 123, 0.08), rgba(255, 255, 255, 0));
+    }
+
+    .chip {
+      display: inline-block;
+      background: rgba(44, 122, 123, 0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
       cursor: pointer;
       transition: var(--transition);
-      color: var(--primary-dark);
     }
 
-    .preset-btn:hover {
-      background: var(--primary-color);
-      color: white;
+    .chip:hover {
+      background: rgba(44, 122, 123, 0.2);
     }
 
+    /* Responsive layout */
+    @media (min-width: 820px) {
+      .container {
+        grid-template-columns: 1fr 380px;
+      }
+
+      header {
+        grid-column: 1 / -1;
+      }
+
+      .controls {
+        grid-column: 1 / 2;
+      }
+    }
+
+    /* small helpers */
+    .small {
+      font-size: 0.85rem;
+    }
+
+    .muted {
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+
+    .flex {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .right {
+      margin-left: auto;
+    }
+
+    /* Toast */
     .toast {
       position: fixed;
-      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--text-color);
+      bottom: 1.25rem;
+      background: rgba(0, 0, 0, 0.8);
       color: white;
-      padding: 12px 20px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      display: none;
       z-index: 1000;
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
 
     .toast.show {
-      opacity: 1;
+      display: block;
     }
 
-    footer {
-      text-align: center;
-      color: var(--text-color);
-      font-size: 0.9rem;
-      padding: 1rem;
-      opacity: 0.7;
+    /* Focus visible for keyboard users */
+    button:focus, a:focus, input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.18);
+    }
+
+    /* small animation */
+    .animate-pop {
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .popped {
+      transform: scale(1.03);
+      opacity: 0.98;
     }
 
     .warning {
       color: #e53e3e;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      display: none;
+      font-weight: 600;
     }
 
-    @media (max-width: 768px) {
-      .conversion-row {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      
-      .swap-btn {
-        width: 100%;
-        height: 44px;
-        order: 3;
-      }
-      
-      .action-buttons {
-        flex-direction: column;
-      }
-      
-      .result-actions {
-        flex-direction: column;
-      }
+    /* SEO content - hidden from users but visible to search engines */
+    .seo-content {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="converter-header">
-      <h1>Time Converter</h1>
-      <p>Convert between seconds, minutes, hours, and days. Real-time conversions with precision control.</p>
-    </header>
-
-    <div class="converter-card">
-      <h2 class="card-title">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path d="M12,2C12,2 9,5 9,9C9,11.76 11.24,14 14,14C16.76,14 19,11.76 19,9C19,5 16,2 16,2C16,2 15,4 12,4C9,4 8,2 8,2C8,2 5,5 5,9C5,14.42 9.58,19 15,19C20.42,19 25,14.42 25,9C25,5 22,2 22,2C22,2 21,4 18,4C15,4 14,2 14,2C14,2 13,4 10,4C7,4 6,2 6,2Z" />
-        </svg>
-        Convert Time
-      </h2>
-
-      <div class="input-group">
-        <label for="timeInput">Time Value</label>
-        <input type="text" id="timeInput" placeholder="Enter time (e.g. 60, 1.5, 2.5e2)" inputmode="decimal">
-      </div>
-
-      <div class="conversion-row">
-        <div class="input-group">
-          <label for="fromUnit">From Unit</label>
-          <select id="fromUnit">
-            <option value="seconds">Seconds</option>
-            <option value="minutes">Minutes</option>
-            <option value="hours">Hours</option>
-            <option value="days">Days</option>
-          </select>
-        </div>
-        
-        <button class="swap-btn" id="swapBtn" title="Swap units">
-          <svg viewBox="0 0 24 24">
-            <path d="M6.99,11L3,15L6.99,19V16H14V14H6.99V11Z M21,9L17.01,5V8H10V10H17.01V13L21,9Z" />
-          </svg>
-        </button>
-        
-        <div class="input-group">
-          <label for="toUnit">To Unit</label>
-          <select id="toUnit">
-            <option value="seconds">Seconds</option>
-            <option value="minutes">Minutes</option>
-            <option value="hours">Hours</option>
-            <option value="days">Days</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="precision-control">
-        <label for="precision">Decimal Precision:</label>
-        <select id="precision">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4" selected>4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
-      </div>
-
-      <div class="action-buttons">
-        <button class="btn btn-primary" id="convertBtn">
-          <svg viewBox="0 0 24 24" width="18" height="18">
-            <path d="M19,12L13,18V15H6V13H13V10L19,12Z" />
-          </svg>
-          Convert
-        </button>
-        <button class="btn btn-secondary" id="resetBtn">Reset</button>
-      </div>
-
-      <div class="result-container">
-        <div class="result-value" id="resultValue">—</div>
-        <div class="result-meta" id="resultMeta">Enter a time value to convert</div>
-        <div class="result-actions">
-          <button class="btn-result" id="copyBtn">
-            <svg viewBox="0 0 24 24">
-              <path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" />
-            </svg>
-            Copy
-          </button>
-          <button class="btn-result" id="shareBtn">
-            <svg viewBox="0 0 24 24">
-              <path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z" />
-            </svg>
-            Share
-          </button>
-          <button class="btn-result" id="downloadResultBtn">
-            <svg viewBox="0 0 24 24">
-              <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
-            </svg>
-            Download
-          </button>
-        </div>
-      </div>
-
-      <div class="warning" id="warning"></div>
-
-      <div class="quick-presets">
-        <div class="preset-title">Quick Time Presets:</div>
-        <div class="preset-buttons">
-          <button class="preset-btn" data-value="60" data-from="seconds" data-to="minutes">60s → min</button>
-          <button class="preset-btn" data-value="60" data-from="minutes" data-to="hours">60min → h</button>
-          <button class="preset-btn" data-value="24" data-from="hours" data-to="days">24h → days</button>
-          <button class="preset-btn" data-value="3600" data-from="seconds" data-to="hours">3600s → h</button>
-          <button class="preset-btn" data-value="86400" data-from="seconds" data-to="days">86400s → days</button>
-          <button class="preset-btn" data-value="1" data-from="days" data-to="hours">1 day → h</button>
-        </div>
-      </div>
-    </div>
-
-    <footer>
-      <p>Time Converter &copy; 2023 | All conversions use seconds as the base unit for accurate calculations.</p>
-    </footer>
+  <!-- Hidden SEO content for search engines -->
+  <div class="seo-content">
+    <h1>Weight Converter</h1>
+    <p>Free online weight converter tool that converts between kilograms (kg), grams (g), pounds (lb), ounces (oz), stones (st), and tonnes (t). Features real-time conversion, adjustable precision, conversion history, and export options.</p>
+    <h2>Key Features</h2>
+    <ul>
+      <li>Convert between kilograms, grams, pounds, ounces, stones, and tonnes</li>
+      <li>Real-time conversion as you type</li>
+      <li>Adjustable decimal precision from 0 to 8 places</li>
+      <li>Conversion history with local storage</li>
+      <li>Export results as CSV or JSON</li>
+      <li>Copy and share conversion results</li>
+      <li>Mobile-responsive design</li>
+    </ul>
+    <h2>Common Weight Conversions</h2>
+    <ul>
+      <li>1 kilogram = 1000 grams</li>
+      <li>1 pound = 0.45359237 kilograms</li>
+      <li>1 ounce = 28.349523125 grams</li>
+      <li>1 stone = 6.35029318 kilograms</li>
+      <li>1 tonne = 1000 kilograms</li>
+      <li>16 ounces = 1 pound</li>
+    </ul>
   </div>
 
-  <div class="toast" id="toast"></div>
+  <main class="container" id="app">
+    <header>
+      <div class="logo" aria-hidden="true">
+        <!-- simple scale/weight svg -->
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="5" width="18" height="4" rx="1" fill="white" />
+          <path d="M7 9v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9" stroke="var(--primary-color)" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="12" cy="12" r="2" stroke="var(--primary-color)" stroke-width="0.9" fill="white" />
+        </svg>
+      </div>
+      <div>
+        <h1>Weight Converter</h1>
+        <p class="subtitle">Convert weights instantly. History saved locally.</p>
+      </div>
+    </header>
+
+    <!-- Controls / Left column -->
+    <section class="controls" aria-labelledby="controls-heading">
+      <h2 id="controls-heading" class="small">Convert weight units</h2>
+
+      <div class="row">
+        <div class="col">
+          <label for="inputValue">Value</label>
+          <input id="inputValue" inputmode="decimal" type="text" placeholder="Enter number (e.g. 12.34, -3.5e2)" aria-describedby="valueHelp" />
+          <div id="valueHelp" class="small muted">Supports negative & scientific notation. Updates in real time.</div>
+        </div>
+        <div style="width:44px" class="flex" aria-hidden="true">
+          <button class="swap-btn" id="swapBtn" title="Swap units" aria-label="Swap units">↔</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label for="fromUnit">From</label>
+          <select id="fromUnit" aria-label="From unit"></select>
+        </div>
+        <div class="col">
+          <label for="toUnit">To</label>
+          <select id="toUnit" aria-label="To unit"></select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div style="flex:0 0 140px">
+          <label for="precision">Precision</label>
+          <select id="precision" aria-label="Precision selector">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+
+        <div class="right" style="display:flex; gap:0.5rem; align-items:center">
+          <button id="convertBtn" class="btn">Convert</button>
+          <button id="resetBtn" class="btn secondary">Reset</button>
+        </div>
+      </div>
+
+      <div id="resultCard" class="result animate-pop" aria-live="polite">
+        <div>
+          <div class="value" id="resultValue">—</div>
+          <div class="meta" id="resultMeta">Awaiting input</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.5rem">
+          <button id="copyBtn" class="btn ghost" aria-label="Copy result">Copy</button>
+          <button id="shareBtn" class="btn ghost" aria-label="Share result">Share</button>
+          <button id="downloadResultBtn" class="btn" title="Download result as CSV/JSON">Download</button>
+        </div>
+      </div>
+
+      <details id="presets" class="small">
+        <summary class="muted">Quick presets</summary>
+        <div style="margin-top:0.6rem; display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="chip" data-value="1" data-from="kg" data-to="g">1 kg → g</button>
+          <button class="chip" data-value="1" data-from="lb" data-to="kg">1 lb → kg</button>
+          <button class="chip" data-value="16" data-from="oz" data-to="lb">16 oz → lb</button>
+          <button class="chip" data-value="1000" data-from="g" data-to="kg">1000 g → kg</button>
+          <button class="chip" data-value="1" data-from="st" data-to="kg">1 st → kg</button>
+          <button class="chip" data-value="1" data-from="t" data-to="kg">1 t → kg</button>
+        </div>
+      </details>
+
+    </section>
+
+    <!-- Right column: history + help -->
+    <aside class="history" aria-labelledby="history-heading">
+      <h3 id="history-heading" class="small">Conversion history</h3>
+      <div style="display:flex; gap:0.5rem; align-items:center; margin-bottom:0.5rem">
+        <button id="exportAllBtn" class="btn btn-orange small">Export CSV</button>
+        <button id="clearHistoryBtn" class="btn secondary small">Clear</button>
+        <div class="right small muted">Saved locally (localStorage)</div>
+      </div>
+
+      <div class="history-list" id="historyList" role="list" aria-live="polite"></div>
+      <div style="margin-top:0.6rem" class="small muted">
+        Tip: Use the download button on the result card to save individual compressed rows. Export to back up your history.
+      </div>
+    </aside>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">Copied!</div>
+
+  </main>
 
   <script>
-    // Time units with conversion rates to seconds (base unit)
-    const UNITS = {
-      seconds: { name: 'Seconds', symbol: 's', rate: 1 },
-      minutes: { name: 'Minutes', symbol: 'min', rate: 60 },
-      hours: { name: 'Hours', symbol: 'h', rate: 3600 },
-      days: { name: 'Days', symbol: 'days', rate: 86400 }
+  /* ===== Units & conversion factors =====
+     We'll convert any input into kilograms (kg) as a base, then convert kg into target unit.
+  */
+  const UNITS = {
+    mg: {name:'milligram', to_kg: 1e-6, symbol: 'mg'},
+    g:  {name:'gram', to_kg: 0.001, symbol: 'g'},
+    kg: {name:'kilogram', to_kg: 1, symbol: 'kg'},
+    t:  {name:'tonne', to_kg: 1000, symbol: 't'},
+    oz: {name:'ounce', to_kg: 0.028349523125, symbol: 'oz'},
+    lb: {name:'pound', to_kg: 0.45359237, symbol: 'lb'},
+    st: {name:'stone', to_kg: 6.35029318, symbol: 'st'}
+  };
+
+  /* ===== Utility functions ===== */
+  function convertToKg(value, unitKey){
+    const u = UNITS[unitKey];
+    if(!u) throw new Error('Unknown unit: ' + unitKey);
+    return value * u.to_kg;
+  }
+
+  function convertFromKg(kg, unitKey){
+    const u = UNITS[unitKey];
+    if(!u) throw new Error('Unknown unit: ' + unitKey);
+    return kg / u.to_kg;
+  }
+
+  function formatNumber(num, precision, useScientific=false){
+    if(!isFinite(num)) return String(num);
+    if(useScientific){
+      return Number(num).toExponential(precision);
+    }
+    return Number(num).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits: precision});
+  }
+
+  /* ===== DOM references ===== */
+  const inputEl = document.getElementById('inputValue');
+  const fromEl = document.getElementById('fromUnit');
+  const toEl = document.getElementById('toUnit');
+  const precisionEl = document.getElementById('precision');
+  const convertBtn = document.getElementById('convertBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const swapBtn = document.getElementById('swapBtn');
+  const resultValueEl = document.getElementById('resultValue');
+  const resultMetaEl = document.getElementById('resultMeta');
+  const copyBtn = document.getElementById('copyBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const downloadResultBtn = document.getElementById('downloadResultBtn');
+  const historyListEl = document.getElementById('historyList');
+  const exportAllBtn = document.getElementById('exportAllBtn');
+  const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+  const toast = document.getElementById('toast');
+
+  // Debounce utility for real-time conversion
+  function debounce(fn, wait){ let t; return function(...args){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,args), wait); }; }
+
+  /* ===== Populate unit dropdowns ===== */
+  function populateUnits(){
+    const keys = Object.keys(UNITS);
+    keys.forEach(k=>{
+      const opt1 = document.createElement('option'); 
+      opt1.value = k; 
+      opt1.textContent = `${UNITS[k].symbol} — ${UNITS[k].name}`;
+      const opt2 = opt1.cloneNode(true);
+      fromEl.appendChild(opt1);
+      toEl.appendChild(opt2);
+    });
+    // sensible defaults
+    fromEl.value = 'kg';
+    toEl.value = 'g';
+  }
+  populateUnits();
+
+  /* ===== Input parsing/validation ===== */
+  function parseInput(text){
+    if(typeof text !== 'string') text = String(text);
+    const trimmed = text.trim();
+    if(trimmed === '') return null;
+    const n = Number(trimmed);
+    if(Number.isFinite(n)) return n;
+    return NaN; // invalid
+  }
+
+  /* ===== History handling (localStorage) ===== */
+  const STORAGE_KEY = 'weight_converter_history_v1';
+  function loadHistory(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return [];
+      return JSON.parse(raw);
+    }catch(e){ console.warn('Failed to load history', e); return []; }
+  }
+  function saveHistory(history){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(0,1000)));
+  }
+  function addHistoryRow(row){
+    const history = loadHistory();
+    history.unshift(row); // newest first
+    saveHistory(history.slice(0,100));
+    renderHistory();
+  }
+
+  function clearHistory(){
+    localStorage.removeItem(STORAGE_KEY);
+    renderHistory();
+  }
+
+  function exportHistoryCSV(){
+    const history = loadHistory();
+    if(history.length === 0) return alert('No history to export');
+    const header = ['timestamp','input','from','result','to','precision'];
+    const rows = history.map(h=>header.map(k=>escapeCsv(String(h[k] ?? ''))).join(','));
+    const csv = [header.join(','), ...rows].join('\n');
+    downloadBlob(csv, 'weight-conversion-history.csv', 'text/csv');
+  }
+
+  function escapeCsv(value){
+    if(value.includes(',') || value.includes('\n') || value.includes('"')){
+      return '"' + value.replace(/"/g,'""') + '"';
+    }
+    return value;
+  }
+
+  function renderHistory(){
+    const history = loadHistory();
+    historyListEl.innerHTML = '';
+    if(history.length === 0){
+      const empty = document.createElement('div'); 
+      empty.className='small muted'; 
+      empty.textContent = 'No conversions yet.'; 
+      historyListEl.appendChild(empty); 
+      return;
+    }
+    history.slice(0,10).forEach(item=>{
+      const it = document.createElement('div'); 
+      it.className='history-item'; 
+      it.role='listitem';
+      const left = document.createElement('div'); 
+      left.style.maxWidth='60%';
+      left.innerHTML = `<div style="font-weight:600">${item.input} ${item.from} → ${item.result} ${item.to}</div><div class="small muted">${new Date(item.timestamp).toLocaleString()}</div>`;
+      const right = document.createElement('div'); 
+      right.style.textAlign='right';
+      const dl = document.createElement('button'); 
+      dl.className='btn secondary small'; 
+      dl.textContent='Download';
+      dl.onclick = ()=>{ downloadCompressedRow(item); };
+      right.appendChild(dl);
+      it.appendChild(left); 
+      it.appendChild(right);
+      historyListEl.appendChild(it);
+    });
+  }
+
+  /* ===== Downloads ===== */
+  function downloadBlob(content, filename, mime){
+    const blob = new Blob([content], {type: mime});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); 
+    a.href = url; 
+    a.download = filename; 
+    document.body.appendChild(a); 
+    a.click(); 
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 5000);
+  }
+
+  function downloadCompressedRow(item){
+    const detailedItem = {
+      ...item,
+      title: `Weight Conversion: ${item.input} ${item.from} to ${item.result} ${item.to}`,
+      description: `Converted ${item.input} ${UNITS[item.from].name} to ${item.result} ${UNITS[item.to].name} with ${item.precision} decimal precision.`,
+      conversionDate: item.timestamp,
+      tool: "Weight Converter"
     };
+    const compressed = JSON.stringify(detailedItem, null, 2);
+    downloadBlob(compressed, `weight-conversion-${item.timestamp}.json`, 'application/json');
+  }
 
-    // DOM elements
-    const timeInputEl = document.getElementById('timeInput');
-    const fromUnitEl = document.getElementById('fromUnit');
-    const toUnitEl = document.getElementById('toUnit');
-    const precisionEl = document.getElementById('precision');
-    const convertBtn = document.getElementById('convertBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const swapBtn = document.getElementById('swapBtn');
-    const resultValueEl = document.getElementById('resultValue');
-    const resultMetaEl = document.getElementById('resultMeta');
-    const copyBtn = document.getElementById('copyBtn');
-    const shareBtn = document.getElementById('shareBtn');
-    const downloadResultBtn = document.getElementById('downloadResultBtn');
-    const toastEl = document.getElementById('toast');
-    const warningEl = document.getElementById('warning');
+  /* ===== Core conversion logic ===== */
+  function performConversion(){
+    const raw = inputEl.value;
+    const parsed = parseInput(raw);
+    const useSci = false; // default
+    const precision = Number(precisionEl.value);
+    const from = fromEl.value;
+    const to = toEl.value;
 
-    // Format number with precision
-    function formatNumber(num, precision) {
-      if (!isFinite(num)) return String(num);
-      return Number(num).toLocaleString(undefined, {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: precision
-      });
-    }
-
-    // Perform conversion
-    function convertTime() {
-      const inputValue = parseFloat(timeInputEl.value);
-      const fromUnit = fromUnitEl.value;
-      const toUnit = toUnitEl.value;
-      const precision = parseInt(precisionEl.value);
-      
-      // Hide warning
-      warningEl.style.display = 'none';
-      
-      // Validate input
-      if (isNaN(inputValue)) {
-        resultValueEl.textContent = '—';
-        resultMetaEl.textContent = 'Enter a valid time value';
-        return;
-      }
-      
-      // Check for negative values
-      if (inputValue < 0) {
-        resultValueEl.textContent = '—';
-        resultMetaEl.textContent = 'Invalid time value';
-        warningEl.textContent = 'Time cannot be negative';
-        warningEl.style.display = 'block';
-        return;
-      }
-      
-      try {
-        // Convert to seconds first (base)
-        const inSeconds = inputValue * UNITS[fromUnit].rate;
-        // Convert seconds to target unit
-        const resultValue = inSeconds / UNITS[toUnit].rate;
-        const formattedResult = formatNumber(resultValue, precision);
-        
-        // Update UI
-        resultValueEl.textContent = formattedResult;
-        resultMetaEl.textContent = `${inputValue} ${UNITS[fromUnit].symbol} = ${formattedResult} ${UNITS[toUnit].symbol}`;
-        
-      } catch (error) {
-        resultValueEl.textContent = 'Error';
-        resultMetaEl.textContent = 'Conversion failed';
-        console.error(error);
-      }
-    }
-
-    // Utility functions
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(
-        () => showToast('Copied to clipboard'),
-        () => {
-          // Fallback for older browsers
-          const textArea = document.createElement('textarea');
-          textArea.value = text;
-          document.body.appendChild(textArea);
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-          showToast('Copied to clipboard');
-        }
-      );
-    }
-    
-    function showToast(message) {
-      toastEl.textContent = message;
-      toastEl.classList.add('show');
-      setTimeout(() => {
-        toastEl.classList.remove('show');
-      }, 3000);
-    }
-    
-    function downloadResult() {
-      if (resultValueEl.textContent !== '—') {
-        const data = {
-          inputValue: timeInputEl.value,
-          fromUnit: fromUnitEl.value,
-          resultValue: resultValueEl.textContent,
-          toUnit: toUnitEl.value,
-          precision: precisionEl.value,
-          timestamp: new Date().toISOString()
-        };
-        
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `time-conversion-${Date.now()}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        
-        showToast('Conversion saved as JSON');
-      }
-    }
-
-    // Event listeners
-    convertBtn.addEventListener('click', convertTime);
-    
-    resetBtn.addEventListener('click', () => {
-      timeInputEl.value = '';
-      fromUnitEl.value = 'seconds';
-      toUnitEl.value = 'minutes';
-      precisionEl.value = '4';
+    if(parsed === null){
       resultValueEl.textContent = '—';
-      resultMetaEl.textContent = 'Enter a time value to convert';
-      warningEl.style.display = 'none';
-    });
-    
-    swapBtn.addEventListener('click', () => {
-      const temp = fromUnitEl.value;
-      fromUnitEl.value = toUnitEl.value;
-      toUnitEl.value = temp;
-      convertTime();
-    });
-    
-    copyBtn.addEventListener('click', () => {
-      if (resultValueEl.textContent !== '—') {
-        const text = `${resultValueEl.textContent} ${UNITS[toUnitEl.value].symbol}`;
-        copyToClipboard(text);
-      }
-    });
-    
-    shareBtn.addEventListener('click', () => {
-      if (resultValueEl.textContent !== '—') {
-        const text = `${timeInputEl.value} ${UNITS[fromUnitEl.value].symbol} = ${resultValueEl.textContent} ${UNITS[toUnitEl.value].symbol}`;
-        
-        if (navigator.share) {
-          navigator.share({
-            title: 'Time Conversion',
-            text: text,
-            url: window.location.href
-          }).catch(err => {
-            console.log('Error sharing:', err);
-          });
-        } else {
-          copyToClipboard(text);
-        }
-      }
-    });
-    
-    downloadResultBtn.addEventListener('click', downloadResult);
-    
-    // Quick preset buttons
-    document.querySelectorAll('.preset-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        timeInputEl.value = btn.dataset.value;
-        fromUnitEl.value = btn.dataset.from;
-        toUnitEl.value = btn.dataset.to;
-        convertTime();
-      });
-    });
-    
-    // Real-time conversion
-    timeInputEl.addEventListener('input', convertTime);
-    fromUnitEl.addEventListener('change', convertTime);
-    toUnitEl.addEventListener('change', convertTime);
-    precisionEl.addEventListener('change', convertTime);
+      resultMetaEl.textContent = 'Awaiting input';
+      return null;
+    }
+    if(Number.isNaN(parsed)){
+      resultValueEl.textContent = 'Invalid';
+      resultMetaEl.textContent = 'Please enter a valid number (examples: 12.34, -3.5e2)';
+      return null;
+    }
 
-    // Initialize with default values
-    convertTime();
+    try{
+      const kg = convertToKg(parsed, from);
+      const out = convertFromKg(kg, to);
+      const formatted = formatNumber(out, precision, useSci);
+      resultValueEl.textContent = formatted;
+      resultMetaEl.textContent = `${UNITS[from].name} → ${UNITS[to].name} • precision ${precision}`;
+
+      const card = document.getElementById('resultCard');
+      card.classList.add('popped'); 
+      setTimeout(()=>card.classList.remove('popped'), 200);
+
+      const row = { 
+        timestamp: new Date().toISOString(), 
+        input: String(parsed), 
+        from, 
+        result: String(out), 
+        to, 
+        precision 
+      };
+      addHistoryRow(row);
+      return {parsed, out, row};
+    }catch(e){
+      resultValueEl.textContent = 'Error';
+      resultMetaEl.textContent = e.message;
+      return null;
+    }
+  }
+
+  // Debounced auto-convert when user types
+  const debouncedConvert = debounce(()=>{ performConversion(); }, 150);
+
+  /* ===== Buttons & interactions ===== */
+  inputEl.addEventListener('input', debouncedConvert);
+  fromEl.addEventListener('change', debouncedConvert);
+  toEl.addEventListener('change', debouncedConvert);
+  precisionEl.addEventListener('change', debouncedConvert);
+  convertBtn.addEventListener('click', performConversion);
+  resetBtn.addEventListener('click', ()=>{
+    inputEl.value = '';
+    fromEl.value = 'kg';
+    toEl.value = 'g';
+    precisionEl.value = '4';
+    performConversion();
+  });
+
+  swapBtn.addEventListener('click', ()=>{
+    const a = fromEl.value; 
+    fromEl.value = toEl.value; 
+    toEl.value = a;
+    performConversion();
+  });
+
+  copyBtn.addEventListener('click', async ()=>{
+    const text = resultValueEl.textContent + ' ' + toEl.value;
+    try{
+      await navigator.clipboard.writeText(text);
+      showToast('Copied to clipboard');
+    }catch(e){
+      const ta = document.createElement('textarea'); 
+      ta.value = text; 
+      document.body.appendChild(ta); 
+      ta.select();
+      try{ 
+        document.execCommand('copy'); 
+        showToast('Copied to clipboard'); 
+      }catch(_){ 
+        alert('Copy failed.'); 
+      }
+      ta.remove();
+    }
+  });
+
+  shareBtn.addEventListener('click', async ()=>{
+    const text = `${inputEl.value} ${fromEl.value} → ${resultValueEl.textContent} ${toEl.value}`;
+    if(navigator.share){
+      try{ 
+        await navigator.share({
+          title:'Weight conversion', 
+          text,
+          url: window.location.href
+        }); 
+      }catch(e){ }
+    }else{
+      try{ 
+        await navigator.clipboard.writeText(text); 
+        showToast('Result copied (share fallback)'); 
+      }catch(e){ 
+        alert(text); 
+      }
+    }
+  });
+
+  downloadResultBtn.addEventListener('click', ()=>{
+    const parsed = parseInput(inputEl.value);
+    if(parsed === null || Number.isNaN(parsed)) return alert('Enter a valid number first');
+    const precision = Number(precisionEl.value);
+    const from = fromEl.value; 
+    const to = toEl.value;
+    const kg = convertToKg(parsed, from); 
+    const out = convertFromKg(kg, to);
+    const row = { 
+      timestamp: new Date().toISOString(), 
+      input: String(parsed), 
+      from, 
+      result: String(out), 
+      to, 
+      precision 
+    };
+    downloadCompressedRow(row);
+  });
+
+  exportAllBtn.addEventListener('click', exportHistoryCSV);
+  clearHistoryBtn.addEventListener('click', ()=>{ 
+    if(confirm('Clear history?')) clearHistory(); 
+  });
+
+  /* ===== Preset chips ===== */
+  document.querySelectorAll('#presets .chip').forEach(ch=>{
+    ch.addEventListener('click', ()=>{
+      inputEl.value = ch.dataset.value;
+      fromEl.value = ch.dataset.from;
+      toEl.value = ch.dataset.to;
+      performConversion();
+    });
+  });
+
+  /* ===== Small toast helper ===== */
+  let toastTimer = null;
+  function showToast(msg, ms=1800){
+    toast.textContent = msg; 
+    toast.classList.add('show');
+    clearTimeout(toastTimer); 
+    toastTimer = setTimeout(()=>{ 
+      toast.classList.remove('show'); 
+    }, ms);
+  }
+
+  /* ===== Initial render ===== */
+  renderHistory();
+  (function tryRecoverFromParams(){
+    try{
+      const params = new URLSearchParams(location.search);
+      if(params.has('v')){ inputEl.value = params.get('v'); }
+      if(params.has('from')) fromEl.value = params.get('from');
+      if(params.has('to')) toEl.value = params.get('to');
+      if(params.has('prec')) precisionEl.value = params.get('prec');
+    }catch(e){}
+    performConversion();
+  })();
+
+  /* ===== Notes on numeric limits =====
+     - This tool uses JavaScript Number (IEEE 754 double). Very large/small values may lose precision.
+     - For typical human-scale conversions this is fine. For very high precision or extreme magnitudes, consider a big-number library.
+  */
+
+  /* ===== Example unit tests (comments) =====
+     console.assert(Math.abs(convertFromKg(convertToKg(1,'kg'),'g') - 1000) < 1e-9, '1 kg -> 1000 g');
+     console.assert(Math.abs(convertFromKg(convertToKg(1,'lb'),'kg') - 0.45359237) < 1e-12, '1 lb -> 0.45359237 kg');
+     console.assert(Math.abs(convertFromKg(convertToKg(16,'oz'),'lb') - 1) < 1e-12, '16 oz -> 1 lb');
+  */
+
   </script>
 </body>
-</html>
+  </html>
