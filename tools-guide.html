@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --olive-green: #556B2F;
-            --light-olive: #6B8E23;
-            --dark-olive: #3D4C21;
+            --teal: #008080;
+            --light-teal: #20B2AA;
+            --dark-teal: #006666;
             --cream: #F5F5DC;
             --light-gray: #f8f8f8;
             --white: #ffffff;
@@ -55,12 +55,12 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--olive-green);
+            color: var(--teal);
             text-decoration: none;
         }
 
         .logo span {
-            color: var(--light-olive);
+            color: var(--light-teal);
         }
 
         nav ul {
@@ -80,7 +80,7 @@
         }
 
         nav ul li a:hover {
-            color: var(--olive-green);
+            color: var(--teal);
         }
 
         .mobile-menu-btn {
@@ -88,13 +88,13 @@
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--olive-green);
+            color: var(--teal);
             cursor: pointer;
         }
 
         /* Page Header */
         .page-header {
-            background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
+            background: linear-gradient(135deg, var(--teal) 0%, var(--light-teal) 100%);
             color: var(--white);
             padding: 60px 0;
             text-align: center;
@@ -122,7 +122,7 @@
         .section-title {
             text-align: center;
             margin-bottom: 50px;
-            color: var(--dark-olive);
+            color: var(--dark-teal);
             font-size: 2.2rem;
         }
 
@@ -149,7 +149,7 @@
         .article-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, var(--olive-green) 0%, var(--light-olive) 100%);
+            background: linear-gradient(135deg, var(--teal) 0%, var(--light-teal) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -166,7 +166,7 @@
             align-items: center;
             margin-bottom: 12px;
             font-size: 0.9rem;
-            color: var(--light-olive);
+            color: var(--light-teal);
         }
 
         .article-date {
@@ -181,7 +181,7 @@
 
         .article-category {
             background: var(--cream);
-            color: var(--olive-green);
+            color: var(--teal);
             padding: 4px 12px;
             border-radius: 15px;
             font-size: 0.8rem;
@@ -189,7 +189,7 @@
         }
 
         .article-content h3 {
-            color: var(--dark-olive);
+            color: var(--dark-teal);
             margin-bottom: 15px;
             font-size: 1.3rem;
             line-height: 1.4;
@@ -203,7 +203,7 @@
         }
 
         .article-link {
-            color: var(--olive-green);
+            color: var(--teal);
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
@@ -219,36 +219,9 @@
             transform: translateX(5px);
         }
 
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 50px;
-            gap: 15px;
-        }
-
-        .pagination a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--light-gray);
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .pagination a:hover, .pagination a.active {
-            background: var(--olive-green);
-            color: var(--white);
-        }
-
         /* Footer */
         footer {
-            background-color: var(--dark-olive);
+            background-color: var(--dark-teal);
             color: var(--white);
             padding: 60px 0 30px;
         }
@@ -397,6 +370,7 @@
     <!-- Articles Section -->
     <section class="articles-section">
         <div class="container">
+            <h2 class="section-title">Featured Articles</h2>
             <div class="article-grid">
                 
                 <!-- Article 1: BMI Guide -->
@@ -410,7 +384,7 @@
                             <span class="article-category">Health</span>
                         </div>
                         <h3>Understanding BMI: Complete Guide to Body Mass Index</h3>
-                        <p>Learn how to calculate your BMI accurately, understand the health categories, and what your number really means for your overall wellness.Here’s a complete, SEO-friendly draft article you can publish on your site under the **Health / BMI** category:</p>
+                        <p>Learn how to calculate your BMI accurately, understand the health categories, and what your number really means for your overall wellness.</p>
                         <a href="bmi-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -495,14 +469,54 @@
                     </div>
                 </div>
 
-            </div>
+                <!-- Article 7: Weight Conversion -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Dec 1, 2023</span>
+                            <span class="article-category">Measurement</span>
+                        </div>
+                        <h3>Weight Conversion: Kilograms, Pounds, and Ounces</h3>
+                        <p>Complete guide to weight measurement systems and how to convert between different units accurately.</p>
+                        <a href="weight-converter-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-            <!-- Pagination -->
-            <div class="pagination">
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#"><i class="fas fa-chevron-right"></i></a>
+                <!-- Article 8: Time Conversion -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Nov 28, 2023</span>
+                            <span class="article-category">Time</span>
+                        </div>
+                        <h3>Time Zones and Conversion: A Complete Guide</h3>
+                        <p>Understanding time zones, daylight saving time, and how to calculate time differences accurately.</p>
+                        <a href="time-converter-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Article 9: Speed Conversion -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-date"><i class="far fa-calendar"></i> Nov 25, 2023</span>
+                            <span class="article-category">Physics</span>
+                        </div>
+                        <h3>Speed Conversion: MPH, KM/H, and Knots Explained</h3>
+                        <p>Learn about different speed measurement units and how to convert between them for various applications.</p>
+                        <a href="speed-converter-guide.html" class="article-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -519,8 +533,8 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html#speed-converter. html">Home</a></li>
-                        <li><a href="tools-guide.html">Tools Guide</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
                         <li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     </ul>
@@ -558,4 +572,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
