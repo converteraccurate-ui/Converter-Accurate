@@ -1,104 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="android-chrome-512x512.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Converter Accurate - Your Daily Tools, All in One</title>
-    <meta name="description" content="Free online conversion tools and calculators. Convert length, weight, temperature, currency, time zones and more. Fast, accurate, and completely free.">
+    <title>Tools - Calculators & Converters | Converter Accurate</title>
+    <meta name="description" content="Access our complete collection of calculators and converters for all your measurement needs. Fast, accurate, and completely free.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="canonical" href="https://www.converteraccurate.com/">
-
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Converter Accurate",
-        "description": "Comprehensive suite of free online conversion tools and calculators for everyday use",
-        "url": "https://www.converteraccurate.com",
-        "applicationCategory": "UtilityApplication",
-        "operatingSystem": "Any",
-        "permissions": "browser",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "author": {
-            "@type": "Organization",
-            "name": "Converter Accurate",
-            "url": "https://www.converteraccurate.com"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "ratingCount": "1250"
-        },
-        "featureList": [
-            "Length Converter",
-            "Weight Converter", 
-            "Temperature Converter",
-            "Currency Converter",
-            "Time Converter",
-            "Data Converter",
-            "BMI Calculator",
-            "EMI Calculator",
-            "GST Calculator",
-            "Age Calculator",
-            "Speed Converter",
-            "Finance Tools"
-        ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Converter Accurate",
-        "url": "https://www.converteraccurate.com",
-        "logo": "https://www.converteraccurate.com/logo.png",
-        "description": "Your comprehensive solution for all measurement conversion needs",
-        "email": "converteraccurate@gmail.com",
-        "sameAs": [
-            "https://www.facebook.com/converteraccurate",
-            "https://www.twitter.com/converteraccurate"
-        ],
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "converteraccurate@gmail.com",
-            "contactType": "customer service"
-        }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Converter Accurate",
-        "url": "https://www.converteraccurate.com",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.converteraccurate.com/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
-
     <style>
         :root {
-            --primary-color: #488083;
-            --primary-dark: #3a676a;
-            --primary-light: #7bb7ba;
-            --secondary-color: #ff7e5f;
-            --text-color: #2d3748;
-            --light-bg: #f8fafc;
-            --white: #ffffff;
+            --teal-primary: #008080;
+            --teal-light: #20B2AA;
+            --teal-dark: #006666;
+            --teal-bg: #E0F2F1;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+            --shadow: 0 6px 15px rgba(0, 128, 128, 0.2);
             --border-radius: 10px;
-            --box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
 
@@ -111,8 +29,8 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--dark-gray);
+            background: linear-gradient(135deg, var(--teal-bg) 0%, #B2DFDB 100%);
             min-height: 100vh;
         }
 
@@ -122,14 +40,14 @@
             padding: 0 20px;
         }
 
-        /* Header Styles - Increased Size */
+        /* Header Styles */
         header {
             background-color: var(--white);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 4px solid var(--primary-color);
+            border-bottom: 4px solid var(--teal-primary);
         }
 
         .header-container {
@@ -142,7 +60,7 @@
         .logo {
             font-size: 2.2rem;
             font-weight: 800;
-            color: var(--primary-color);
+            color: var(--teal-primary);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -155,15 +73,12 @@
         }
 
         .logo i {
-            color: var(--secondary-color);
+            color: var(--teal-primary);
             font-size: 2.4rem;
         }
 
         .logo span {
-            color: var(--secondary-color);
-            background: linear-gradient(45deg, var(--secondary-color), #ff9e7d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--teal-dark);
         }
 
         nav ul {
@@ -174,7 +89,7 @@
 
         nav ul li a {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--dark-gray);
             font-weight: 700;
             padding: 15px 25px;
             border-radius: var(--border-radius);
@@ -184,15 +99,15 @@
         }
 
         nav ul li a:hover {
-            color: var(--primary-color);
-            background: linear-gradient(135deg, var(--light-bg), #e2e8f0);
+            color: var(--teal-primary);
+            background: linear-gradient(135deg, var(--light-gray), #e2e8f0);
             transform: translateY(-2px);
         }
 
         nav ul li a.active {
-            color: var(--primary-color);
-            background: linear-gradient(135deg, var(--light-bg), #e2e8f0);
-            box-shadow: var(--box-shadow);
+            color: var(--teal-primary);
+            background: linear-gradient(135deg, var(--light-gray), #e2e8f0);
+            box-shadow: var(--shadow);
         }
 
         nav ul li a.active::after {
@@ -202,7 +117,7 @@
             left: 20px;
             right: 20px;
             height: 4px;
-            background: var(--secondary-color);
+            background: var(--teal-primary);
             border-radius: 2px;
         }
 
@@ -211,22 +126,22 @@
             background: none;
             border: none;
             font-size: 1.8rem;
-            color: var(--primary-color);
+            color: var(--teal-primary);
             cursor: pointer;
             padding: 10px;
             transition: var(--transition);
         }
 
         .mobile-menu-btn:hover {
-            color: var(--secondary-color);
+            color: var(--teal-dark);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
             color: var(--white);
             text-align: center;
-            padding: 100px 0;
+            padding: 80px 0;
             margin-bottom: 60px;
             position: relative;
             overflow: hidden;
@@ -251,7 +166,7 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 25px;
             font-weight: 800;
             line-height: 1.2;
@@ -265,39 +180,16 @@
             font-weight: 400;
         }
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--secondary-color), #ff9e7d);
-            color: var(--white);
-            padding: 18px 40px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            box-shadow: 0 8px 25px rgba(255, 126, 95, 0.4);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(255, 126, 95, 0.6);
-            background: linear-gradient(135deg, #ff6b4a, var(--secondary-color));
-        }
-
         /* Tools Section */
         .tools-section {
-            padding: 100px 0;
+            padding: 80px 0;
             background: transparent;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 60px;
-            color: var(--primary-dark);
+            color: var(--teal-dark);
             font-size: 2.5rem;
             font-weight: 800;
             position: relative;
@@ -311,208 +203,167 @@
             transform: translateX(-50%);
             width: 100px;
             height: 5px;
-            background: linear-gradient(45deg, var(--secondary-color), #ff9e7d);
+            background: linear-gradient(45deg, var(--teal-primary), var(--teal-light));
             border-radius: 3px;
+        }
+
+        .tools-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--teal-primary);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 128, 128, 0.3);
+        }
+
+        .category-header {
+            background: var(--teal-primary);
+            color: var(--white);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .category-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .category-header i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
         }
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
         }
 
-        .tool-card {
-            background: linear-gradient(135deg, var(--white) 0%, #f8fafc 100%);
-            border-radius: var(--border-radius);
-            overflow: hidden;
+        .tool-item {
+            padding: 25px 20px;
+            text-align: center;
+            border-right: 1px solid #E0E0E0;
+            border-bottom: 1px solid #E0E0E0;
             transition: var(--transition);
-            box-shadow: var(--box-shadow);
-            border: 2px solid transparent;
-            position: relative;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+        .tool-item:nth-child(even) {
+            border-right: none;
         }
 
-        .tool-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border-color: var(--primary-light);
+        .tool-item:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .tool-item:hover {
+            background: rgba(0, 128, 128, 0.05);
+            text-decoration: none;
+            color: inherit;
         }
 
         .tool-icon {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: var(--white);
-            height: 100px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--teal-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tool-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .tool-content {
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-
-        .tool-content h3 {
-            color: var(--primary-dark);
-            margin-bottom: 18px;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .tool-content p {
-            color: #4a5568;
-            margin-bottom: 25px;
-            font-size: 1rem;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        /* Updated Use Tool Button - Matching Explore Tools Button */
-        .tool-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            margin-bottom: 15px;
             color: var(--white);
-            padding: 15px 30px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .tool-item:hover .tool-icon {
+            background: var(--teal-primary);
+            transform: scale(1.1);
+        }
+
+        .tool-name {
             font-weight: 700;
             font-size: 1.1rem;
-            transition: var(--transition);
-            box-shadow: 0 6px 20px rgba(72, 128, 131, 0.4);
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            width: 100%;
-            margin-top: auto;
-        }
-
-        .tool-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(72, 128, 131, 0.6);
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: var(--teal-dark);
         }
 
         /* Features Section */
         .features-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            padding: 60px 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: 40px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 45px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
 
         .feature-item {
             text-align: center;
-            padding: 50px 35px;
-            background: linear-gradient(135deg, var(--white) 0%, #f8fafc 100%);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            border-top: 5px solid var(--primary-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
-        }
-
-        .feature-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+            padding: 30px 20px;
         }
 
         .feature-icon {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: var(--white);
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
+            background: var(--teal-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
+            margin: 0 auto 20px;
+            color: var(--white);
             font-size: 2rem;
-            box-shadow: 0 10px 25px rgba(72, 128, 131, 0.4);
-            transition: var(--transition);
-        }
-
-        .feature-item:hover .feature-icon {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(72, 128, 131, 0.6);
         }
 
         .feature-item h3 {
-            color: var(--primary-dark);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+            color: var(--teal-dark);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
             font-weight: 700;
         }
 
         .feature-item p {
-            color: #4a5568;
-            line-height: 1.7;
-            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.6;
         }
 
-        /* Footer - Increased Sizes */
+        /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--primary-dark), #2a5557);
+            background: var(--teal-dark);
             color: var(--white);
-            padding: 80px 0 40px;
-            margin-top: 80px;
+            padding: 60px 0 30px;
+            margin-top: 60px;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
+            gap: 40px;
             margin-bottom: 50px;
         }
 
@@ -532,8 +383,14 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: var(--secondary-color);
+            background: var(--teal-light);
             border-radius: 2px;
+        }
+
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
         .footer-column ul {
@@ -541,7 +398,7 @@
         }
 
         .footer-column ul li {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
 
         .footer-column ul li a {
@@ -562,7 +419,7 @@
         }
 
         .footer-column ul li a i {
-            color: var(--secondary-color);
+            color: var(--teal-light);
             font-size: 1.2rem;
             width: 25px;
         }
@@ -582,7 +439,7 @@
         }
 
         .contact-details i {
-            color: var(--secondary-color);
+            color: var(--teal-light);
             width: 25px;
             font-size: 1.3rem;
         }
@@ -597,12 +454,9 @@
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .tools-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            .tools-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
         }
 
@@ -641,62 +495,63 @@
                 padding: 18px 25px;
             }
 
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-item {
+                border-right: none;
+            }
+            
+            .tool-item:nth-child(even) {
+                border-right: none;
+            }
+            
+            .tool-item:nth-last-child(-n+2) {
+                border-bottom: 1px solid #E0E0E0;
+            }
+            
+            .tool-item:last-child {
+                border-bottom: none;
+            }
+            
             .hero {
-                padding: 80px 0;
+                padding: 60px 0;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
             .hero p {
                 font-size: 1.2rem;
             }
 
-            .tools-section, .features-section {
-                padding: 80px 0;
+            .tools-section {
+                padding: 60px 0;
+            }
+
+            .category-header h2 {
+                font-size: 1.5rem;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
-                gap: 35px;
-            }
-
-            .footer-column h3 {
-                font-size: 1.4rem;
-            }
-
-            .footer-column ul li a {
-                font-size: 1.05rem;
-            }
-
-            .contact-details p {
-                font-size: 1.05rem;
-            }
-
-            .tool-button {
-                padding: 14px 25px;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 35px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
             }
 
             .logo {
@@ -706,11 +561,6 @@
             .logo i {
                 font-size: 2rem;
             }
-
-            .tool-button {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
         }
     </style>
 </head>
@@ -718,7 +568,7 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <i class="fas fa-calculator"></i>
                 Converter <span>Accurate</span>
             </a>
@@ -729,9 +579,9 @@
             
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#tools">Tools</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" class="active">Tools</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -740,216 +590,160 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Your Daily Tools, All in One Place</h1>
-            <p>Convert, calculate, and measure with precision using our comprehensive suite of online tools. Fast, accurate, and completely free.</p>
-            <a href="#tools" class="cta-button">Explore Tools <i class="fas fa-arrow-right"></i></a>
+            <h1>All Calculators & Converters</h1>
+            <p>Access our complete collection of tools for all your calculation and conversion needs. Fast, accurate, and completely free.</p>
         </div>
     </section>
 
     <!-- Tools Section -->
     <section class="tools-section" id="tools">
         <div class="container">
-            <h2 class="section-title">Our Conversion Tools</h2>
-            <div class="tools-grid">
-                <!-- Length Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-ruler-combined"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Length Converter</h3>
-                        <p>Convert between meters, feet, inches, centimeters, and more with precision.</p>
-                        <a href="length-converter.html" class="tool-button">
-                            <i class="fas fa-ruler-combined"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Weight Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-weight-hanging"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Weight Converter</h3>
-                        <p>Convert kilograms to pounds, grams to ounces, and other weight measurements.</p>
-                        <a href="weight-converter.html" class="tool-button">
-                            <i class="fas fa-weight-hanging"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Temperature Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-temperature-high"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Temperature Converter</h3>
-                        <p>Convert between Celsius, Fahrenheit, and Kelvin temperature scales.</p>
-                        <a href="temperature-converter.html" class="tool-button">
-                            <i class="fas fa-temperature-high"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Speed Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Speed Converter</h3>
-                        <p>Convert miles per hour to kilometers per hour and other speed units.</p>
-                        <a href="speed-converter.html" class="tool-button">
-                            <i class="fas fa-tachometer-alt"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Time Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Time Converter</h3>
-                        <p>Convert between time zones, hours to minutes, and other time measurements.</p>
-                        <a href="time-converter.html" class="tool-button">
-                            <i class="fas fa-clock"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Currency Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Currency Converter</h3>
-                        <p>Convert between different currencies with up-to-date exchange rates.</p>
-                        <a href="currency-converter.html" class="tool-button">
-                            <i class="fas fa-dollar-sign"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Data Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Data Converter</h3>
-                        <p>Convert between KB, MB, GB, TB, bits, and bytes with precision.</p>
-                        <a href="data-converter.html" class="tool-button">
-                            <i class="fas fa-database"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Age Calculator -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-birthday-cake"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Age Calculator</h3>
-                        <p>Calculate your exact age in years, months, and days from your birth date.</p>
-                        <a href="age-calculator.html" class="tool-button">
-                            <i class="fas fa-birthday-cake"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- BMI Calculator -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>BMI Calculator</h3>
-                        <p>Calculate your Body Mass Index and understand your health category.</p>
-                        <a href="bmi-calculator.html" class="tool-button">
-                            <i class="fas fa-heartbeat"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- EMI Calculator -->
-                <div class="tool-card">
-                    <div class="tool-icon">
+            <h2 class="section-title">Our Complete Tool Collection</h2>
+            
+            <div class="tools-container">
+                <!-- Calculators Section -->
+                <div class="category-card">
+                    <div class="category-header">
                         <i class="fas fa-calculator"></i>
+                        <h2>Calculators</h2>
                     </div>
-                    <div class="tool-content">
-                        <h3>EMI Calculator</h3>
-                        <p>Calculate your Equated Monthly Installments for loans with different interest rates.</p>
-                        <a href="emi.html" class="tool-button">
-                            <i class="fas fa-calculator"></i> Use Tool
+                    <div class="tools-grid">
+                        <a href="bmi-calculator.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="tool-name">BMI Calculator</div>
+                        </a>
+                        <a href="age-calculator.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div class="tool-name">Age Calculator</div>
+                        </a>
+                        <a href="emi.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="tool-name">EMI Calculator</div>
+                        </a>
+                        <a href="gst-calculator.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="tool-name">GST Calculator</div>
+                        </a>
+                        <a href="finance-tool.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="tool-name">Finance Tools</div>
+                        </a>
+                        <a href="calorie-calculator.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="tool-name">Calorie Calculator</div>
+                        </a>
+                        <a href="bmr-calculator.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="tool-name">BMR Calculator</div>
+                        </a>
+                        <a href="epf-calculator.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <div class="tool-name">EPF Calculator</div>
                         </a>
                     </div>
                 </div>
                 
-                <!-- GST Calculator -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-percentage"></i>
+                <!-- Converter Tools Section -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h2>Converter Tools</h2>
                     </div>
-                    <div class="tool-content">
-                        <h3>GST Calculator</h3>
-                        <p>Calculate Goods and Services Tax amounts for your purchases and invoices.</p>
-                        <a href="gst-calculator.html" class="tool-button">
-                            <i class="fas fa-percentage"></i> Use Tool
+                    <div class="tools-grid">
+                        <a href="length-converter.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <div class="tool-name">Length Converter</div>
+                        </a>
+                        <a href="weight-converter.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-weight-hanging"></i>
+                            </div>
+                            <div class="tool-name">Weight Converter</div>
+                        </a>
+                        <a href="temperature-converter.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                            <div class="tool-name">Temperature Converter</div>
+                        </a>
+                        <a href="speed-converter.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="tool-name">Speed Converter</div>
+                        </a>
+                        <a href="time-converter.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="tool-name">Time Converter</div>
+                        </a>
+                        <a href="currency-converter.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="tool-name">Currency Converter</div>
+                        </a>
+                        <a href="data-converter.html" class="tool-item">
+                            <div class="tool-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="tool-name">Data Converter</div>
                         </a>
                     </div>
                 </div>
-                
-                <!-- Finance Tools -->
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3>Finance Tools</h3>
-                        <p>Calculate Fixed Deposit returns and percentage values for various financial needs.</p>
-                        <a href="finance-tool.html" class="tool-button">
-                            <i class="fas fa-chart-line"></i> Use Tool
-                        </a>
-                    </div>
-                </div>
-                
             </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="container">
-            <h2 class="section-title">Why Choose Converter Accurate?</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
+            
+            <!-- Features Section -->
+            <div class="features-section">
+                <h2 class="section-title">Why Choose Our Tools?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Get instant results with our optimized calculation engines.</p>
                     </div>
-                    <h3>Lightning Fast</h3>
-                    <p>Our tools deliver instant results without any delays, saving you valuable time.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure & Private</h3>
+                        <p>Your data never leaves your device. All calculations happen locally.</p>
                     </div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Access all our tools on any device with our responsive, mobile-optimized design.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Access all tools on any device with our responsive design.</p>
                     </div>
-                    <h3>Secure & Private</h3>
-                    <p>We don't store your data. All conversions happen securely in your browser.</p>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>Always Updated</h3>
+                        <p>We regularly update our tools with the latest features and data.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -967,9 +761,9 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="tools-guide"><i class="fas fa-tools"></i> Tools Guide</a></li>
-                        <li><a href="terms-and-conditions.html><i class="fas fa-envelope"></i> Terms & Conditions</a></li>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-tools"></i> Tools Guide</a></li>
+                        <li><a href="terms-and-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
                         <li><a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
                     </ul>
                 </div>
@@ -1007,139 +801,12 @@
             document.querySelector('nav').classList.toggle('active');
         });
 
-        // JSON data for tools (can be used for dynamic content)
-        const toolsData = {
-            "tools": [
-                {
-                    "id": 1,
-                    "name": "Length Converter",
-                    "icon": "fas fa-ruler-combined",
-                    "description": "Convert between meters, feet, inches, centimeters, and more with precision.",
-                    "url": "/length-converter",
-                    "category": "measurement"
-                },
-                {
-                    "id": 2,
-                    "name": "Weight Converter",
-                    "icon": "fas fa-weight-hanging",
-                    "description": "Convert kilograms to pounds, grams to ounces, and other weight measurements.",
-                    "url": "/weight-converter",
-                    "category": "measurement"
-                },
-                {
-                    "id": 3,
-                    "name": "Temperature Converter",
-                    "icon": "fas fa-temperature-high",
-                    "description": "Convert between Celsius, Fahrenheit, and Kelvin temperature scales.",
-                    "url": "/temperature-converter",
-                    "category": "measurement"
-                },
-                {
-                    "id": 4,
-                    "name": "Speed Converter",
-                    "icon": "fas fa-tachometer-alt",
-                    "description": "Convert miles per hour to kilometers per hour and other speed units.",
-                    "url": "/speed-converter",
-                    "category": "measurement"
-                },
-                {
-                    "id": 5,
-                    "name": "Time Converter",
-                    "icon": "fas fa-clock",
-                    "description": "Convert between time zones, hours to minutes, and other time measurements.",
-                    "url": "/time-converter",
-                    "category": "time"
-                },
-                {
-                    "id": 6,
-                    "name": "Currency Converter",
-                    "icon": "fas fa-dollar-sign",
-                    "description": "Convert between different currencies with up-to-date exchange rates.",
-                    "url": "/currency-converter",
-                    "category": "finance"
-                },
-                {
-                    "id": 7,
-                    "name": "Data Converter",
-                    "icon": "fas fa-database",
-                    "description": "Convert between KB, MB, GB, TB, bits, and bytes with precision.",
-                    "url": "/data-converter",
-                    "category": "data"
-                },
-                {
-                    "id": 8,
-                    "name": "Age Calculator",
-                    "icon": "fas fa-birthday-cake",
-                    "description": "Calculate your exact age in years, months, and days from your birth date.",
-                    "url": "/age-calculator",
-                    "category": "health"
-                },
-                {
-                    "id": 9,
-                    "name": "BMI Calculator",
-                    "icon": "fas fa-heartbeat",
-                    "description": "Calculate your Body Mass Index and understand your health category.",
-                    "url": "/bmi-calculator",
-                    "category": "health"
-                },
-                {
-                    "id": 10,
-                    "name": "EMI Calculator",
-                    "icon": "fas fa-calculator",
-                    "description": "Calculate your Equated Monthly Installments for loans with different interest rates.",
-                    "url": "/emi-calculator",
-                    "category": "finance"
-                },
-                {
-                    "id": 11,
-                    "name": "GST Calculator",
-                    "icon": "fas fa-percentage",
-                    "description": "Calculate Goods and Services Tax amounts for your purchases and invoices.",
-                    "url": "/gst-calculator",
-                    "category": "finance"
-                },
-                {
-                    "id": 12,
-                    "name": "Finance Tools",
-                    "icon": "fas fa-chart-line",
-                    "description": "Calculate Fixed Deposit returns and percentage values for various financial needs.",
-                    "url": "/finance-tools",
-                    "category": "finance"
-                }
-            ],
-            "categories": [
-                "measurement",
-                "finance", 
-                "health",
-                "time",
-                "data"
-            ]
-        };
-
-        // You can use this data to dynamically generate tool cards
-        // Example usage:
-        // function generateToolCards() {
-        //     const toolsGrid = document.querySelector('.tools-grid');
-        //     toolsGrid.innerHTML = '';
-        //     
-        //     toolsData.tools.forEach(tool => {
-        //         const toolCard = `
-        //             <div class="tool-card">
-        //                 <div class="tool-icon">
-        //                     <i class="${tool.icon}"></i>
-        //                 </div>
-        //                 <div class="tool-content">
-        //                     <h3>${tool.name}</h3>
-        //                     <p>${tool.description}</p>
-        //                     <a href="${tool.url}" class="tool-button">
-        //                         <i class="${tool.icon}"></i> Use Tool
-        //                     </a>
-        //                 </div>
-        //             </div>
-        //         `;
-        //         toolsGrid.innerHTML += toolCard;
-        //     });
-        // }
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('nav').classList.remove('active');
+            });
+        });
     </script>
 </body>
-        </html>
+    </html>
