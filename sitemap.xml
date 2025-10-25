@@ -1,167 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://www.converteraccurate.com/</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/index.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/bmi-calculator.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/age-calculator.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/emi.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/gst-calculator.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/finance-tool.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/calorie-calculator.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/bmr-calculator.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/epf-calculator.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/length-converter.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/weight-converter.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/temperature-converter.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/speed-converter.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/time-converter.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/currency-converter.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/data-converter.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/tools-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/terms-and-conditions.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/privacy-policy.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/currency-converter</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/bmi-calculator</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/age-calculator</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/bmi-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/data-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/age-calculator-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/temperature-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/length-converter-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/currency-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/weight-converter-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.converteraccurate.com/time-convertion-guide.html</loc>
-  <lastmod>2025-10-22T05:48:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.converteraccurate.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.converteraccurate.com/age-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.converteraccurate.com/bmi-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.converteraccurate.com/currency-converter.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.converteraccurate.com/gst-calculator.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.converteraccurate.com/length-converter.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.converteraccurate.com/time-converter.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.converteraccurate.com/weight-converter.html</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>
