@@ -1,42 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="android-chrome-512x512.png" type="image/x-icon">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JY20JB7P0D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JY20JB7P0D');
-</script>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Weight Converter | Convert Kilograms, Pounds, Ounces & More</title>
-  <meta name="description" content="Free online weight converter. Convert between kilograms, grams, pounds, ounces, stones and more with precision. Real-time conversions with history tracking.">
-  <meta name="keywords" content="weight converter, kg to lbs, pounds to kilograms, ounces to grams, weight calculator, mass conversion">
-  <meta name="author" content="Weight Converter">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Length Converter | Convert Meters, Feet, Inches, Miles & More</title>
+  <meta name="description" content="Free online length converter. Convert between meters, centimeters, millimeters, kilometers, feet, inches, yards, miles and more with precision. Real-time conversions with history tracking.">
+  <meta name="keywords" content="length converter, meters to feet, feet to meters, inches to cm, length calculator, distance conversion">
+  <meta name="author" content="Length Converter">
   
   <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="Weight Converter | Convert Kilograms, Pounds, Ounces & More">
-  <meta property="og:description" content="Free online weight converter. Convert between kilograms, grams, pounds, ounces, stones and more with precision.">
+  <meta property="og:title" content="Length Converter | Convert Meters, Feet, Inches, Miles & More">
+  <meta property="og:description" content="Free online length converter. Convert between meters, centimeters, millimeters, kilometers, feet, inches, yards, miles and more with precision.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://example.com/weight-converter-preview.png">
+  <meta property="og:image" content="https://example.com/length-converter-preview.png">
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Weight Converter | Convert Kilograms, Pounds, Ounces & More">
-  <meta name="twitter:description" content="Free online weight converter. Convert between kilograms, grams, pounds, ounces, stones and more with precision.">
+  <meta name="twitter:title" content="Length Converter | Convert Meters, Feet, Inches, Miles & More">
+  <meta name="twitter:description" content="Free online length converter. Convert between meters, centimeters, millimeters, kilometers, feet, inches, yards, miles and more with precision.">
   
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Weight Converter",
-    "description": "Free online weight converter that converts between kilograms, grams, pounds, ounces, stones and more with precision control.",
-    "url": "https://example.com/weight-converter",
+    "name": "Length Converter",
+    "description": "Free online length converter that converts between meters, centimeters, millimeters, kilometers, feet, inches, yards, miles and more with precision control.",
+    "url": "https://example.com/length-converter",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Any",
     "permissions": "browser",
@@ -47,11 +37,11 @@
     },
     "author": {
       "@type": "Organization",
-      "name": "Weight Converter"
+      "name": "Length Converter"
     },
     "featureList": [
-      "Real-time weight conversion",
-      "Multiple weight units (kilograms, grams, pounds, ounces, stones, tonnes)",
+      "Real-time length conversion",
+      "Multiple length units (meters, centimeters, millimeters, kilometers, feet, inches, yards, miles)",
       "Adjustable precision",
       "Conversion history",
       "Export results as CSV/JSON"
@@ -61,15 +51,16 @@
   
   <style>
     :root {
-      --primary-color: #2c7a7b;
-      --primary-dark: #285e61;
-      --primary-light: #81e6d9;
-      --secondary-color: #ed8936;
+      --primary-color: #008080;
+      --primary-dark: #006666;
+      --primary-light: #00a3a3;
+      --primary-bg: #e6f2f2;
+      --secondary-color: #ff7e5f;
       --text-color: #2d3748;
-      --light-bg: #f7fafc;
+      --light-bg: #f0f9f9;
       --white: #ffffff;
       --border-radius: 8px;
-      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --box-shadow: 0 4px 12px rgba(0, 128, 128, 0.15);
       --transition: all 0.3s ease;
     }
 
@@ -83,7 +74,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       color: var(--text-color);
-      background-color: var(--light-bg);
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e6f7f7 100%);
       padding: 1rem;
       display: flex;
       align-items: flex-start;
@@ -94,30 +85,33 @@
     .container {
       width: 100%;
       max-width: 980px;
-      background: linear-gradient(180deg, var(--white) 0%, var(--light-bg) 100%);
+      background: var(--white);
       border-radius: calc(var(--border-radius) + 0.25rem);
-      padding: 1.25rem;
+      padding: 1.5rem;
       box-shadow: var(--box-shadow);
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1rem;
+      gap: 1.25rem;
+      border: 1px solid rgba(0, 128, 128, 0.1);
     }
 
     header {
       display: flex;
       gap: 0.75rem;
       align-items: center;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(0, 128, 128, 0.1);
     }
 
     .logo {
       width: 56px;
       height: 56px;
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 14px rgba(44, 122, 123, 0.12);
+      box-shadow: 0 6px 14px rgba(0, 128, 128, 0.2);
     }
 
     .logo svg {
@@ -128,6 +122,7 @@
       margin: 0;
       font-size: 1.5rem;
       color: var(--primary-color);
+      font-weight: 700;
     }
 
     p.subtitle {
@@ -141,10 +136,11 @@
     .controls {
       background: var(--white);
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.25rem;
       display: grid;
-      gap: 0.75rem;
+      gap: 0.9rem;
       box-shadow: var(--box-shadow);
+      border: 1px solid rgba(0, 128, 128, 0.08);
     }
 
     .row {
@@ -162,27 +158,30 @@
       display: block;
       margin-bottom: 0.25rem;
       font-weight: 600;
+      color: var(--primary-dark);
     }
 
     input[type="text"], select {
       width: 100%;
-      padding: 0.6rem 0.75rem;
+      padding: 0.7rem 0.85rem;
       border-radius: 10px;
-      border: 1px solid #e6e6e6;
+      border: 1px solid #e0f0f0;
       font-size: 1rem;
       transition: var(--transition);
+      background-color: var(--light-bg);
     }
 
     input[type="text"]:focus, select:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.18);
+      box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.2);
+      background-color: var(--white);
     }
 
     .btn {
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       color: var(--white);
-      padding: 0.6rem 0.8rem;
+      padding: 0.7rem 0.9rem;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -192,40 +191,49 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 128, 128, 0.2);
     }
 
     .btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 128, 128, 0.25);
     }
 
     .btn.secondary {
       background: transparent;
       color: var(--primary-color);
-      border: 1px solid rgba(44, 122, 123, 0.12);
+      border: 1px solid rgba(0, 128, 128, 0.3);
+      box-shadow: none;
     }
 
     .btn.secondary:hover {
-      background: var(--primary-light);
+      background: rgba(0, 128, 128, 0.1);
+      transform: translateY(-1px);
     }
 
     .btn.ghost {
       background: transparent;
       color: var(--primary-color);
-      border: none;
+      border: 1px solid rgba(0, 128, 128, 0.2);
+      box-shadow: none;
     }
 
     .btn.ghost:hover {
-      background: rgba(44, 122, 123, 0.1);
+      background: rgba(0, 128, 128, 0.1);
+      transform: translateY(-1px);
     }
 
     .btn-orange {
-      background: var(--secondary-color);
+      background: linear-gradient(135deg, var(--secondary-color), #ff6b4a);
       color: white;
+      box-shadow: 0 4px 6px rgba(255, 126, 95, 0.3);
     }
 
     .btn-orange:hover {
-      background: #dd6b20;
+      background: linear-gradient(135deg, #ff6b4a, var(--secondary-color));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(255, 126, 95, 0.35);
     }
 
     .swap-btn {
@@ -234,14 +242,17 @@
       display: inline-grid;
       place-items: center;
       border-radius: 10px;
-      border: 1px dashed rgba(0, 0, 0, 0.06);
+      border: 1px dashed rgba(0, 128, 128, 0.3);
       background: var(--white);
       transition: var(--transition);
+      color: var(--primary-color);
     }
 
     .swap-btn:hover {
       background: var(--primary-light);
       border-color: var(--primary-color);
+      color: white;
+      transform: rotate(180deg);
     }
 
     /* Result card */
@@ -249,15 +260,16 @@
       background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       color: var(--white);
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.25rem;
       display: flex;
       gap: 1rem;
       align-items: center;
       justify-content: space-between;
+      box-shadow: 0 6px 12px rgba(0, 128, 128, 0.25);
     }
 
     .result .value {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 700;
     }
 
@@ -270,8 +282,9 @@
     .history {
       background: var(--white);
       border-radius: 12px;
-      padding: 0.75rem;
+      padding: 1rem;
       box-shadow: var(--box-shadow);
+      border: 1px solid rgba(0, 128, 128, 0.08);
     }
 
     .history-list {
@@ -287,28 +300,35 @@
       display: flex;
       justify-content: space-between;
       gap: 0.5rem;
-      padding: 0.5rem;
+      padding: 0.6rem;
       border-radius: 8px;
-      background: linear-gradient(90deg, rgba(44, 122, 123, 0.03), rgba(255, 255, 255, 0));
+      background: linear-gradient(90deg, rgba(0, 128, 128, 0.05), rgba(255, 255, 255, 0));
       transition: var(--transition);
+      border: 1px solid rgba(0, 128, 128, 0.05);
     }
 
     .history-item:hover {
-      background: linear-gradient(90deg, rgba(44, 122, 123, 0.08), rgba(255, 255, 255, 0));
+      background: linear-gradient(90deg, rgba(0, 128, 128, 0.1), rgba(255, 255, 255, 0));
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 128, 128, 0.1);
     }
 
     .chip {
       display: inline-block;
-      background: rgba(44, 122, 123, 0.1);
-      padding: 0.25rem 0.5rem;
+      background: rgba(0, 128, 128, 0.1);
+      padding: 0.3rem 0.6rem;
       border-radius: 999px;
       font-size: 0.8rem;
       cursor: pointer;
       transition: var(--transition);
+      border: 1px solid rgba(0, 128, 128, 0.1);
+      color: var(--primary-dark);
+      font-weight: 500;
     }
 
     .chip:hover {
-      background: rgba(44, 122, 123, 0.2);
+      background: rgba(0, 128, 128, 0.2);
+      transform: translateY(-1px);
     }
 
     /* Responsive layout */
@@ -352,12 +372,13 @@
       left: 50%;
       transform: translateX(-50%);
       bottom: 1.25rem;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 128, 128, 0.9);
       color: white;
-      padding: 0.6rem 0.9rem;
+      padding: 0.7rem 1rem;
       border-radius: 8px;
       display: none;
       z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     .toast.show {
@@ -367,7 +388,7 @@
     /* Focus visible for keyboard users */
     button:focus, a:focus, input:focus, select:focus {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.18);
+      box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.2);
     }
 
     /* small animation */
@@ -399,11 +420,11 @@
 <body>
   <!-- Hidden SEO content for search engines -->
   <div class="seo-content">
-    <h1>Weight Converter</h1>
-    <p>Free online weight converter tool that converts between kilograms (kg), grams (g), pounds (lb), ounces (oz), stones (st), and tonnes (t). Features real-time conversion, adjustable precision, conversion history, and export options.</p>
+    <h1>Length Converter</h1>
+    <p>Free online length converter tool that converts between meters (m), centimeters (cm), millimeters (mm), kilometers (km), inches (in), feet (ft), yards (yd), and miles (mi). Features real-time conversion, adjustable precision, conversion history, and export options.</p>
     <h2>Key Features</h2>
     <ul>
-      <li>Convert between kilograms, grams, pounds, ounces, stones, and tonnes</li>
+      <li>Convert between meters, centimeters, millimeters, kilometers, inches, feet, yards, and miles</li>
       <li>Real-time conversion as you type</li>
       <li>Adjustable decimal precision from 0 to 8 places</li>
       <li>Conversion history with local storage</li>
@@ -411,36 +432,41 @@
       <li>Copy and share conversion results</li>
       <li>Mobile-responsive design</li>
     </ul>
-    <h2>Common Weight Conversions</h2>
+    <h2>Common Length Conversions</h2>
     <ul>
-      <li>1 kilogram = 1000 grams</li>
-      <li>1 pound = 0.45359237 kilograms</li>
-      <li>1 ounce = 28.349523125 grams</li>
-      <li>1 stone = 6.35029318 kilograms</li>
-      <li>1 tonne = 1000 kilograms</li>
-      <li>16 ounces = 1 pound</li>
+      <li>1 meter = 100 centimeters</li>
+      <li>1 meter = 1000 millimeters</li>
+      <li>1 kilometer = 1000 meters</li>
+      <li>1 inch = 2.54 centimeters</li>
+      <li>1 foot = 12 inches</li>
+      <li>1 yard = 3 feet</li>
+      <li>1 mile = 5280 feet</li>
+      <li>1 mile = 1.609344 kilometers</li>
     </ul>
   </div>
 
   <main class="container" id="app">
     <header>
       <div class="logo" aria-hidden="true">
-        <!-- simple scale/weight svg -->
+        <!-- ruler/measurement svg -->
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="3" y="5" width="18" height="4" rx="1" fill="white" />
-          <path d="M7 9v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9" stroke="var(--primary-color)" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" />
-          <circle cx="12" cy="12" r="2" stroke="var(--primary-color)" stroke-width="0.9" fill="white" />
+          <rect x="3" y="9" width="18" height="6" rx="1" fill="white" />
+          <line x1="6" y1="7" x2="6" y2="17" stroke="white" stroke-width="1.5" />
+          <line x1="9" y1="7" x2="9" y2="17" stroke="white" stroke-width="1.5" />
+          <line x1="12" y1="7" x2="12" y2="17" stroke="white" stroke-width="1.5" />
+          <line x1="15" y1="7" x2="15" y2="17" stroke="white" stroke-width="1.5" />
+          <line x1="18" y1="7" x2="18" y2="17" stroke="white" stroke-width="1.5" />
         </svg>
       </div>
       <div>
-        <h1>Weight Converter</h1>
-        <p class="subtitle">Convert weights instantly — teal & orange theme. History saved locally.</p>
+        <h1>Length Converter</h1>
+        <p class="subtitle">Convert lengths instantly. History saved locally.</p>
       </div>
     </header>
 
     <!-- Controls / Left column -->
     <section class="controls" aria-labelledby="controls-heading">
-      <h2 id="controls-heading" class="small">Convert weight units</h2>
+      <h2 id="controls-heading" class="small">Convert length units</h2>
 
       <div class="row">
         <div class="col">
@@ -501,12 +527,12 @@
       <details id="presets" class="small">
         <summary class="muted">Quick presets</summary>
         <div style="margin-top:0.6rem; display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="chip" data-value="1" data-from="kg" data-to="g">1 kg → g</button>
-          <button class="chip" data-value="1" data-from="lb" data-to="kg">1 lb → kg</button>
-          <button class="chip" data-value="16" data-from="oz" data-to="lb">16 oz → lb</button>
-          <button class="chip" data-value="1000" data-from="g" data-to="kg">1000 g → kg</button>
-          <button class="chip" data-value="1" data-from="st" data-to="kg">1 st → kg</button>
-          <button class="chip" data-value="1" data-from="t" data-to="kg">1 t → kg</button>
+          <button class="chip" data-value="1" data-from="m" data-to="cm">1 m → cm</button>
+          <button class="chip" data-value="1" data-from="ft" data-to="m">1 ft → m</button>
+          <button class="chip" data-value="12" data-from="in" data-to="ft">12 in → ft</button>
+          <button class="chip" data-value="100" data-from="cm" data-to="m">100 cm → m</button>
+          <button class="chip" data-value="1" data-from="mi" data-to="km">1 mi → km</button>
+          <button class="chip" data-value="1" data-from="km" data-to="mi">1 km → mi</button>
         </div>
       </details>
 
@@ -533,29 +559,30 @@
 
   <script>
   /* ===== Units & conversion factors =====
-     We'll convert any input into kilograms (kg) as a base, then convert kg into target unit.
+     We'll convert any input into meters (m) as a base, then convert m into target unit.
   */
   const UNITS = {
-    mg: {name:'milligram', to_kg: 1e-6, symbol: 'mg'},
-    g:  {name:'gram', to_kg: 0.001, symbol: 'g'},
-    kg: {name:'kilogram', to_kg: 1, symbol: 'kg'},
-    t:  {name:'tonne', to_kg: 1000, symbol: 't'},
-    oz: {name:'ounce', to_kg: 0.028349523125, symbol: 'oz'},
-    lb: {name:'pound', to_kg: 0.45359237, symbol: 'lb'},
-    st: {name:'stone', to_kg: 6.35029318, symbol: 'st'}
+    mm: {name:'millimeter', to_m: 0.001, symbol: 'mm'},
+    cm: {name:'centimeter', to_m: 0.01, symbol: 'cm'},
+    m:  {name:'meter', to_m: 1, symbol: 'm'},
+    km: {name:'kilometer', to_m: 1000, symbol: 'km'},
+    in: {name:'inch', to_m: 0.0254, symbol: 'in'},
+    ft: {name:'foot', to_m: 0.3048, symbol: 'ft'},
+    yd: {name:'yard', to_m: 0.9144, symbol: 'yd'},
+    mi: {name:'mile', to_m: 1609.344, symbol: 'mi'}
   };
 
   /* ===== Utility functions ===== */
-  function convertToKg(value, unitKey){
+  function convertToM(value, unitKey){
     const u = UNITS[unitKey];
     if(!u) throw new Error('Unknown unit: ' + unitKey);
-    return value * u.to_kg;
+    return value * u.to_m;
   }
 
-  function convertFromKg(kg, unitKey){
+  function convertFromM(m, unitKey){
     const u = UNITS[unitKey];
     if(!u) throw new Error('Unknown unit: ' + unitKey);
-    return kg / u.to_kg;
+    return m / u.to_m;
   }
 
   function formatNumber(num, precision, useScientific=false){
@@ -599,8 +626,8 @@
       toEl.appendChild(opt2);
     });
     // sensible defaults
-    fromEl.value = 'kg';
-    toEl.value = 'g';
+    fromEl.value = 'm';
+    toEl.value = 'cm';
   }
   populateUnits();
 
@@ -615,7 +642,7 @@
   }
 
   /* ===== History handling (localStorage) ===== */
-  const STORAGE_KEY = 'weight_converter_history_v1';
+  const STORAGE_KEY = 'length_converter_history_v1';
   function loadHistory(){
     try{
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -644,7 +671,7 @@
     const header = ['timestamp','input','from','result','to','precision'];
     const rows = history.map(h=>header.map(k=>escapeCsv(String(h[k] ?? ''))).join(','));
     const csv = [header.join(','), ...rows].join('\n');
-    downloadBlob(csv, 'weight-conversion-history.csv', 'text/csv');
+    downloadBlob(csv, 'length-conversion-history.csv', 'text/csv');
   }
 
   function escapeCsv(value){
@@ -700,13 +727,13 @@
   function downloadCompressedRow(item){
     const detailedItem = {
       ...item,
-      title: `Weight Conversion: ${item.input} ${item.from} to ${item.result} ${item.to}`,
+      title: `Length Conversion: ${item.input} ${item.from} to ${item.result} ${item.to}`,
       description: `Converted ${item.input} ${UNITS[item.from].name} to ${item.result} ${UNITS[item.to].name} with ${item.precision} decimal precision.`,
       conversionDate: item.timestamp,
-      tool: "Weight Converter"
+      tool: "Length Converter"
     };
     const compressed = JSON.stringify(detailedItem, null, 2);
-    downloadBlob(compressed, `weight-conversion-${item.timestamp}.json`, 'application/json');
+    downloadBlob(compressed, `length-conversion-${item.timestamp}.json`, 'application/json');
   }
 
   /* ===== Core conversion logic ===== */
@@ -730,8 +757,8 @@
     }
 
     try{
-      const kg = convertToKg(parsed, from);
-      const out = convertFromKg(kg, to);
+      const m = convertToM(parsed, from);
+      const out = convertFromM(m, to);
       const formatted = formatNumber(out, precision, useSci);
       resultValueEl.textContent = formatted;
       resultMetaEl.textContent = `${UNITS[from].name} → ${UNITS[to].name} • precision ${precision}`;
@@ -768,8 +795,8 @@
   convertBtn.addEventListener('click', performConversion);
   resetBtn.addEventListener('click', ()=>{
     inputEl.value = '';
-    fromEl.value = 'kg';
-    toEl.value = 'g';
+    fromEl.value = 'm';
+    toEl.value = 'cm';
     precisionEl.value = '4';
     performConversion();
   });
@@ -806,7 +833,7 @@
     if(navigator.share){
       try{ 
         await navigator.share({
-          title:'Weight conversion', 
+          title:'Length conversion', 
           text,
           url: window.location.href
         }); 
@@ -827,8 +854,8 @@
     const precision = Number(precisionEl.value);
     const from = fromEl.value; 
     const to = toEl.value;
-    const kg = convertToKg(parsed, from); 
-    const out = convertFromKg(kg, to);
+    const m = convertToM(parsed, from); 
+    const out = convertFromM(m, to);
     const row = { 
       timestamp: new Date().toISOString(), 
       input: String(parsed), 
@@ -885,11 +912,11 @@
   */
 
   /* ===== Example unit tests (comments) =====
-     console.assert(Math.abs(convertFromKg(convertToKg(1,'kg'),'g') - 1000) < 1e-9, '1 kg -> 1000 g');
-     console.assert(Math.abs(convertFromKg(convertToKg(1,'lb'),'kg') - 0.45359237) < 1e-12, '1 lb -> 0.45359237 kg');
-     console.assert(Math.abs(convertFromKg(convertToKg(16,'oz'),'lb') - 1) < 1e-12, '16 oz -> 1 lb');
+     console.assert(Math.abs(convertFromM(convertToM(1,'m'),'cm') - 100) < 1e-9, '1 m -> 100 cm');
+     console.assert(Math.abs(convertFromM(convertToM(1,'ft'),'m') - 0.3048) < 1e-12, '1 ft -> 0.3048 m');
+     console.assert(Math.abs(convertFromM(convertToM(12,'in'),'ft') - 1) < 1e-12, '12 in -> 1 ft');
   */
 
   </script>
 </body>
-</html>
+          </html>
