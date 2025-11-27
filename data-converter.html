@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: ’Segoe UI’, Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
@@ -228,7 +228,7 @@
         }
 
         .result-bar-fill::after {
-            content: ’’;
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
@@ -391,7 +391,7 @@
         }
 
         .info-list li:before {
-            content: "�¢";
+            content: "�｢";
             color: var(--primary-color);
             font-size: 1.5rem;
             position: absolute;
@@ -663,9 +663,9 @@
                 <div class="related-tools">
                     <h2>Explore More Free Tools</h2>
                     <ul class="info-list">
-                        <li><a href="https://www.converteraccurate.com/currency-converter" title="Currency Converter Online">�– Currency Converter</a> � Convert between 150+ world currencies with real-time exchange rates.</li>
-                        <li><a href="https://www.converteraccurate.com/bmi-calculator" title="BMI Calculator Online">�⁄�‚ BMI Calculator</a> � Check your Body Mass Index and ideal weight range.</li>
-                        <li><a href="https://www.converteraccurate.com/age-calculator" title="Age Calculator Online">�§ﬁ Age Calculator</a> � Find your exact age in years, months, and days.</li>
+                        <li><a href="https://www.converteraccurate.com/currency-converter" title="Currency Converter Online">汳ｱ Currency Converter</a> �� Convert between 150+ world currencies with real-time exchange rates.</li>
+                        <li><a href="https://www.converteraccurate.com/bmi-calculator" title="BMI Calculator Online">擘ｸ� BMI Calculator</a> �� Check your Body Mass Index and ideal weight range.</li>
+                        <li><a href="https://www.converteraccurate.com/age-calculator" title="Age Calculator Online">洫ｮ Age Calculator</a> �� Find your exact age in years, months, and days.</li>
                     </ul>
                 </div>
             </div>
@@ -673,65 +673,65 @@
     </div>
 
     <footer>
-        <p>´' 2025 <a href="https://www.converteraccurate.com">Converter Accurate</a> � All Rights Reserved.</p>
+        <p>ﾂｩ 2025 <a href="https://www.converteraccurate.com">Converter Accurate</a> �� All Rights Reserved.</p>
     </footer>
 
     <script>
-        document.addEventListener(’DOMContentLoaded’, function() {
-            const dataValueInput = document.getElementById(’data-value’);
-            const fromUnitSelect = document.getElementById(’from-unit’);
-            const toUnitSelect = document.getElementById(’to-unit’);
-            const swapButton = document.getElementById(’swap-units’);
-            const convertButton = document.getElementById(’convert’);
-            const resultContainer = document.getElementById(’result’);
-            const conversionResult = document.getElementById(’conversion-result’);
-            const conversionFormula = document.getElementById(’conversion-formula’);
-            const quickButtons = document.querySelectorAll(’.quick-btn’);
-            const resultBarContainer = document.getElementById(’result-bar’);
-            const resultBarFill = document.getElementById(’result-bar-fill’);
-            const resultBarPercentage = document.getElementById(’result-bar-percentage’);
+        document.addEventListener('DOMContentLoaded', function() {
+            const dataValueInput = document.getElementById('data-value');
+            const fromUnitSelect = document.getElementById('from-unit');
+            const toUnitSelect = document.getElementById('to-unit');
+            const swapButton = document.getElementById('swap-units');
+            const convertButton = document.getElementById('convert');
+            const resultContainer = document.getElementById('result');
+            const conversionResult = document.getElementById('conversion-result');
+            const conversionFormula = document.getElementById('conversion-formula');
+            const quickButtons = document.querySelectorAll('.quick-btn');
+            const resultBarContainer = document.getElementById('result-bar');
+            const resultBarFill = document.getElementById('result-bar-fill');
+            const resultBarPercentage = document.getElementById('result-bar-percentage');
             
             // Conversion factors relative to bits
             const units = {
                 bit: {
-                    name: ’Bit’,
-                    abbreviation: ’b’,
+                    name: 'Bit',
+                    abbreviation: 'b',
                     factor: 1
                 },
                 byte: {
-                    name: ’Byte’,
-                    abbreviation: ’B’,
+                    name: 'Byte',
+                    abbreviation: 'B',
                     factor: 8
                 },
                 kilobyte: {
-                    name: ’Kilobyte’,
-                    abbreviation: ’KB’,
+                    name: 'Kilobyte',
+                    abbreviation: 'KB',
                     factor: 8 * 1024
                 },
                 megabyte: {
-                    name: ’Megabyte’,
-                    abbreviation: ’MB’,
+                    name: 'Megabyte',
+                    abbreviation: 'MB',
                     factor: 8 * 1024 * 1024
                 },
                 gigabyte: {
-                    name: ’Gigabyte’,
-                    abbreviation: ’GB’,
+                    name: 'Gigabyte',
+                    abbreviation: 'GB',
                     factor: 8 * 1024 * 1024 * 1024
                 },
                 terabyte: {
-                    name: ’Terabyte’,
-                    abbreviation: ’TB’,
+                    name: 'Terabyte',
+                    abbreviation: 'TB',
                     factor: 8 * 1024 * 1024 * 1024 * 1024
                 },
                 petabyte: {
-                    name: ’Petabyte’,
-                    abbreviation: ’PB’,
+                    name: 'Petabyte',
+                    abbreviation: 'PB',
                     factor: 8 * 1024 * 1024 * 1024 * 1024 * 1024
                 }
             };
             
             // Swap units
-            swapButton.addEventListener(’click’, function() {
+            swapButton.addEventListener('click', function() {
                 const fromValue = fromUnitSelect.value;
                 const toValue = toUnitSelect.value;
                 
@@ -745,7 +745,7 @@
             });
             
             // Convert data
-            convertButton.addEventListener(’click’, convertData);
+            convertButton.addEventListener('click', convertData);
             
             function convertData() {
                 const value = parseFloat(dataValueInput.value);
@@ -754,21 +754,21 @@
                 
                 // Validate input
                 if (isNaN(value) || value < 0) {
-                    alert(’Please enter a valid positive number.’);
+                    alert('Please enter a valid positive number.');
                     return;
                 }
                 
                 // Reset and show result bar
-                resultBarFill.style.width = ’0%’;
-                resultBarPercentage.textContent = ’0%’;
-                resultBarContainer.classList.add(’active’);
+                resultBarFill.style.width = '0%';
+                resultBarPercentage.textContent = '0%';
+                resultBarContainer.classList.add('active');
                 
                 // Animate the progress bar
                 let progress = 0;
                 const interval = setInterval(() => {
                     progress += 2;
-                    resultBarFill.style.width = progress + ’%’;
-                    resultBarPercentage.textContent = progress + ’%’;
+                    resultBarFill.style.width = progress + '%';
+                    resultBarPercentage.textContent = progress + '%';
                     
                     if (progress >= 100) {
                         clearInterval(interval);
@@ -788,7 +788,7 @@
                 // Format the result
                 let formattedResult;
                 if (result === 0) {
-                    formattedResult = ’0’;
+                    formattedResult = '0';
                 } else if (result < 0.000001) {
                     formattedResult = result.toExponential(6);
                 } else if (result < 0.001) {
@@ -807,30 +807,30 @@
                 formattedResult = parseFloat(formattedResult).toString();
                 
                 // Update the UI with results
-                conversionResult.textContent = ‘${value} ${units[fromUnit].abbreviation} = ${formattedResult} ${units[toUnit].abbreviation}‘;
+                conversionResult.textContent = `${value} ${units[fromUnit].abbreviation} = ${formattedResult} ${units[toUnit].abbreviation}`;
                 
                 // Show conversion formula
                 if (fromUnit === toUnit) {
-                    conversionFormula.textContent = ‘No conversion needed - same units‘;
+                    conversionFormula.textContent = `No conversion needed - same units`;
                 } else {
-                    conversionFormula.textContent = ‘Formula: ${value} ${units[fromUnit].abbreviation} ˆ (${units[fromUnit].factor} / ${units[toUnit].factor}) = ${formattedResult} ${units[toUnit].abbreviation}‘;
+                    conversionFormula.textContent = `Formula: ${value} ${units[fromUnit].abbreviation} ﾃ� (${units[fromUnit].factor} / ${units[toUnit].factor}) = ${formattedResult} ${units[toUnit].abbreviation}`;
                 }
                 
                 // Update result bar text
-                resultBarFill.textContent = ‘${formattedResult} ${units[toUnit].abbreviation}‘;
+                resultBarFill.textContent = `${formattedResult} ${units[toUnit].abbreviation}`;
                 
                 // Show result container
-                resultContainer.classList.add(’active’);
+                resultContainer.classList.add('active');
                 
                 // Scroll to results
-                resultContainer.scrollIntoView({ behavior: ’smooth’, block: ’nearest’ });
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
             
             // Quick conversion buttons
             quickButtons.forEach(button => {
-                button.addEventListener(’click’, function() {
-                    const fromUnit = this.getAttribute(’data-from’);
-                    const toUnit = this.getAttribute(’data-to’);
+                button.addEventListener('click', function() {
+                    const fromUnit = this.getAttribute('data-from');
+                    const toUnit = this.getAttribute('data-to');
                     
                     fromUnitSelect.value = fromUnit;
                     toUnitSelect.value = toUnit;
@@ -846,12 +846,12 @@
             });
             
             // Allow Enter key to convert
-            dataValueInput.addEventListener(’keypress’, function(e) {
-                if (e.key === ’Enter’) {
+            dataValueInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
                     convertData();
                 }
             });
         });
     </script>
 </body>
-</html>
+    </html>
