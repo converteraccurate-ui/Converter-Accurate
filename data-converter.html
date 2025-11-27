@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="android-chrome-512x512.png" type="image/x-icon">
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JY20JB7P0D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JY20JB7P0D');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Storage Converter Online | Bits, Bytes, KB, MB, GB, TB Conversion</title>
@@ -181,6 +171,78 @@
             background-color: #dd7724;
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(237, 137, 54, 0.3);
+        }
+
+        /* Result Bar Styles */
+        .result-bar-container {
+            margin: 25px 0;
+            display: none;
+        }
+
+        .result-bar-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .result-bar-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+
+        .result-bar-percentage {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .result-bar {
+            height: 40px;
+            background-color: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            border-radius: 20px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-bar-fill::after {
+            content: ’’;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         .result-container {
@@ -484,6 +546,17 @@
                     Convert Data <i class="fas fa-calculator"></i>
                 </button>
                 
+                <!-- Result Bar -->
+                <div class="result-bar-container" id="result-bar">
+                    <div class="result-bar-header">
+                        <div class="result-bar-label">Conversion Progress</div>
+                        <div class="result-bar-percentage" id="result-bar-percentage">0%</div>
+                    </div>
+                    <div class="result-bar">
+                        <div class="result-bar-fill" id="result-bar-fill"></div>
+                    </div>
+                </div>
+                
                 <div class="result-container" id="result">
                     <div class="conversion-result" id="conversion-result">
                         Your conversion result will appear here.
@@ -614,6 +687,9 @@
             const conversionResult = document.getElementById(’conversion-result’);
             const conversionFormula = document.getElementById(’conversion-formula’);
             const quickButtons = document.querySelectorAll(’.quick-btn’);
+            const resultBarContainer = document.getElementById(’result-bar’);
+            const resultBarFill = document.getElementById(’result-bar-fill’);
+            const resultBarPercentage = document.getElementById(’result-bar-percentage’);
             
             // Conversion factors relative to bits
             const units = {
@@ -682,6 +758,27 @@
                     return;
                 }
                 
+                // Reset and show result bar
+                resultBarFill.style.width = ’0%’;
+                resultBarPercentage.textContent = ’0%’;
+                resultBarContainer.classList.add(’active’);
+                
+                // Animate the progress bar
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 2;
+                    resultBarFill.style.width = progress + ’%’;
+                    resultBarPercentage.textContent = progress + ’%’;
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        // Perform conversion after animation completes
+                        performConversion(value, fromUnit, toUnit);
+                    }
+                }, 20);
+            }
+            
+            function performConversion(value, fromUnit, toUnit) {
                 // Convert to bits first
                 const bits = value * units[fromUnit].factor;
                 
@@ -719,6 +816,9 @@
                     conversionFormula.textContent = ‘Formula: ${value} ${units[fromUnit].abbreviation} ˆ (${units[fromUnit].factor} / ${units[toUnit].factor}) = ${formattedResult} ${units[toUnit].abbreviation}‘;
                 }
                 
+                // Update result bar text
+                resultBarFill.textContent = ‘${formattedResult} ${units[toUnit].abbreviation}‘;
+                
                 // Show result container
                 resultContainer.classList.add(’active’);
                 
@@ -754,4 +854,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
