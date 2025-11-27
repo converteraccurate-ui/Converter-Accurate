@@ -42,23 +42,6 @@
             flex: 1;
         }
 
-        /* Breadcrumb Navigation */
-        .breadcrumb {
-            padding: 15px 0;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .breadcrumb a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
         .converter-card {
             background-color: var(--white);
             border-radius: 15px;
@@ -391,7 +374,7 @@
         }
 
         .info-list li:before {
-            content: "�｢";
+            content: "•";
             color: var(--primary-color);
             font-size: 1.5rem;
             position: absolute;
@@ -476,15 +459,6 @@
     </style>
 </head>
 <body>
-    <!-- Breadcrumb Navigation -->
-    <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="https://www.converteraccurate.com">Home</a> &gt; 
-            <a href="https://www.converteraccurate.com/digital-tools">Digital Tools</a> &gt; 
-            <span>Data Converter</span>
-        </nav>
-    </div>
-
     <div class="container">
         <div class="converter-card">
             <div class="converter-header">
@@ -663,9 +637,9 @@
                 <div class="related-tools">
                     <h2>Explore More Free Tools</h2>
                     <ul class="info-list">
-                        <li><a href="https://www.converteraccurate.com/currency-converter" title="Currency Converter Online">汳ｱ Currency Converter</a> �� Convert between 150+ world currencies with real-time exchange rates.</li>
-                        <li><a href="https://www.converteraccurate.com/bmi-calculator" title="BMI Calculator Online">擘ｸ� BMI Calculator</a> �� Check your Body Mass Index and ideal weight range.</li>
-                        <li><a href="https://www.converteraccurate.com/age-calculator" title="Age Calculator Online">洫ｮ Age Calculator</a> �� Find your exact age in years, months, and days.</li>
+                        <li><a href="https://www.converteraccurate.com/currency-converter" title="Currency Converter Online">💱 Currency Converter</a> — Convert between 150+ world currencies with real-time exchange rates.</li>
+                        <li><a href="https://www.converteraccurate.com/bmi-calculator" title="BMI Calculator Online">❤️ BMI Calculator</a> — Check your Body Mass Index and ideal weight range.</li>
+                        <li><a href="https://www.converteraccurate.com/age-calculator" title="Age Calculator Online">🧮 Age Calculator</a> — Find your exact age in years, months, and days.</li>
                     </ul>
                 </div>
             </div>
@@ -673,7 +647,7 @@
     </div>
 
     <footer>
-        <p>ﾂｩ 2025 <a href="https://www.converteraccurate.com">Converter Accurate</a> �� All Rights Reserved.</p>
+        <p>© 2025 <a href="https://www.converteraccurate.com">Converter Accurate</a> — All Rights Reserved.</p>
     </footer>
 
     <script>
@@ -813,7 +787,7 @@
                 if (fromUnit === toUnit) {
                     conversionFormula.textContent = `No conversion needed - same units`;
                 } else {
-                    conversionFormula.textContent = `Formula: ${value} ${units[fromUnit].abbreviation} ﾃ� (${units[fromUnit].factor} / ${units[toUnit].factor}) = ${formattedResult} ${units[toUnit].abbreviation}`;
+                    conversionFormula.textContent = `Formula: ${value} ${units[fromUnit].abbreviation} × (${units[fromUnit].factor} / ${units[toUnit].factor}) = ${formattedResult} ${units[toUnit].abbreviation}`;
                 }
                 
                 // Update result bar text
