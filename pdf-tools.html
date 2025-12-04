@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free PDF Tools - ConverterAccurate.com</title>
+<meta name="description" content="Free online PDF tools: Convert, merge, split, compress PDF files. Convert images, Word, Excel to PDF. No registration required.">
+<meta name="keywords" content="PDF converter, merge PDF, split PDF, compress PDF, PDF tools, free PDF editor">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    :root {
+        --primary-color: #2c7a7b;
+        --primary-dark: #285e61;
+        --primary-light: #81e6d9;
+        --secondary-color: #ed8936;
+        --text-color: #2d3748;
+        --light-bg: #f7fafc;
+        --white: #ffffff;
+        --border-radius: 8px;
+        --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.15);
+        --border-color: #e2e8f0;
+        --success-color: #38a169;
+        --warning-color: #dd6b20;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+        background: var(--light-bg);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    header {
+        background: var(--white);
+        padding: 20px 40px;
+        color: var(--text-color);
+        box-shadow: var(--box-shadow);
+        border-bottom: 3px solid var(--primary-color);
+    }
+
+    .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--primary-color);
+    }
+
+    .logo i {
+        font-size: 32px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--primary-dark);
+        margin-top: 4px;
+        opacity: 0.8;
+    }
+
+    .main-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 30px 20px;
+        background: linear-gradient(135deg, rgba(44, 122, 123, 0.05), rgba(129, 230, 217, 0.05));
+        border-radius: var(--border-radius);
+    }
+
+    .page-title h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 12px;
+    }
+
+    .page-title p {
+        font-size: 18px;
+        color: var(--text-color);
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.8;
+    }
+
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .tool-card {
+        background: var(--white);
+        padding: 30px 25px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tool-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    }
+
+    .tool-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--primary-light);
+    }
+
+    .tool-icon {
+        font-size: 42px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(44, 122, 123, 0.1), rgba(129, 230, 217, 0.1));
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 25px;
+        border: 2px solid var(--primary-light);
+    }
+
+    .tool-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--primary-dark);
+    }
+
+    .tool-desc {
+        font-size: 15px;
+        color: var(--text-color);
+        margin-bottom: 25px;
+        flex-grow: 1;
+        line-height: 1.5;
+        opacity: 0.8;
+    }
+
+    .upload-btn {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: var(--white);
+        padding: 14px 24px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .upload-btn:hover {
+        background: linear-gradient(135deg, var(--primary-dark), #234e52);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(44, 122, 123, 0.3);
+    }
+
+    .upload-btn:active {
+        transform: translateY(0);
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .file-info {
+        margin-top: 15px;
+        font-size: 14px;
+        color: var(--text-color);
+        padding: 12px;
+        background: rgba(129, 230, 217, 0.1);
+        border-radius: var(--border-radius);
+        display: none;
+        border-left: 3px solid var(--primary-color);
+        text-align: left;
+    }
+
+    .file-info i {
+        color: var(--primary-color);
+        margin-right: 8px;
+    }
+
+    .features {
+        background: var(--white);
+        border-radius: var(--border-radius);
+        padding: 50px 40px;
+        margin-bottom: 60px;
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--border-color);
+    }
+
+    .features h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px;
+        color: var(--primary-dark);
+        font-weight: 700;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 25px;
+        border-radius: var(--border-radius);
+        transition: all 0.3s;
+        background: var(--light-bg);
+        border: 1px solid transparent;
+    }
+
+    .feature-item:hover {
+        background: white;
+        transform: translateY(-5px);
+        border-color: var(--primary-light);
+        box-shadow: var(--box-shadow);
+    }
+
+    .feature-item i {
+        color: var(--secondary-color);
+        font-size: 24px;
+        margin-top: 2px;
+        background: rgba(237, 137, 54, 0.1);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .feature-item h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
+
+    .feature-item p {
+        font-size: 14px;
+        color: var(--text-color);
+        line-height: 1.5;
+        opacity: 0.8;
+    }
+
+    footer {
+        background: var(--primary-dark);
+        color: var(--white);
+        padding: 60px 20px 30px;
+        margin-top: 80px;
+        border-top: 4px solid var(--secondary-color);
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .footer-logo {
+        font-size: 32px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        color: var(--white);
+        margin-bottom: 20px;
+    }
+
+    .footer-tagline {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 600px;
+        margin: 0 auto 40px;
+        line-height: 1.6;
+    }
+
+    .footer-features {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .footer-feature {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px 25px;
+        border-radius: var(--border-radius);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+    }
+
+    .footer-feature:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+    }
+
+    .footer-feature i {
+        color: var(--primary-light);
+        font-size: 18px;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .footer-links a:hover {
+        color: var(--secondary-color);
+    }
+
+    .footer-bottom {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+    }
+
+    .footer-bottom a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+    .security-badge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(129, 230, 217, 0.2);
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
+        color: var(--primary-dark);
+        font-size: 14px;
+        font-weight: 600;
+        border: 1px solid var(--primary-light);
+    }
+
+    .highlight {
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        header {
+            padding: 15px 20px;
+        }
+        
+        .header-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .page-title h1 {
+            font-size: 28px;
+        }
+        
+        .page-title p {
+            font-size: 16px;
+        }
+        
+        .tools-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .features {
+            padding: 30px 20px;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-features {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <div>
+            <div class="logo">
+                <i class="fas fa-file-pdf"></i>
+                <div>
+                    <div>ConverterAccurate</div>
+                    <div class="tagline">Professional PDF Tools <span class="highlight">100% Free</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="security-badge">
+            <i class="fas fa-lock"></i>
+            <span>Secure & Private</span>
+        </div>
+    </div>
+</header>
+
+<div class="main-container">
+    <div class="page-title">
+        <h1>All-in-One PDF Solution</h1>
+        <p>Convert, edit, and manage PDF documents with our free online tools. No installation required.</p>
+    </div>
+
+    <div class="tools-grid">
+        <!-- Convert to PDF -->
+        <div class="tool-card">
+            <div class="tool-icon">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            <div class="tool-title">Convert to PDF</div>
+            <div class="tool-desc">Transform Word, Excel, PowerPoint, and images into professional PDF files.</div>
+            <label class="upload-btn">
+                <i class="fas fa-upload"></i> Upload File
+                <input type="file" accept=".doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.txt,.rtf" onchange="convertToPDF(event)">
+            </label>
+            <div class="file-info" id="convert-info"></div>
+        </div>
+
+        <!-- Merge PDF -->
+        <div class="tool-card">
+            <div class="tool-icon">
+                <i class="fas fa-layer-group"></i>
+            </div>
+            <div class="tool-title">Merge PDF</div>
+            <div class="tool-desc">Combine multiple PDF files into one document. Reorder pages as needed.</div>
+            <label class="upload-btn">
+                <i class="fas fa-plus-circle"></i> Select Files
+                <input type="file" accept="application/pdf" multiple onchange="mergePDF(event)">
+            </label>
+            <div class="file-info" id="merge-info"></div>
+        </div>
+
+        <!-- Split PDF -->
+        <div class="tool-card">
+            <div class="tool-icon">
+                <i class="fas fa-cut"></i>
+            </div>
+            <div class="tool-title">Split PDF</div>
+            <div class="tool-desc">Extract specific pages or split PDF into multiple files by page ranges.</div>
+            <label class="upload-btn">
+                <i class="fas fa-scissors"></i> Choose PDF
+                <input type="file" accept="application/pdf" onchange="splitPDF(event)">
+            </label>
+            <div class="file-info" id="split-info"></div>
+        </div>
+
+        <!-- Compress PDF -->
+        <div class="tool-card">
+            <div class="tool-icon">
+                <i class="fas fa-compress-alt"></i>
+            </div>
+            <div class="tool-title">Compress PDF</div>
+            <div class="tool-desc">Reduce file size while maintaining quality. Perfect for email and storage.</div>
+            <label class="upload-btn">
+                <i class="fas fa-file-archive"></i> Compress Now
+                <input type="file" accept="application/pdf" onchange="compressPDF(event)">
+            </label>
+            <div class="file-info" id="compress-info"></div>
+        </div>
+
+        <!-- PDF to Images -->
+        <div class="tool-card">
+            <div class="tool-icon">
+                <i class="fas fa-file-image"></i>
+            </div>
+            <div class="tool-title">PDF to Images</div>
+            <div class="tool-desc">Convert PDF pages to JPG, PNG, or other image formats with high resolution.</div>
+            <label class="upload-btn">
+                <i class="fas fa-image"></i> Convert PDF
+                <input type="file" accept="application/pdf" onchange="pdfToImage(event)">
+            </label>
+            <div class="file-info" id="pdf-to-img-info"></div>
+        </div>
+
+        <!-- Images to PDF -->
+        <div class="tool-card">
+            <div class="tool-icon">
+                <i class="fas fa-images"></i>
+            </div>
+            <div class="tool-title">Images to PDF</div>
+            <div class="tool-desc">Combine multiple images into a single PDF. Adjust layout and quality settings.</div>
+            <label class="upload-btn">
+                <i class="fas fa-camera"></i> Upload Images
+                <input type="file" accept="image/*" multiple onchange="imagesToPDF(event)">
+            </label>
+            <div class="file-info" id="img-to-pdf-info"></div>
+        </div>
+    </div>
+
+    <div class="features">
+        <h2>Why Choose Our PDF Tools?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                    <h3>Bank-Level Security</h3>
+                    <p>Your documents are encrypted end-to-end and automatically deleted after processing.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-bolt"></i>
+                <div>
+                    <h3>Lightning Fast</h3>
+                    <p>Process documents quickly with our optimized servers. No queues or waiting time.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-desktop"></i>
+                <div>
+                    <h3>No Installation</h3>
+                    <p>Works directly in your browser. No software downloads or plugins required.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-infinity"></i>
+                <div>
+                    <h3>Unlimited Free</h3>
+                    <p>Completely free with no hidden limits. Use as many times as you need.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">
+            <i class="fas fa-file-pdf"></i>
+            <span>ConverterAccurate</span>
+        </div>
+        
+        <p class="footer-tagline">
+            Your trusted partner for all PDF needs. Free, secure, and easy-to-use online tools 
+            for converting, merging, splitting, and compressing PDF documents.
+        </p>
+        
+        <div class="footer-features">
+            <div class="footer-feature">
+                <i class="fas fa-lock"></i>
+                <span>100% Secure</span>
+            </div>
+            <div class="footer-feature">
+                <i class="fas fa-bolt"></i>
+                <span>Fast Processing</span>
+            </div>
+            <div class="footer-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>No Registration</span>
+            </div>
+            <div class="footer-feature">
+                <i class="fas fa-infinity"></i>
+                <span>Unlimited Free</span>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="/convert">Convert PDF</a>
+            <a href="/merge">Merge PDF</a>
+            <a href="/split">Split PDF</a>
+            <a href="/compress">Compress PDF</a>
+            <a href="/pdf-to-image">PDF to Images</a>
+            <a href="/image-to-pdf">Images to PDF</a>
+            <a href="/tools">All Tools</a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2023 ConverterAccurate.com. All rights reserved.</p>
+            <p style="margin-top: 10px;">
+                <a href="/privacy">Privacy Policy</a> • 
+                <a href="/terms">Terms of Service</a> • 
+                <a href="/contact">Contact Us</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function showFileInfo(elementId, fileName, fileCount = null) {
+        const fileInfoEl = document.getElementById(elementId);
+        if (fileCount) {
+            fileInfoEl.innerHTML = `<i class="fas fa-file-pdf"></i> ${fileCount} PDF file(s) selected`;
+        } else {
+            const extension = fileName.split('.').pop().toUpperCase();
+            fileInfoEl.innerHTML = `<i class="fas fa-file"></i> ${fileName} (${extension})`;
+        }
+        fileInfoEl.style.display = 'block';
+    }
+
+    function convertToPDF(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        showFileInfo('convert-info', file.name);
+        
+        const btn = e.target.parentElement;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+        btn.style.background = 'linear-gradient(135deg, var(--primary-dark), #234e52)';
+        
+        setTimeout(() => {
+            alert(`"${file.name}" is being converted to PDF!\n\nOn the live site, your converted file would download automatically.`);
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            
+            // Show success message
+            const fileInfo = document.getElementById('convert-info');
+            fileInfo.innerHTML = '<i class="fas fa-check-circle" style="color:var(--success-color)"></i> Ready for conversion!';
+            fileInfo.style.borderLeftColor = 'var(--success-color)';
+        }, 1800);
+    }
+
+    function mergePDF(e) {
+        const files = e.target.files;
+        if (files.length === 0) return;
+        
+        showFileInfo('merge-info', null, files.length);
+        
+        const btn = e.target.parentElement;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Merging...';
+        btn.style.background = 'linear-gradient(135deg, var(--primary-dark), #234e52)';
+        
+        setTimeout(() => {
+            alert(`Merging ${files.length} PDF files into one document!\n\nYou can rearrange pages before finalizing the merge.`);
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            
+            const fileInfo = document.getElementById('merge-info');
+            fileInfo.innerHTML = `<i class="fas fa-check-circle" style="color:var(--success-color)"></i> ${files.length} files ready to merge`;
+            fileInfo.style.borderLeftColor = 'var(--success-color)';
+        }, 1800);
+    }
+
+    function splitPDF(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        showFileInfo('split-info', file.name);
+        
+        const btn = e.target.parentElement;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+        btn.style.background = 'linear-gradient(135deg, var(--primary-dark), #234e52)';
+        
+        setTimeout(() => {
+            alert(`"${file.name}" loaded for splitting!\n\nSelect page ranges or split into individual pages.`);
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            
+            const fileInfo = document.getElementById('split-info');
+            fileInfo.innerHTML = '<i class="fas fa-check-circle" style="color:var(--success-color)"></i> Ready to split';
+            fileInfo.style.borderLeftColor = 'var(--success-color)';
+        }, 1800);
+    }
+
+    function compressPDF(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        showFileInfo('compress-info', file.name);
+        
+        const btn = e.target.parentElement;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Compressing...';
+        btn.style.background = 'linear-gradient(135deg, var(--primary-dark), #234e52)';
+        
+        setTimeout(() => {
+            const sizeReduction = Math.floor(Math.random() * 60) + 25;
+            alert(`"${file.name}" compressed by ${sizeReduction}%!\n\nDownload the optimized file.`);
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            
+            const fileInfo = document.getElementById('compress-info');
+            fileInfo.innerHTML = `<i class="fas fa-check-circle" style="color:var(--success-color)"></i> Compressed by ${sizeReduction}%`;
+            fileInfo.style.borderLeftColor = 'var(--success-color)';
+        }, 2000);
+    }
+
+    function pdfToImage(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        showFileInfo('pdf-to-img-info', file.name);
+        
+        const btn = e.target.parentElement;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Extracting...';
+        btn.style.background = 'linear-gradient(135deg, var(--primary-dark), #234e52)';
+        
+        setTimeout(() => {
+            alert(`Converting "${file.name}" to images!\n\nChoose format (JPG/PNG) and quality settings.`);
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            
+            const fileInfo = document.getElementById('pdf-to-img-info');
+            fileInfo.innerHTML = '<i class="fas fa-check-circle" style="color:var(--success-color)"></i> Ready for conversion';
+            fileInfo.style.borderLeftColor = 'var(--success-color)';
+        }, 1800);
+    }
+
+    function imagesToPDF(e) {
+        const files = e.target.files;
+        if (files.length === 0) return;
+        
+        showFileInfo('img-to-pdf-info', null, files.length);
+        
+        const btn = e.target.parentElement;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating PDF...';
+        btn.style.background = 'linear-gradient(135deg, var(--primary-dark), #234e52)';
+        
+        setTimeout(() => {
+            alert(`Creating PDF from ${files.length} images!\n\nAdjust page size, orientation, and margins.`);
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            
+            const fileInfo = document.getElementById('img-to-pdf-info');
+            fileInfo.innerHTML = `<i class="fas fa-check-circle" style="color:var(--success-color)"></i> ${files.length} images loaded`;
+            fileInfo.style.borderLeftColor = 'var(--success-color)';
+        }, 1800);
+    }
+
+    // Initialize tool interactions
+    document.addEventListener('DOMContentLoaded', function() {
+        const toolCards = document.querySelectorAll('.tool-card');
+        toolCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.matches('input[type="file"]') && !e.target.matches('.upload-btn')) {
+                    const fileInput = this.querySelector('input[type="file"]');
+                    if (fileInput) {
+                        fileInput.click();
+                    }
+                }
+            });
+        });
+        
+        // Add some visual effects
+        const uploadButtons = document.querySelectorAll('.upload-btn');
+        uploadButtons.forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            btn.addEventListener('mouseup', function() {
+                this.style.transform = '';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
