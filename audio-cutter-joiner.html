@@ -1,0 +1,916 @@
+<!-- save as audio-cutter-joiner.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Cutter & Joiner | ConverterAccurate.com</title>
+    <style>
+        :root {
+            --primary-color: #2c7a7b;
+            --primary-dark: #285e61;
+            --primary-light: #81e6d9;
+            --secondary-color: #ed8936;
+            --text-color: #2d3748;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            
+            /* Derived colors for consistent theme */
+            --primary-bg: #2c7a7b;
+            --secondary-bg: #f7fafc;
+            --accent-color: #2c7a7b;
+            --accent-hover: #285e61;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --success-color: #38a169;
+            --error-color: #e53e3e;
+            --card-radius: var(--border-radius);
+            --input-radius: var(--border-radius);
+            --button-radius: var(--border-radius);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e6fffa 100%);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .file-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .file-section {
+            background: var(--light-bg);
+            padding: 25px;
+            border-radius: var(--card-radius);
+            border: 2px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .file-section:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 6px 12px rgba(44, 122, 123, 0.1);
+        }
+
+        .file-section h3 {
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-section h3::before {
+            content: "🎵";
+            font-size: 1.2rem;
+        }
+
+        .file-label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 14px;
+            background: var(--white);
+            border: 2px dashed var(--border-color);
+            border-radius: var(--input-radius);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        input[type="file"]:hover {
+            border-color: var(--primary-color);
+            background: rgba(129, 230, 217, 0.1);
+            transform: translateY(-1px);
+        }
+
+        input[type="file"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(129, 230, 217, 0.3);
+        }
+
+        .trim-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .trim-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .trim-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        input[type="number"] {
+            padding: 12px;
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: var(--input-radius);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: monospace;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(129, 230, 217, 0.3);
+        }
+
+        .file-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: rgba(129, 230, 217, 0.1);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .duration-info {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 35px 0;
+        }
+
+        button {
+            padding: 15px 35px;
+            background: var(--primary-color);
+            border: none;
+            border-radius: var(--button-radius);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(44, 122, 123, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        #mergeBtn {
+            background: var(--primary-color);
+        }
+
+        #mergeBtn:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        #clearBtn {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        #clearBtn:hover {
+            background: var(--light-bg);
+            border-color: var(--primary-color);
+            color: var(--primary-dark);
+        }
+
+        .output-section {
+            margin-top: 30px;
+            padding: 30px;
+            background: var(--light-bg);
+            border-radius: var(--card-radius);
+            border: 2px solid var(--border-color);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .output-section.active {
+            display: block;
+            border-color: var(--primary-light);
+            background: linear-gradient(to bottom right, rgba(129, 230, 217, 0.1), var(--light-bg));
+        }
+
+        .output-section h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+        }
+
+        .output-section h3::before {
+            content: "✅";
+            font-size: 1.2rem;
+        }
+
+        .audio-player {
+            width: 100%;
+            margin: 25px 0;
+            background: var(--white);
+            border-radius: var(--input-radius);
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .audio-player audio {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--button-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 15px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .download-link:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(44, 122, 123, 0.2);
+        }
+
+        .status-message {
+            padding: 15px 20px;
+            border-radius: var(--input-radius);
+            margin: 15px 0;
+            display: none;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+        }
+
+        .status-message.success {
+            background: rgba(56, 161, 105, 0.1);
+            border-color: var(--success-color);
+            color: var(--success-color);
+            display: block;
+        }
+
+        .status-message.error {
+            background: rgba(229, 62, 62, 0.1);
+            border-color: var(--error-color);
+            color: var(--error-color);
+            display: block;
+        }
+
+        .status-message.info {
+            background: rgba(129, 230, 217, 0.2);
+            border-color: var(--primary-color);
+            color: var(--primary-dark);
+            display: block;
+        }
+
+        .instructions {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--light-bg);
+            border-radius: var(--card-radius);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .instructions h4 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions h4::before {
+            content: "📋";
+        }
+
+        .instructions ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .instructions li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .instructions p {
+            margin-top: 10px;
+            font-style: italic;
+            background: rgba(129, 230, 217, 0.1);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .feature-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(237, 137, 54, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .file-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .trim-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .output-section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .file-section {
+                padding: 20px;
+            }
+            
+            input[type="file"] {
+                padding: 12px;
+            }
+            
+            .action-buttons {
+                margin: 25px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Audio Cutter & Joiner</h1>
+            <p>Trim and merge audio files directly in your browser - Fast, secure, and no installation required</p>
+        </div>
+
+        <div class="file-inputs">
+            <div class="file-section">
+                <span class="feature-badge">File 1</span>
+                <h3>First Audio File</h3>
+                <label class="file-label">Select your first audio file:</label>
+                <input id="fileA" type="file" accept="audio/*">
+                <div class="file-info">
+                    <span id="fileNameA">No file selected</span>
+                    <span id="durationA" class="duration-info"></span>
+                </div>
+                
+                <div class="trim-controls">
+                    <div class="trim-group">
+                        <label class="trim-label">Start Time (seconds)</label>
+                        <input id="aFrom" type="number" min="0" step="0.1" value="0" placeholder="0">
+                    </div>
+                    <div class="trim-group">
+                        <label class="trim-label">End Time (seconds)</label>
+                        <input id="aTo" type="number" min="0" step="0.1" value="10" placeholder="10">
+                    </div>
+                </div>
+            </div>
+
+            <div class="file-section">
+                <span class="feature-badge">File 2</span>
+                <h3>Second Audio File</h3>
+                <label class="file-label">Select your second audio file:</label>
+                <input id="fileB" type="file" accept="audio/*">
+                <div class="file-info">
+                    <span id="fileNameB">No file selected</span>
+                    <span id="durationB" class="duration-info"></span>
+                </div>
+                
+                <div class="trim-controls">
+                    <div class="trim-group">
+                        <label class="trim-label">Start Time (seconds)</label>
+                        <input id="bFrom" type="number" min="0" step="0.1" value="0" placeholder="0">
+                    </div>
+                    <div class="trim-group">
+                        <label class="trim-label">End Time (seconds)</label>
+                        <input id="bTo" type="number" min="0" step="0.1" value="10" placeholder="10">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="status" class="status-message"></div>
+
+        <div class="action-buttons">
+            <button id="mergeBtn" disabled>
+                <span class="btn-text">✂️ Trim & Merge Audio</span>
+                <span class="loading" style="display:none;"></span>
+            </button>
+            <button id="clearBtn">🗑️ Clear All</button>
+        </div>
+
+        <div id="output" class="output-section">
+            <h3>Processing Complete!</h3>
+            <p>Your merged audio file is ready. You can preview it below or download the WAV file.</p>
+            
+            <div class="audio-player">
+                <audio controls></audio>
+            </div>
+            
+            <a href="#" class="download-link" download="merged-audio.wav">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download Merged Audio (WAV)
+            </a>
+        </div>
+
+        <div class="instructions">
+            <h4>How to Use This Tool</h4>
+            <ul>
+                <li>Select two audio files (supports MP3, WAV, OGG, M4A, FLAC, etc.)</li>
+                <li>Set the start and end times for trimming each audio segment</li>
+                <li>Click "Trim & Merge Audio" to process your files</li>
+                <li>Preview the result and download the merged WAV file</li>
+            </ul>
+            <p><strong>Privacy Note:</strong> All processing happens locally in your browser. Your audio files are never uploaded to any server.</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const get = id => document.getElementById(id);
+        const fileA = get('fileA');
+        const fileB = get('fileB');
+        const fileNameA = get('fileNameA');
+        const fileNameB = get('fileNameB');
+        const durationA = get('durationA');
+        const durationB = get('durationB');
+        const aFrom = get('aFrom');
+        const aTo = get('aTo');
+        const bFrom = get('bFrom');
+        const bTo = get('bTo');
+        const mergeBtn = get('mergeBtn');
+        const clearBtn = get('clearBtn');
+        const output = get('output');
+        const status = get('status');
+        const audioPlayer = output.querySelector('audio');
+        const downloadLink = output.querySelector('.download-link');
+        const btnText = mergeBtn.querySelector('.btn-text');
+        const loadingSpinner = mergeBtn.querySelector('.loading');
+
+        // Audio context (initialize on user interaction)
+        let audioContext = null;
+
+        // Update file info when files are selected
+        async function updateFileInfo(fileInput, fileNameEl, durationEl) {
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                fileNameEl.textContent = file.name;
+                fileNameEl.style.color = 'var(--primary-dark)';
+                
+                try {
+                    if (!audioContext) {
+                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                    
+                    const arrayBuffer = await file.arrayBuffer();
+                    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                    const duration = audioBuffer.duration;
+                    
+                    durationEl.textContent = `${duration.toFixed(2)}s`;
+                    
+                    // Auto-set end time to full duration if it's longer than current value
+                    const toInput = fileInput === fileA ? aTo : bTo;
+                    if (parseFloat(toInput.value) > duration) {
+                        toInput.value = duration.toFixed(2);
+                    }
+                    
+                    // Update max attribute for time inputs
+                    const fromInput = fileInput === fileA ? aFrom : bFrom;
+                    fromInput.max = duration;
+                    toInput.max = duration;
+                    
+                } catch (error) {
+                    console.error('Error getting duration:', error);
+                    durationEl.textContent = 'Duration unknown';
+                    durationEl.style.color = 'var(--error-color)';
+                }
+            } else {
+                fileNameEl.textContent = 'No file selected';
+                fileNameEl.style.color = 'var(--text-secondary)';
+                durationEl.textContent = '';
+            }
+            
+            updateMergeButton();
+        }
+
+        // Update merge button state
+        function updateMergeButton() {
+            const hasFiles = fileA.files.length > 0 && fileB.files.length > 0;
+            const validTimes = parseFloat(aTo.value) > parseFloat(aFrom.value) && 
+                              parseFloat(bTo.value) > parseFloat(bFrom.value);
+            
+            mergeBtn.disabled = !(hasFiles && validTimes);
+        }
+
+        // Show status message
+        function showStatus(message, type = 'info') {
+            status.textContent = message;
+            status.className = `status-message ${type}`;
+            setTimeout(() => {
+                status.className = 'status-message';
+            }, type === 'error' ? 5000 : 3000);
+        }
+
+        // Clear all inputs
+        function clearAll() {
+            fileA.value = '';
+            fileB.value = '';
+            fileNameA.textContent = 'No file selected';
+            fileNameB.textContent = 'No file selected';
+            durationA.textContent = '';
+            durationB.textContent = '';
+            aFrom.value = '0';
+            aTo.value = '10';
+            bFrom.value = '0';
+            bTo.value = '10';
+            output.classList.remove('active');
+            updateMergeButton();
+            showStatus('All inputs cleared. Ready for new files.', 'info');
+        }
+
+        // Slice audio buffer
+        function sliceBuffer(audioBuffer, fromSec, toSec) {
+            const sampleRate = audioBuffer.sampleRate;
+            const startSample = Math.max(0, Math.floor(fromSec * sampleRate));
+            const endSample = Math.min(audioBuffer.length, Math.floor(toSec * sampleRate));
+            const length = Math.max(0, endSample - startSample);
+            
+            const outputBuffer = audioContext.createBuffer(
+                audioBuffer.numberOfChannels,
+                length,
+                sampleRate
+            );
+            
+            for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                const channelData = audioBuffer.getChannelData(channel);
+                const outputData = outputBuffer.getChannelData(channel);
+                
+                for (let i = 0; i < length; i++) {
+                    outputData[i] = channelData[startSample + i];
+                }
+            }
+            
+            return outputBuffer;
+        }
+
+        // Merge two audio buffers
+        function mergeBuffers(buffer1, buffer2) {
+            const sampleRate = buffer1.sampleRate;
+            const channelCount = Math.max(buffer1.numberOfChannels, buffer2.numberOfChannels);
+            const totalLength = buffer1.length + buffer2.length;
+            
+            const mergedBuffer = audioContext.createBuffer(
+                channelCount,
+                totalLength,
+                sampleRate
+            );
+            
+            for (let channel = 0; channel < channelCount; channel++) {
+                const mergedData = mergedBuffer.getChannelData(channel);
+                
+                // Copy first buffer
+                if (channel < buffer1.numberOfChannels) {
+                    const data1 = buffer1.getChannelData(channel);
+                    mergedData.set(data1, 0);
+                }
+                
+                // Copy second buffer
+                if (channel < buffer2.numberOfChannels) {
+                    const data2 = buffer2.getChannelData(channel);
+                    mergedData.set(data2, buffer1.length);
+                }
+            }
+            
+            return mergedBuffer;
+        }
+
+        // Encode audio buffer to WAV
+        function encodeWAV(audioBuffer) {
+            const numChannels = audioBuffer.numberOfChannels;
+            const sampleRate = audioBuffer.sampleRate;
+            const length = audioBuffer.length * numChannels * 2 + 44;
+            const buffer = new ArrayBuffer(length);
+            const view = new DataView(buffer);
+            
+            // Write WAV header
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
+            
+            writeString(0, 'RIFF');
+            view.setUint32(4, length - 8, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * numChannels * 2, true);
+            view.setUint16(32, numChannels * 2, true);
+            view.setUint16(34, 16, true);
+            writeString(36, 'data');
+            view.setUint32(40, audioBuffer.length * numChannels * 2, true);
+            
+            // Write audio data
+            let offset = 44;
+            for (let i = 0; i < audioBuffer.length; i++) {
+                for (let channel = 0; channel < numChannels; channel++) {
+                    const sample = Math.max(-1, Math.min(1, audioBuffer.getChannelData(channel)[i]));
+                    view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+                    offset += 2;
+                }
+            }
+            
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        // Main merge function
+        async function mergeAudio() {
+            try {
+                // Validate inputs
+                if (!fileA.files[0] || !fileB.files[0]) {
+                    showStatus('Please select both audio files to continue', 'error');
+                    return;
+                }
+                
+                const aFromVal = parseFloat(aFrom.value);
+                const aToVal = parseFloat(aTo.value);
+                const bFromVal = parseFloat(bFrom.value);
+                const bToVal = parseFloat(bTo.value);
+                
+                if (aToVal <= aFromVal || bToVal <= bFromVal) {
+                    showStatus('End time must be greater than start time for both files', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                btnText.style.display = 'none';
+                loadingSpinner.style.display = 'inline-block';
+                mergeBtn.disabled = true;
+                output.classList.remove('active');
+                
+                showStatus('Processing your audio files... This may take a moment.', 'info');
+                
+                // Initialize audio context if not already done
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                
+                // Decode audio files
+                const decodeAudio = async (file) => {
+                    const arrayBuffer = await file.arrayBuffer();
+                    return await audioContext.decodeAudioData(arrayBuffer);
+                };
+                
+                const [bufferA, bufferB] = await Promise.all([
+                    decodeAudio(fileA.files[0]),
+                    decodeAudio(fileB.files[0])
+                ]);
+                
+                // Slice buffers
+                const sliceA = sliceBuffer(bufferA, aFromVal, aToVal);
+                const sliceB = sliceBuffer(bufferB, bFromVal, bToVal);
+                
+                // Merge slices
+                const mergedBuffer = mergeBuffers(sliceA, sliceB);
+                
+                // Encode to WAV
+                const wavBlob = encodeWAV(mergedBuffer);
+                const url = URL.createObjectURL(wavBlob);
+                
+                // Update output section
+                audioPlayer.src = url;
+                downloadLink.href = url;
+                downloadLink.download = `merged-audio-${new Date().toISOString().slice(0,10)}.wav`;
+                
+                output.classList.add('active');
+                showStatus('Success! Your audio files have been merged.', 'success');
+                
+                // Scroll to output smoothly
+                output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+            } catch (error) {
+                console.error('Merge error:', error);
+                showStatus(`Error: ${error.message}. Please try different files or adjust the trim times.`, 'error');
+            } finally {
+                // Reset loading state
+                btnText.style.display = 'inline';
+                loadingSpinner.style.display = 'none';
+                updateMergeButton();
+            }
+        }
+
+        // Event Listeners
+        fileA.addEventListener('change', () => updateFileInfo(fileA, fileNameA, durationA));
+        fileB.addEventListener('change', () => updateFileInfo(fileB, fileNameB, durationB));
+        
+        [aFrom, aTo, bFrom, bTo].forEach(input => {
+            input.addEventListener('input', updateMergeButton);
+            input.addEventListener('change', updateMergeButton);
+        });
+        
+        mergeBtn.addEventListener('click', mergeAudio);
+        clearBtn.addEventListener('click', clearAll);
+        
+        // Initialize
+        updateMergeButton();
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !mergeBtn.disabled) {
+                e.preventDefault();
+                mergeAudio();
+            }
+            
+            if (e.key === 'Escape') {
+                clearAll();
+            }
+        });
+
+        // Add some visual feedback for file drag & drop
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach(input => {
+            input.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                input.style.borderColor = 'var(--primary-color)';
+                input.style.background = 'rgba(129, 230, 217, 0.2)';
+            });
+            
+            input.addEventListener('dragleave', () => {
+                input.style.borderColor = '';
+                input.style.background = '';
+            });
+            
+            input.addEventListener('drop', (e) => {
+                e.preventDefault();
+                input.style.borderColor = '';
+                input.style.background = '';
+            });
+        });
+    </script>
+</body>
+</html>

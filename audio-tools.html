@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Tools | ConverterAccurate - Professional Audio Processing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c7a7b;
+            --primary-dark: #285e61;
+            --primary-light: #81e6d9;
+            --secondary-color: #ed8936;
+            --text-color: #2d3748;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+            font-size: 28px;
+        }
+
+        .logo-text h1 {
+            color: var(--primary-dark);
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        .logo-text .site-url {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero .site-highlight {
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            color: var(--primary-dark);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .tool-icon {
+            height: 80px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 32px;
+        }
+
+        .tool-content {
+            padding: 25px;
+        }
+
+        .tool-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .tool-content p {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .tool-link {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .tool-link:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--white);
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature i {
+            color: var(--primary-color);
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        /* Call to Action */
+        .cta {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #dd6b20 100%);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin: 60px 0;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-light);
+        }
+
+        .site-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .site-url-footer {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e0;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .cta h2 {
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0;
+            }
+
+            .tools-section {
+                padding: 40px 0;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature {
+                padding: 20px 10px;
+            }
+            
+            .logo-text h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-wave-square"></i>
+                    <div class="logo-text">
+                        <h1>Audio Tools</h1>
+                        <div class="site-url">ConverterAccurate</div>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <p><i class="fas fa-check-circle" style="color: var(--secondary-color);"></i> 100% Free Online Tools</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Powerful Audio Processing Tools</h2>
+            <p>Edit, convert, enhance, and transform your audio files with our comprehensive suite of free online audio tools on <span class="site-highlight">ConverterAccurate</span>. No installation required.</p>
+            <a href="#tools" class="tool-link" style="background-color: var(--white); color: var(--primary-dark);">Explore Tools</a>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Audio Tools Collection</h2>
+                <p>Choose from our selection of specialized audio processing tools on <strong>ConverterAccurate.com</strong>. All tools are completely free and work directly in your browser.</p>
+            </div>
+            
+            <div class="tools-grid" id="toolsContainer">
+                <!-- Tools will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our Audio Tools?</h2>
+                <p>ConverterAccurate offers the best online audio processing experience</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-lock"></i>
+                    <h3>Secure & Private</h3>
+                    <p>All processing happens in your browser. Your files never leave your computer.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Fast Processing</h3>
+                    <p>Optimized tools that deliver quick results without compromising quality.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-desktop"></i>
+                    <h3>No Installation</h3>
+                    <p>Use directly in your browser on any device - no software downloads needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Start Using Our Audio Tools Today!</h2>
+            <p>Join thousands of users who trust ConverterAccurate.com for their audio processing needs. All tools are 100% free with no registration required.</p>
+            <a href="#tools" class="tool-link" style="background-color: var(--white); color: var(--primary-dark);">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <span class="site-brand">ConverterAccurate</span>
+                    <span class="site-url-footer">www.converteraccurate.com</span>
+                    <p>Your comprehensive suite for all audio editing and processing needs. Free, online, and easy to use.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#tools">All Tools</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@converteraccurate.com</li>
+                        <li><i class="fas fa-globe"></i> www.converteraccurate.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ConverterAccurate.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tool data with icons and descriptions
+        const tools = [
+            {
+                name: "Audio Cutter & Joiner",
+                icon: "fas fa-cut",
+                description: "Trim, cut or join audio files with precision. Create seamless transitions between audio clips.",
+                link: "audio-cutter-joiner.html"
+            },
+            {
+                name: "Audio Format Converter",
+                icon: "fas fa-exchange-alt",
+                description: "Convert between MP3, WAV, FLAC, AAC, and other popular audio formats with high quality.",
+                link: "audio-format-converter.html"
+            },
+            {
+                name: "Noise Reduction",
+                icon: "fas fa-volume-mute",
+                description: "Remove background noise, static, and hum from your recordings for crystal clear audio.",
+                link: "noise-reduction.html"
+            },
+            {
+                name: "Speech to Text",
+                icon: "fas fa-microphone-alt",
+                description: "Transcribe speech from audio files to text with high accuracy. Supports multiple languages.",
+                link: "speech-to-text.html"
+            },
+            {
+                name: "Speed & Pitch Converter",
+                icon: "fas fa-tachometer-alt",
+                description: "Adjust playback speed and pitch independently. Create slow motion or fast forward effects.",
+                link: "speed-pitch-converter.html"
+            },
+            {
+                name: "Text to Speech",
+                icon: "fas fa-robot",
+                description: "Convert written text into natural sounding speech. Multiple voices and languages available.",
+                link: "text-speech.html"
+            },
+            {
+                name: "Vocal Remover",
+                icon: "fas fa-user-minus",
+                description: "Isolate vocals or remove them from songs to create karaoke tracks or instrumental versions.",
+                link: "vocal-remover.html"
+            },
+            {
+                name: "Volume Booster",
+                icon: "fas fa-volume-up",
+                description: "Increase audio volume levels without distortion. Normalize and optimize audio loudness.",
+                link: "volume-booster.html"
+            }
+        ];
+
+        // Function to render tools
+        function renderTools() {
+            const toolsContainer = document.getElementById('toolsContainer');
+            
+            tools.forEach(tool => {
+                const toolCard = document.createElement('div');
+                toolCard.className = 'tool-card';
+                
+                toolCard.innerHTML = `
+                    <div class="tool-icon">
+                        <i class="${tool.icon}"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>${tool.name}</h3>
+                        <p>${tool.description}</p>
+                        <a href="${tool.link}" class="tool-link">Use Tool</a>
+                    </div>
+                `;
+                
+                toolsContainer.appendChild(toolCard);
+            });
+        }
+
+        // Initialize the page when loaded
+        document.addEventListener('DOMContentLoaded', renderTools);
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!-- save as volume-normalizer.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Volume Booster / Normalizer</title>
+  <style>
+    :root {
+      --brand-bg: #0f1724;
+      --brand-accent: #0ea5a4;
+      --brand-text: #e6eef6;
+      --card-bg: #0b1220;
+    }
+    body {
+      background: var(--brand-bg);
+      color: var(--brand-text);
+      font-family: Inter, sans-serif;
+      padding: 24px;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    h2 {
+      margin-top: 0;
+      color: var(--brand-accent);
+    }
+    input[type="file"] {
+      margin-bottom: 16px;
+      color: var(--brand-text);
+    }
+    input[type="range"] {
+      width: 100%;
+      margin: 8px 0 16px 0;
+      background: transparent;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: #334155;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--brand-accent);
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--brand-accent);
+      cursor: pointer;
+      border: none;
+    }
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    button {
+      background: var(--brand-accent);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: #001;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+      width: 100%;
+      margin-top: 8px;
+    }
+    button:hover {
+      background: #0dc2c1;
+    }
+    .small {
+      color: #9fb6b6;
+      font-size: 14px;
+      margin-top: 16px;
+      text-align: center;
+    }
+    #out {
+      margin-top: 20px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+    }
+    audio {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    a {
+      color: var(--brand-accent);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid var(--brand-accent);
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+    a:hover {
+      background: rgba(14, 165, 164, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Volume Booster / Normalizer</h2>
+    <p>Upload an audio file, adjust gain, and export a normalized WAV file—all in your browser.</p>
+    
+    <input id="file" type="file" accept="audio/*">
+    
+    <label for="gain">
+      Gain (dB): <span id="gainVal">0</span>
+    </label>
+    <input id="gain" type="range" min="-24" max="24" value="0" step="0.5">
+    
+    <button id="apply">Apply Gain & Export WAV</button>
+    
+    <div id="out"></div>
+    
+    <div class="small">
+      This tool uses the Web Audio API to process audio entirely in your browser. No data is uploaded to any server.
+    </div>
+  </div>
+
+  <script>
+    const fileEl = document.getElementById('file');
+    const gainEl = document.getElementById('gain');
+    const gainVal = document.getElementById('gainVal');
+    const btn = document.getElementById('apply');
+    const out = document.getElementById('out');
+
+    // Update gain display
+    gainEl.addEventListener('input', () => {
+      gainVal.textContent = gainEl.value;
+    });
+
+    btn.addEventListener('click', async () => {
+      const f = fileEl.files[0];
+      if (!f) {
+        alert('Please select an audio file first.');
+        return;
+      }
+
+      out.innerHTML = '<p>Processing audio... Please wait.</p>';
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+
+      try {
+        // Create audio context
+        const ac = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Read file
+        const data = await f.arrayBuffer();
+        const buf = await ac.decodeAudioData(data);
+        
+        // Offline processing
+        const offline = new OfflineAudioContext(
+          buf.numberOfChannels,
+          buf.length,
+          buf.sampleRate
+        );
+        
+        const src = offline.createBufferSource();
+        src.buffer = buf;
+        
+        const gainNode = offline.createGain();
+        const g = Math.pow(10, parseFloat(gainEl.value) / 20); // dB to linear
+        gainNode.gain.value = g;
+        
+        src.connect(gainNode).connect(offline.destination);
+        src.start();
+        
+        const rendered = await offline.startRendering();
+        
+        // Convert to WAV
+        function encodeWAV(audioBuffer) {
+          const numChannels = audioBuffer.numberOfChannels;
+          const sampleRate = audioBuffer.sampleRate;
+          const format = 1; // PCM
+          
+          let interleaved;
+          if (numChannels === 2) {
+            const L = audioBuffer.getChannelData(0);
+            const R = audioBuffer.getChannelData(1);
+            interleaved = new Float32Array(L.length + R.length);
+            let idx = 0;
+            for (let i = 0; i < L.length; i++) {
+              interleaved[idx++] = L[i];
+              interleaved[idx++] = R[i];
+            }
+          } else {
+            interleaved = audioBuffer.getChannelData(0);
+          }
+          
+          const buffer = new ArrayBuffer(44 + interleaved.length * 2);
+          const view = new DataView(buffer);
+          
+          // WAV header
+          function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+              view.setUint8(offset + i, string.charCodeAt(i));
+            }
+          }
+          
+          writeString(view, 0, 'RIFF');
+          view.setUint32(4, 36 + interleaved.length * 2, true);
+          writeString(view, 8, 'WAVE');
+          writeString(view, 12, 'fmt ');
+          view.setUint32(16, 16, true);
+          view.setUint16(20, format, true);
+          view.setUint16(22, numChannels, true);
+          view.setUint32(24, sampleRate, true);
+          view.setUint32(28, sampleRate * numChannels * 2, true);
+          view.setUint16(32, numChannels * 2, true);
+          view.setUint16(34, 16, true);
+          writeString(view, 36, 'data');
+          view.setUint32(40, interleaved.length * 2, true);
+          
+          // PCM samples
+          let offset = 44;
+          for (let i = 0; i < interleaved.length; i++) {
+            let s = Math.max(-1, Math.min(1, interleaved[i]));
+            view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+            offset += 2;
+          }
+          
+          return new Blob([view], { type: 'audio/wav' });
+        }
+        
+        const wav = encodeWAV(rendered);
+        const url = URL.createObjectURL(wav);
+        const fileName = f.name.replace(/\.[^/.]+$/, "") + "_normalized.wav";
+        
+        out.innerHTML = `
+          <p><strong>Processing complete!</strong></p>
+          <audio controls src="${url}" style="margin-bottom: 12px;"></audio>
+          <div>
+            <a href="${url}" download="${fileName}">📥 Download WAV File</a>
+          </div>
+        `;
+        
+      } catch (error) {
+        out.innerHTML = `<p style="color:#ff6b6b">Error: ${error.message}</p>`;
+        console.error(error);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Apply Gain & Export WAV';
+      }
+    });
+  </script>
+</body>
+</html>

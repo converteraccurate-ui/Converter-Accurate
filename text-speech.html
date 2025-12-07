@@ -1,0 +1,53 @@
+<!-- save as text-to-speech.html -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"/><title>Text → Speech</title>
+<style>
+:root{--brand-bg:#0f1724;--brand-accent:#0ea5a4;--brand-text:#e6eef6;--card-bg:#0b1220}
+body{background:var(--brand-bg);color:var(--brand-text);font-family:Inter;padding:24px}
+.container{max-width:820px;margin:0 auto;background:var(--card-bg);padding:18px;border-radius:12px}
+textarea{width:100%;height:160px;border-radius:8px;padding:10px;background:#08111a;color:var(--brand-text);border:1px solid #0d2730}
+button{background:var(--brand-accent);border:none;padding:10px;border-radius:8px;color:#001;cursor:pointer}
+label{display:block;margin:6px 0}
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Text → Speech (TTS)</h2>
+  <textarea id="txt">Hello world — convert this text to speech.</textarea>
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <button id="speak">Speak</button>
+    <button id="download">Download WAV (client-side)</button>
+    <select id="voice"></select>
+  </div>
+  <p style="color:#9fb6b6;margin-top:8px">Tip: For natural human voices use cloud TTS providers (ElevenLabs, Azure, Google) — they require server-side keys.</p>
+</div>
+
+<script>
+const txt = document.getElementById('txt');
+const speakBtn = document.getElementById('speak');
+const downloadBtn = document.getElementById('download');
+const voiceSel = document.getElementById('voice');
+
+function populateVoices(){
+  const vlist = speechSynthesis.getVoices();
+  voiceSel.innerHTML = vlist.map((v,i)=>`<option value="${i}">${v.name} — ${v.lang}</option>`).join('');
+}
+speechSynthesis.onvoiceschanged = populateVoices;
+populateVoices();
+
+speakBtn.addEventListener('click', ()=>{
+  const u = new SpeechSynthesisUtterance(txt.value);
+  const v = speechSynthesis.getVoices()[voiceSel.value] || null;
+  if(v) u.voice = v;
+  speechSynthesis.speak(u);
+});
+
+// Simple client-side WAV generator uses WebAudio and SpeechSynthesis is not routable to WebAudio.
+// For production, call a TTS API to get downloadable audio. We'll show a placeholder.
+downloadBtn.addEventListener('click', ()=> {
+  alert('To generate downloadable TTS audio use a TTS API (ElevenLabs/Azure/Google). This demo plays audio only via browser.');
+});
+</script>
+</body>
+</html>
